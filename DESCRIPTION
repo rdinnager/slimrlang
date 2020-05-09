@@ -1,0 +1,15 @@
+Package: slimrlang
+Title: Write SLiM Population Genetics Simulation Scripts in R
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Russell",
+           family = "Dinnage",
+           role = c("aut", "cre"),
+           email = "russell.dinnage@gmail.com",
+           comment = c(ORCID = "0000-0003-0846-2819"))
+Description: An R package that lets you write SLiM scripts using your favourite R IDE, using a syntax as cose as possible to the original SLiM language. This pacakge mostly exists to complement slimr, which has much more functionality for running SLiM from R and which imports this package.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.2
