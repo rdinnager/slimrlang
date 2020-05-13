@@ -120,3 +120,9 @@ all_methods_data <- c(list(initialize_methods_data),
 names(all_methods_data)[1] <- "Initialize"
 
 usethis::use_data(all_methods_data, overwrite = TRUE, internal = TRUE)
+
+####### generate roxygen docs #############
+
+roxy_template <- "
+#'SLiM method {function_name}
+#'Documentation for SLiM method of class {class_name}"
