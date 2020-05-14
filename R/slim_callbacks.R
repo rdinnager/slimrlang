@@ -18,14 +18,18 @@ callbacks$late <- function() {
   cb
 }
 
-callbacks$fitness <- function(mut_type_id = NULL, subpop_id = NULL) {
+callbacks$fitness <- function(mut_type_id = "", subpop_id = "") {
   cb <- glue::glue("fitness({mut_type_id}, {subpop_id})")
   class(cb) <- "callback"
   cb
 }
 
-callbacks$mateChoice <- function(subpop_id) {
-  cb <- glue::glue("mateChoice({subpop_id})")
+callbacks$mateChoice <- function(subpop_id = "") {
+  if(missing(subpop_id)) {
+    cb <- glue::glue('mateChoice()')
+  } else {
+    cb <- glue::glue('mateChoice("{subpop_id}")')
+  }
   class(cb) <- "callback"
   cb
 }
