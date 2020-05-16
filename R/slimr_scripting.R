@@ -8,7 +8,10 @@
 #'
 #' @examples
 slim_script <- function(...) {
+  slim_script <- list(...) %>%
+    dplyr::bind_rows()
 
+  slim_scipt
 }
 
 #' Setup a SLiM code block
@@ -117,11 +120,11 @@ slim_block <- function(...) {
                 callback = args_eval[[1]],
                 code = list(code)),
 
-      TRUE ~ list(block_id = NA,
-                  start_gen = NA,
-                  end_gen = NA,
-                  callback = NA,
-                  code = NA)
+      list(block_id = NA,
+           start_gen = NA,
+           end_gen = NA,
+           callback = NA,
+           code = NA)
     )
 
   } else {
@@ -132,6 +135,10 @@ slim_block <- function(...) {
                       callback = "early()",
                       code = list(code))
 
+  }
+
+  if(all(sapply(block_row, is.na))) {
+    stop("You have input an invalid combination of arguments, please see documentation of slim_block for details on how to specify its arguments.")
   }
 
   block_row
