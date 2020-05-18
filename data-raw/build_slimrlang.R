@@ -53,7 +53,7 @@ collect_types <- function(arg_type) {
 }
 
 #txt <- initialize_txt
-#txt <- slim_lang_methods_txt[5]
+#txt <- slim_lang_methods_txt[1]
 extract_methods <- function(txt, init = FALSE) {
 
   txt <- stringr::str_replace_all(txt, "\nTOC.*?\n", "\n")
@@ -73,7 +73,7 @@ extract_methods <- function(txt, init = FALSE) {
                                      "{symbol} ({return_type}){function_name}({arguments}){description}")
   }
 
-  #args_txt <- func_data$arguments[[15]]
+  #args_txt <- func_data$arguments[[1]]
   gather_args <- function(args_txt) {
     arg_df <- dplyr::tibble(args = stringr::str_split(args_txt, stringr::fixed(", "))[[1]]) %>%
       dplyr::mutate(arg_num = 1:n())
@@ -100,7 +100,10 @@ extract_methods <- function(txt, init = FALSE) {
                                         ~gather_args(.x)))
 
   func_data <- func_data %>%
-    dplyr::mutate(return_type_desc = collect_types(return_type))
+    dplyr::mutate(return_type_desc = collect_types(return_type)) %>%
+    dplyr::mutate(return_singleton = ifelse(stringr::str_detect(return_type, "\\$"),
+                                         TRUE,
+                                         FALSE))
 
   func_data
 }
@@ -123,6 +126,55 @@ usethis::use_data(all_methods_data, overwrite = TRUE, internal = TRUE)
 
 ####### generate roxygen docs #############
 
-roxy_template <- "
-#'SLiM method {function_name}
-#'Documentation for SLiM method of class {class_name}"
+load("R/sysdata.rda")
+
+func_template <- "
+SLiM method <<function_name>>
+Documentation for SLiM function \\code{<<function_name>>}, which is a method of the SLiM class \\code{<<class_name>>}.
+<<params>>
+@return An object of type <<return_type_desc>>. <<ifelse(return_singleton, 'Return will be of length 1 (a singleton)', '')>>
+@details <<description>>
+#..<<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
+#..  <<class_abbr>>$<<function_name>>(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>)
+#..}
+#..
+#..<<class_abbr>>$<<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
+#..  ?<<function_name>>
+#..}"
+
+arg_roxy_template <- "
+@param {arg_name} An object of type {arg_type_desc}. {ifelse(arg_singleton, 'Must be of length 1 (a singleton). ', ' ')} See details for description.
+"
+
+func_table <- all_methods_data$Chromosome[1, ]
+class_name <- "Chromosome"
+class_abbr <- "Ch"
+make_slim_function <- function(func_table, class_name, class_abbr) {
+  params <- purrr::map_chr(purrr::transpose(func_table$arg_data[[1]]),
+                           ~glue::glue_data(.x, arg_roxy_template) %>%
+                             stringr::str_wrap()) %>%
+    paste(collapse = "\n")
+
+
+  func_txt <- glue::glue_data(func_table, func_template, .open = "<<", .close = ">>")
+
+  func_txt <- func_txt %>%
+    stringr::str_split("\n") %>%
+    purrr::map(~stringr::str_wrap(.x) %>%
+                 stringr::str_split("\n") %>%
+                 unlist() %>%
+                 paste0("#'", .)) %>%
+    unlist() %>%
+    stringr::str_remove_all(stringr::fixed("#'#..")) %>%
+    paste(collapse = "\n")
+
+  func_txt
+
+
+}
+
+make_slim_function(func_table, class_name, class_abbr) %>%
+  cat()
+
+
+
