@@ -30,8 +30,7 @@ absolute preference for G/C mutations over A/T mutations, and -1.0 indicating an
 for A/T mutations over G/C mutations. A non-zero bias may only be set in nucleotide-based models
 (see section 1.8). This function, and the way that gene conversion is modeled, fundamentally changed
 in SLiM 3.3; see section 1.5.6 for discussion.
-(object<GenomicElement>)initializeGenomicElement(io<GenomicElementType> genomicElem
-entType, integer start, integer end)
+(object<GenomicElement>)initializeGenomicElement(io<GenomicElementType> genomicElementType, integer start, integer end)
 Add a genomic element to the chromosome at initialization time. The start and end parameters give
 the first and last base positions to be spanned by the new genomic element. The new element will be
 based upon the genomic element type identified by genomicElementType, which can be either an

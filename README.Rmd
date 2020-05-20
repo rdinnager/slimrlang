@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # slimrlang
 
 <!-- badges: start -->
+[![R build status](https://github.com/rdinnager/slimrlang/workflows/R-CMD-check/badge.svg)](https://github.com/rdinnager/slimrlang/actions)
 <!-- badges: end -->
 
 The goal of slimrlang is to provide an environment in which you can write SLiM population genetics simulation scripts from R. It works particularly well with RStudio, but any R IDE can be used. For much more advanced functionality in running and processing SLiM simulations from R, see the [`slimr`](https://github.com/rdinnager/slimr) package which imports `slimrlang`.

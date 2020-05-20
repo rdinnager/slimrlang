@@ -80,16 +80,16 @@ extract_methods <- function(txt, init = FALSE) {
     patterns <- unglue::unglue_data(arg_df$args,
                                c("[{arg_type} {arg_name} = {arg_default}]",
                                  "{arg_type} {arg_name}",
-                                 "{arg_type}"))
+                                 "{arg_name}"))
 
     if(!"arg_default" %in% colnames(patterns)) {
       patterns <- patterns %>%
         dplyr::mutate(arg_default = NA)
     }
 
-    if(!"arg_name" %in% colnames(patterns)) {
+    if(!"arg_type" %in% colnames(patterns)) {
       patterns <- patterns %>%
-        dplyr::mutate(arg_name = NA)
+        dplyr::mutate(arg_type = "?")
     }
 
     arg_df <- arg_df %>%
@@ -143,23 +143,25 @@ all_methods_data <- c(all_methods_data,
 
 names(all_methods_data)[length(all_methods_data)] <- "SLiMBuiltin"
 
-usethis::use_data(all_methods_data, overwrite = TRUE, internal = TRUE)
+#usethis::use_data(all_methods_data, overwrite = TRUE, internal = TRUE)
 
 ####### generate roxygen docs #############
 
-load("R/sysdata.rda")
-
 func_template <- "
 SLiM method <<function_name>>
+
 Documentation for SLiM function \\code{<<function_name>>}, which is a method of the SLiM class \\code{<<class_name>>}.
+
 <<params>>
+
+@aliases <<class_name>>$<<function_name>> <<class_abbr>>$<<function_name>>
 @return An object of type <<return_type_desc>>. <<ifelse(return_singleton, 'Return will be of length 1 (a singleton)', '')>>
 @details <<description>>
 #..<<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
 #..  <<ifelse(class_name == 'Initialize', '', paste0(class_abbr, '$'))>><<function_name>>(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>)
-#..}
-#..
-#..<<ifelse(class_name == 'Initialize', '', paste0(class_name, '$', function_name, ' <- ', class_abbr, '$'))>><<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
+#..}"
+
+method_code <- "#..<<ifelse(class_name == 'Initialize', '', paste0(class_name, '$', function_name, ' <- ', class_abbr, '$'))>><<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
 #..  ?<<function_name>>
 #..}"
 
@@ -170,7 +172,8 @@ arg_roxy_template <- "
 func_table <- all_methods_data$Chromosome[1, ]
 class_name <- "Chromosome"
 class_abbr <- ".c"
-make_slim_function <- function(func_table, class_name, class_abbr) {
+template <- func_template
+make_slim_function <- function(func_table, class_name, class_abbr, template) {
   params <- purrr::map_chr(purrr::transpose(func_table$arg_data[[1]]),
                            ~glue::glue_data(.x, arg_roxy_template) %>%
                              stringr::str_wrap()) %>%
@@ -179,7 +182,7 @@ make_slim_function <- function(func_table, class_name, class_abbr) {
 
   func_txt <- glue::glue_data(c(func_table, list(class_name = class_name,
                                                  class_abbr = class_abbr)),
-                              func_template, .open = "<<", .close = ">>")
+                              template, .open = "<<", .close = ">>")
 
   func_txt <- func_txt %>%
     stringr::str_split("\n") %>%
@@ -203,7 +206,10 @@ make_slim_function <- function(func_table, class_name, class_abbr) {
 
 }
 
-make_slim_function(func_table, class_name, class_abbr) %>%
+make_slim_function(func_table, class_name, class_abbr, template = func_template) %>%
+  cat()
+
+make_slim_function(func_table, class_name, class_abbr, template = method_code) %>%
   cat()
 
 class_abbrs <- tibble::tribble(~class_name, ~class_abbr,
@@ -226,22 +232,36 @@ method_make_df <- dplyr::tibble(class_name = names(all_methods_data)) %>%
   dplyr::left_join(class_abbrs)
 
 method_table <- all_methods_data[[1]]
-make_class_funcs <- function(method_table, class_name, class_abbr) {
+make_class_funcs <- function(method_table, class_name, class_abbr, template) {
   methods_list <- purrr::map(seq_len(nrow(method_table)),
                              ~method_table[.x, ])
 
   methods_txt <- purrr::map_chr(methods_list,
                                 ~make_slim_function(.x,
                                                     class_name,
-                                                    class_abbr))
+                                                    class_abbr,
+                                                    template))
   paste(methods_txt, collapse = "\n\n")
 }
 
 all_methods_txt <- purrr::pmap_chr(list(all_methods_data,
                                    method_make_df$class_name,
                                    method_make_df$class_abbr),
-                                   ~make_class_funcs(..1, ..2, ..3)) %>%
+                                   ~make_class_funcs(..1, ..2, ..3,
+                                                     func_template)) %>%
   paste(collapse = "\n\n\n\n")
+
+all_methods_code <- purrr::pmap_chr(list(all_methods_data,
+                                         method_make_df$class_name,
+                                         method_make_df$class_abbr),
+                                    ~make_class_funcs(..1, ..2, ..3,
+                                                      method_code)) %>%
+  paste(collapse = "\n\n\n\n")
+
+## fix issue with assignment operator wrapping
+all_methods_code <- stringr::str_replace_all(all_methods_code,
+                                             "\n\\<\\-",
+                                             " <-")
 
 ######### deal with properties ##############
 
@@ -337,21 +357,33 @@ paste0('\\item{\\code{\\link{', function_name, '}}}') %>%
 
 class_roxy <- "
 <<class_name>>
+
 Documentation for <<class_name>> class from SLiM
-@alias <<class_abbr>>
+
+@aliases <<class_abbr>>
 @details This class has the following methods (functions):
 \\itemize{
-<<paste0('\\\\item{\\\\code{\\\\link{', function_name[[1]], '}}}') %>% paste(collapse = '\n')>>
+<<ifelse(function_name[[1]][1] != 'None', paste0('\\\\item{\\\\code{\\\\link{', function_name[[1]], '}}}') %>% paste(collapse = '\n'), '\\\\item{None. This class has no methods.}')>>
 }
 This class has the following properties:
 \\describe{
 <<property_list>>
-}"
+}
+#..'<<class_name>>'"
 
-class_table <- all_class_data[2, ]
+class_table <- purrr::map(seq_len(nrow(all_class_data)),
+                          ~all_class_data[.x, ])[[1]]
 make_class_roxy <- function(class_table) {
-  property_list <- make_property_roxy(class_table$properties_data[[1]]) %>%
-    paste(collapse = "")
+  #print(class_table$class_name)
+  if(is.null(class_table$properties_data[[1]])) {
+    property_list <- list("\\item{None. This class has no properties.}")
+  } else {
+    property_list <- make_property_roxy(class_table$properties_data[[1]]) %>%
+      paste(collapse = "")
+  }
+  if(is.null(class_table$function_name[[1]])) {
+    class_table$function_name <- list("None")
+  }
   class_txt <- glue::glue_data(class_table, class_roxy,
                   .open = "<<",
                   .close = ">>") %>%
@@ -365,3 +397,81 @@ make_class_roxy <- function(class_table) {
     paste(collapse = "\n")
   class_txt
 }
+
+class_roxies <- purrr::map(seq_len(nrow(all_class_data)),
+                           ~all_class_data[.x, ]) %>%
+  purrr::map_chr(~make_class_roxy(.x)) %>%
+  paste(collapse = "\n") %>%
+  stringr::str_remove_all("#'#\\.\\.")
+
+########## lastly, make the class object code ###########
+
+class_create <- "{class_name} <- {class_abbr} <- list()"
+class_make_code <- purrr::transpose(class_abbrs) %>%
+  purrr::map_chr(~glue::glue_data(.x, class_create)) %>%
+  paste(collapse = "\n")
+
+cat(class_make_code)
+
+
+######## put it all together ###########
+
+temp_source <- tempfile(fileext = ".R")
+readr::write_lines(class_make_code, temp_source)
+source(temp_source)
+readr::write_lines(all_methods_code, temp_source)
+source(temp_source)
+readr::write_lines(property_txt, temp_source)
+source(temp_source)
+
+r_script <- paste(
+  all_methods_txt,
+  class_roxies,
+  sep = "\n\n\n\n\n\n\n\n"
+)
+
+## fix up random weirdnesses
+
+r_script <- stringr::str_replace_all(r_script,
+                                     "“",
+                                     '"')
+
+readr::write_lines(r_script, "R/slim_lang.R")
+
+usethis::use_data(Initialize,
+                  Chromosome,
+                  Genome,
+                  GenomicElement,
+                  GenomicElementType,
+                  Individual,
+                  InteractionType,
+                  Mutation,
+                  MutationType,
+                  SLiMBuiltin,
+                  SLiMEidosBlock,
+                  SLiMSim,
+                  Subpopulation,
+                  Substitution,
+                  .Init,
+                  .c,
+                  .G,
+                  .GE,
+                  .GET,
+                  .I,
+                  .IT,
+                  .M,
+                  .MT,
+                  .SB,
+                  .SEB,
+                  .SS,
+                  .P,
+                  .S,
+                  overwrite = TRUE
+)
+
+## fix bad filenames
+
+bad_files <- list.files("data", all.files = TRUE, pattern = "^\\.", no.. = TRUE)
+
+file.rename(file.path("data", bad_files), file.path("data", stringr::str_remove(bad_files, "^\\.")))
+

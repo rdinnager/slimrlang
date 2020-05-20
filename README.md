@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/rdinnager/slimrlang/workflows/R-CMD-check/badge.svg)](https://github.com/rdinnager/slimrlang/actions)
 <!-- badges: end -->
 
 The goal of slimrlang is to provide an environment in which you can

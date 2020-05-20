@@ -8,10 +8,21 @@
 #'
 #' @examples
 slim_script <- function(...) {
-  slim_script <- list(...) %>%
-    dplyr::bind_rows()
+  script_list <- list(...)
 
-  slim_scipt
+  n_row <- length(script_list)
+
+  script <- script_list %>%
+    purrr::transpose() %>%
+    new_slim_script(nrow = n_row)# %>%
+    dplyr::mutate_at(dplyr::vars(-code), ~unlist(.x))
+
+  suppressWarnings(end_gen <- max(as.numeric(c(script$start_gen, script$end_gen)), na.rm = TRUE))
+
+  script$end_gen <- purrr::map_chr(script$end_gen,
+                              ~glue::glue(.x) %>% as.character())
+
+  script
 }
 
 #' Setup a SLiM code block
@@ -55,39 +66,39 @@ slim_block <- function(...) {
     block_row <- switch(
       arg_signature,
       chnunuca = list(block_id = args_eval[[1]],
-                      start_gen = args_eval[[2]],
-                      end_gen = args_eval[[3]],
+                      start_gen = as.character(args_eval[[2]]),
+                      end_gen = as.character(args_eval[[3]]),
                       callback = args_eval[[4]],
                       code = list(code)),
 
       nunuca = list(block_id = "",
-                    start_gen = args_eval[[1]],
-                    end_gen = args_eval[[2]],
+                    start_gen = as.character(args_eval[[1]]),
+                    end_gen = as.character(args_eval[[2]]),
                     callback = args_eval[[3]],
                     code = list(code)),
 
       chnuca = list(block_id = args_eval[[1]],
-                    start_gen = args_eval[[2]],
+                    start_gen = as.character(args_eval[[2]]),
                     end_gen = "{end_gen}",
                     callback = args_eval[[3]],
                     code = list(code)),
 
       chnunu = list(block_id = args_eval[[1]],
-                    start_gen = args_eval[[2]],
-                    end_gen = args_eval[[3]],
+                    start_gen = as.character(args_eval[[2]]),
+                    end_gen = as.character(args_eval[[3]]),
                     callback = "early()",
                     code = list(code)),
 
       nunu = list(block_id = "",
-                  start_gen = args_eval[[1]],
-                  end_gen = args_eval[[2]],
-                  callback = "early()",
+                  start_gen = as.character(args_eval[[1]]),
+                  end_gen = as.character(args_eval[[2]]),
+                  callback = callbacks$early(),
                   code = list(code)),
 
       chnu = list(block_id = args_eval[[1]],
-                  start_gen = args_eval[[2]],
+                  start_gen = as.character(args_eval[[2]]),
                   end_gen = "{end_gen}",
-                  callback = "early()",
+                  callback = callbacks$early(),
                   code = list(code)),
 
       chca = list(block_id = args_eval[[1]],
@@ -97,7 +108,7 @@ slim_block <- function(...) {
                   code = list(code)),
 
       nuca = list(block_id = "",
-                  start_gen = args_eval[[1]],
+                  start_gen = as.character(args_eval[[1]]),
                   end_gen = "{end_gen}",
                   callback = args_eval[[2]],
                   code = list(code)),
@@ -105,13 +116,13 @@ slim_block <- function(...) {
       ch = list(block_id = args_eval[[1]],
                 start_gen = "1",
                 end_gen = "{end_gen}",
-                callback = "early()",
+                callback = callbacks$early(),
                 code = list(code)),
 
       nu = list(block_id = "",
-                start_gen = args_eval[[1]],
+                start_gen = as.character(args_eval[[1]]),
                 end_gen = "{end_gen}",
-                callback = "early()",
+                callback = callbacks$early(),
                 code = list(code)),
 
       ca = list(block_id = "",
@@ -145,3 +156,36 @@ slim_block <- function(...) {
 
 }
 
+#' slim_script constructor and validator
+#'
+#' Constructs or Validates a `slim_script` object. This is mostly for internal use.
+#'
+#' @param x A named list where each element is a list or vector component of a `slim_script`,
+#' which includes "block_id", "start_gen", "end_gen", "callback", and "code"
+#' @param nrow The number of rows, required
+#' @param slim_output Optional `slim_output` attribute
+#' @param slim_input Optional `slim_input` attribute
+#'
+#' @export
+#' @rdname new_slim_script
+#'
+#' @examples
+new_slim_script <- function(x, nrow, slim_output = "None", slim_input = "None") {
+  tibble::new_tibble(x,
+                     slim_output = slim_output,
+                     slim_input = slim_input,
+                     nrow = nrow,
+                     class = "slim_script")
+}
+
+#' slim_script constructor and validator
+#'
+#' @param slim_script A `slim_script` object
+#'
+#' @export
+#' @rdname new_slim_script
+#'
+#' @examples
+validate_slim_script <- function(slim_script) {
+  tibble::validate_tibble(x)
+}

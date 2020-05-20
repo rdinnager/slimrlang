@@ -20,4 +20,8 @@ Imports:
     purrr,
     magrittr,
     dplyr,
-    tibble
+    tibble,
+    glue,
+    rlang (>= 0.1.2)
+Suggests: 
+    roxygen2
