@@ -24,4 +24,7 @@ Imports:
     glue,
     rlang (>= 0.1.2)
 Suggests: 
-    roxygen2
+    roxygen2,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
