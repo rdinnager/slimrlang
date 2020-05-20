@@ -3,7 +3,8 @@
 \name{initializeRecombinationRate}
 \alias{initializeRecombinationRate}
 \alias{Initialize$initializeRecombinationRate}
-\alias{.Init$initializeRecombinationRate}
+\alias{.Init}
+\alias{$initializeRecombinationRate}
 \title{SLiM method initializeRecombinationRate}
 \usage{
 initializeRecombinationRate(rates, ends, sex)

@@ -5,7 +5,9 @@
 \alias{SLiMBuiltin}
 \alias{.SB}
 \title{SLiMBuiltin}
-\format{An object of class \code{list} of length 7.}
+\format{
+An object of class \code{list} of length 7.
+}
 \usage{
 SLiMBuiltin
 }

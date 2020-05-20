@@ -5,7 +5,9 @@
 \alias{Genome}
 \alias{.G}
 \title{Genome}
-\format{An object of class \code{list} of length 22.}
+\format{
+An object of class \code{list} of length 22.
+}
 \usage{
 Genome
 }

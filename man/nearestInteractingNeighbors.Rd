@@ -3,7 +3,8 @@
 \name{nearestInteractingNeighbors}
 \alias{nearestInteractingNeighbors}
 \alias{InteractionType$nearestInteractingNeighbors}
-\alias{.IT$nearestInteractingNeighbors}
+\alias{.IT}
+\alias{$nearestInteractingNeighbors}
 \title{SLiM method nearestInteractingNeighbors}
 \usage{
 nearestInteractingNeighbors(individual, count)

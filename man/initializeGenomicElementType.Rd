@@ -3,7 +3,8 @@
 \name{initializeGenomicElementType}
 \alias{initializeGenomicElementType}
 \alias{Initialize$initializeGenomicElementType}
-\alias{.Init$initializeGenomicElementType}
+\alias{.Init}
+\alias{$initializeGenomicElementType}
 \title{SLiM method initializeGenomicElementType}
 \usage{
 initializeGenomicElementType(id, mutationTypes, proportions, mutationMatrix)

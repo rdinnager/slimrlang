@@ -5,7 +5,9 @@
 \alias{MutationType}
 \alias{.MT}
 \title{MutationType}
-\format{An object of class \code{list} of length 15.}
+\format{
+An object of class \code{list} of length 15.
+}
 \usage{
 MutationType
 }

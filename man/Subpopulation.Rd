@@ -5,7 +5,9 @@
 \alias{Subpopulation}
 \alias{.P}
 \title{Subpopulation}
-\format{An object of class \code{list} of length 43.}
+\format{
+An object of class \code{list} of length 43.
+}
 \usage{
 Subpopulation
 }

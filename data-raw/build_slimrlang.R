@@ -157,11 +157,12 @@ Documentation for SLiM function \\code{<<function_name>>}, which is a method of 
 @aliases <<class_name>>$<<function_name>> <<class_abbr>>$<<function_name>>
 @return An object of type <<return_type_desc>>. <<ifelse(return_singleton, 'Return will be of length 1 (a singleton)', '')>>
 @details <<description>>
+<<ifelse(class_name %in% c('Initialize', 'SLiMBuiltin'), '@export', '')>>
 #..<<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
-#..  <<ifelse(class_name == 'Initialize', '', paste0(class_abbr, '$'))>><<function_name>>(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>)
+#..  <<class_abbr>>$<<function_name>>(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>)
 #..}"
 
-method_code <- "#..<<ifelse(class_name == 'Initialize', '', paste0(class_name, '$', function_name, ' <- ', class_abbr, '$'))>><<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
+method_code <- "#..<<class_name>>$<<function_name>> <- <<class_abbr>>$<<function_name>> <- function(<<paste(arg_data[[1]]$arg_name, collapse = ', ')>>) {
 #..  ?<<function_name>>
 #..}"
 
@@ -169,9 +170,9 @@ arg_roxy_template <- "
 @param {arg_name} An object of type {arg_type_desc}. {ifelse(arg_singleton, 'Must be of length 1 (a singleton). ', ' ')} {ifelse(is.na(arg_default), '', paste0('The default value is \\\\code{', arg_default, '}.'))} See details for description.
 "
 
-func_table <- all_methods_data$Chromosome[1, ]
-class_name <- "Chromosome"
-class_abbr <- ".c"
+func_table <- all_methods_data$Initialize[1,]
+class_name <- "Initialize"
+class_abbr <- ".Init"
 template <- func_template
 make_slim_function <- function(func_table, class_name, class_abbr, template) {
   params <- purrr::map_chr(purrr::transpose(func_table$arg_data[[1]]),
@@ -262,6 +263,10 @@ all_methods_code <- purrr::pmap_chr(list(all_methods_data,
 all_methods_code <- stringr::str_replace_all(all_methods_code,
                                              "\n\\<\\-",
                                              " <-")
+
+all_methods_code <- stringr::str_replace_all(all_methods_code,
+                                             "\n\\$",
+                                             "$")
 
 ######### deal with properties ##############
 

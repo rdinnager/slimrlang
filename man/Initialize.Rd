@@ -5,7 +5,9 @@
 \alias{Initialize}
 \alias{.Init}
 \title{Initialize}
-\format{An object of class \code{list} of length 0.}
+\format{
+An object of class \code{list} of length 14.
+}
 \usage{
 Initialize
 }

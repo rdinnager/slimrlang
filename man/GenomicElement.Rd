@@ -5,7 +5,9 @@
 \alias{GenomicElement}
 \alias{.GE}
 \title{GenomicElement}
-\format{An object of class \code{list} of length 5.}
+\format{
+An object of class \code{list} of length 5.
+}
 \usage{
 GenomicElement
 }

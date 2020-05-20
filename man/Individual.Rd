@@ -5,7 +5,9 @@
 \alias{Individual}
 \alias{.I}
 \title{Individual}
-\format{An object of class \code{list} of length 28.}
+\format{
+An object of class \code{list} of length 28.
+}
 \usage{
 Individual
 }

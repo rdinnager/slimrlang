@@ -5,7 +5,9 @@
 \alias{SLiMSim}
 \alias{.SS}
 \title{SLiMSim}
-\format{An object of class \code{list} of length 48.}
+\format{
+An object of class \code{list} of length 48.
+}
 \usage{
 SLiMSim
 }

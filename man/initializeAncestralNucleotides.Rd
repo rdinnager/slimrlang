@@ -3,7 +3,8 @@
 \name{initializeAncestralNucleotides}
 \alias{initializeAncestralNucleotides}
 \alias{Initialize$initializeAncestralNucleotides}
-\alias{.Init$initializeAncestralNucleotides}
+\alias{.Init}
+\alias{$initializeAncestralNucleotides}
 \title{SLiM method initializeAncestralNucleotides}
 \usage{
 initializeAncestralNucleotides(sequence)

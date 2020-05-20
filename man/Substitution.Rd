@@ -5,7 +5,9 @@
 \alias{Substitution}
 \alias{.S}
 \title{Substitution}
-\format{An object of class \code{list} of length 12.}
+\format{
+An object of class \code{list} of length 12.
+}
 \usage{
 Substitution
 }

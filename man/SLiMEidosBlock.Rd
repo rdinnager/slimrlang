@@ -5,7 +5,9 @@
 \alias{SLiMEidosBlock}
 \alias{.SEB}
 \title{SLiMEidosBlock}
-\format{An object of class \code{list} of length 7.}
+\format{
+An object of class \code{list} of length 7.
+}
 \usage{
 SLiMEidosBlock
 }

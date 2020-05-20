@@ -6,8 +6,8 @@
 #'@param sequence An object of type integer or string. See details for
 #'description.
 #'
-#'@aliases
-#'Initialize$initializeAncestralNucleotides .Init$initializeAncestralNucleotides
+#'@aliases Initialize$initializeAncestralNucleotides .Init
+#'$initializeAncestralNucleotides
 #'@return An object of type integer. Return will be of length 1 (a singleton)
 #'@details This function, which may be called only in nucleotide-based models
 #'(see section 1.8), supplies an ancestral nucleotide sequence for the model.
@@ -24,8 +24,9 @@
 #'nucleotide sequence rather than a filename. The length of the ancestral sequence
 #'is returned. A utility function, randomNucleotides(), is provided by SLiM to
 #'assist in generating simple random nucleotide sequences; see section 23.15.1.
+#'@export
 initializeAncestralNucleotides <- function(sequence) {
- initializeAncestralNucleotides(sequence)
+ .Init$initializeAncestralNucleotides(sequence)
 }
 
 #'SLiM method initializeGeneConversion
@@ -62,9 +63,10 @@ initializeAncestralNucleotides <- function(sequence) {
 #'over G/C mutations. A non-zero bias may only be set in nucleotide-based models
 #'(see section 1.8). This function, and the way that gene conversion is modeled,
 #'fundamentally changed in SLiM 3.3; see section 1.5.6 for discussion.
+#'@export
 initializeGeneConversion <- function(nonCrossoverFraction, meanLength,
 simpleConversionFraction, bias) {
- initializeGeneConversion(nonCrossoverFraction, meanLength,
+ .Init$initializeGeneConversion(nonCrossoverFraction, meanLength,
 simpleConversionFraction, bias)
 }
 
@@ -97,8 +99,9 @@ simpleConversionFraction, bias)
 #'ascending position with a vectorized call. The return value provides the genomic
 #'element(s) created by the call, in the order in which they were specified in the
 #'parameters to initializeGenomicElement().
+#'@export
 initializeGenomicElement <- function(genomicElementType, start, end) {
- initializeGenomicElement(genomicElementType, start, end)
+ .Init$initializeGenomicElement(genomicElementType, start, end)
 }
 
 #'SLiM method initializeGenomicElementType
@@ -114,8 +117,8 @@ initializeGenomicElement <- function(genomicElementType, start, end) {
 #'@param mutationMatrix An object of type null or float. The default value is
 #'\code{NULL}. See details for description.
 #'
-#'@aliases
-#'Initialize$initializeGenomicElementType .Init$initializeGenomicElementType
+#'@aliases Initialize$initializeGenomicElementType .Init
+#'$initializeGenomicElementType
 #'@return An object of type GenomicElementType object. Return will be of length 1
 #'(a singleton)
 #'@details Add a genomic element type at initialization time. The id must
@@ -167,9 +170,11 @@ initializeGenomicElement <- function(genomicElementType, start, end) {
 #'PACA→AAA * PACA→AGA PACA→ATA PACC→AAC * PACC→AGC PACC→ATC PACG→AAG * PACG→AGG
 #'PACG→ATG . . . . . . . . . . . . PTTC→TAC PTTC→TCC PTTC→TGC * PTTG→TAG PTTG→TCG
 #'PTTG→TGG * PTTT→TAT PTTT→TCT PTTT→TGT *
+#'@export
 initializeGenomicElementType <- function(id, mutationTypes, proportions,
 mutationMatrix) {
- initializeGenomicElementType(id, mutationTypes, proportions, mutationMatrix)
+ .Init$initializeGenomicElementType(id, mutationTypes, proportions,
+mutationMatrix)
 }
 
 #'SLiM method initializeHotspotMap
@@ -222,8 +227,9 @@ mutationMatrix) {
 #'case, two calls must be made to initializeHotspotMap(), one for each sex, even
 #'if a multiplier of 1.0 is desired for the other sex; no default hotspot map is
 #'supplied.
+#'@export
 initializeHotspotMap <- function(multipliers, ends, sex) {
- initializeHotspotMap(multipliers, ends, sex)
+ .Init$initializeHotspotMap(multipliers, ends, sex)
 }
 
 #'SLiM method initializeInteractionType
@@ -314,9 +320,10 @@ initializeHotspotMap <- function(multipliers, ends, sex) {
 #'with itself is always 0.0, regardless of the interaction function or callbacks.
 #'The global symbol for the new interaction type is immediately available; the
 #'return value also provides the new object.
+#'@export
 initializeInteractionType <- function(id, spatiality, reciprocal,
 maxDistance, sexSegregation) {
- initializeInteractionType(id, spatiality, reciprocal, maxDistance,
+ .Init$initializeInteractionType(id, spatiality, reciprocal, maxDistance,
 sexSegregation)
 }
 
@@ -378,8 +385,9 @@ sexSegregation)
 #'in the mutationMatrix parameter to initializeGenomicElementType(). If variation
 #'in the mutation rate along the chromosome is desired, initializeHotspotMap()
 #'should be used.
+#'@export
 initializeMutationRate <- function(rates, ends, sex) {
- initializeMutationRate(rates, ends, sex)
+ .Init$initializeMutationRate(rates, ends, sex)
 }
 
 #'SLiM method initializeMutationType
@@ -427,9 +435,10 @@ initializeMutationRate <- function(rates, ends, sex) {
 #'nonWF models for neutral mutation types with no indirect fitness effects, you
 #'should therefore set convertToSubstitution to T. See sections 21.3, 22.5, and
 #'23.9.1 for further discussion regarding the convertToSubstitution property.
+#'@export
 initializeMutationType <- function(id, dominanceCoeff, distributionType, ...)
 {
- initializeMutationType(id, dominanceCoeff, distributionType, ...)
+ .Init$initializeMutationType(id, dominanceCoeff, distributionType, ...)
 }
 
 #'SLiM method initializeMutationTypeNuc
@@ -460,9 +469,10 @@ initializeMutationType <- function(id, dominanceCoeff, distributionType, ...)
 #'mutations. These values are set automatically by initializeMutationTypeNuc(),
 #'and may not be changed. See the documentation for initializeMutationType() for
 #'all other discussion.
+#'@export
 initializeMutationTypeNuc <- function(id, dominanceCoeff,
 distributionType, ...) {
- initializeMutationTypeNuc(id, dominanceCoeff, distributionType, ...)
+ .Init$initializeMutationTypeNuc(id, dominanceCoeff, distributionType, ...)
 }
 
 #'SLiM method initializeRecombinationRate
@@ -476,8 +486,8 @@ distributionType, ...) {
 #'@param sex An object of type string. Must be of length 1 (a singleton). The
 #'default value is \code{"*"}. See details for description.
 #'
-#'@aliases
-#'Initialize$initializeRecombinationRate .Init$initializeRecombinationRate
+#'@aliases Initialize$initializeRecombinationRate .Init
+#'$initializeRecombinationRate
 #'@return An object of type void.
 #'@details Set the recombination rate per base position per generation along the
 #'chromosome. To be precise, this recombination rate is the probability that a
@@ -525,8 +535,9 @@ distributionType, ...) {
 #'recombination map is used only for that sex. In this case, two calls must be
 #'made to initializeRecombinationRate(), one for each sex, even if a rate of zero
 #'is desired for the other sex; no default recombination map is supplied.
+#'@export
 initializeRecombinationRate <- function(rates, ends, sex) {
- initializeRecombinationRate(rates, ends, sex)
+ .Init$initializeRecombinationRate(rates, ends, sex)
 }
 
 #'SLiM method initializeSex
@@ -551,8 +562,9 @@ initializeRecombinationRate <- function(rates, ends, sex) {
 #'than hermaphroditic) regardless of the chromosomeType chosen for simulation.
 #'There is no way to disable sex once it has been enabled; if you don’t want to
 #'have sex, don’t call this function.
+#'@export
 initializeSex <- function(chromosomeType, xDominanceCoeff) {
- initializeSex(chromosomeType, xDominanceCoeff)
+ .Init$initializeSex(chromosomeType, xDominanceCoeff)
 }
 
 #'SLiM method initializeSLiMModelType
@@ -574,8 +586,9 @@ initializeSex <- function(chromosomeType, xDominanceCoeff) {
 #'1.6). If initializeSLiMModelType() is called at all then it must be called
 #'before any other initialization function, so that SLiM knows from the outset
 #'which features are enabled and which are not.
+#'@export
 initializeSLiMModelType <- function(modelType) {
- initializeSLiMModelType(modelType)
+ .Init$initializeSLiMModelType(modelType)
 }
 
 #'SLiM method initializeSLiMOptions
@@ -703,9 +716,10 @@ initializeSLiMModelType <- function(modelType) {
 #'further options in the future, added on to the end of the argument list. Using
 #'named arguments with this call is recommended for readability. Note that turning
 #'on optional features may increase the runtime and memory footprint of SLiM.
+#'@export
 initializeSLiMOptions <- function(keepPedigrees, dimensionality, periodicity,
 mutationRuns, preventIncidentalSelfing, nucleotideBased) {
- initializeSLiMOptions(keepPedigrees, dimensionality, periodicity,
+ .Init$initializeSLiMOptions(keepPedigrees, dimensionality, periodicity,
 mutationRuns, preventIncidentalSelfing, nucleotideBased)
 }
 
@@ -783,9 +797,10 @@ mutationRuns, preventIncidentalSelfing, nucleotideBased)
 #'to confirm that the two data structures do indeed represent the same conceptual
 #'state. This slows down the model considerably, however, and would normally be
 #'turned on only for debugging purposes, so it is turned off by default.
+#'@export
 initializeTreeSeq <- function(recordMutations, simplificationRatio,
 simplificationInterval, checkCoalescence, runCrosschecks) {
- initializeTreeSeq(recordMutations, simplificationRatio,
+ .Init$initializeTreeSeq(recordMutations, simplificationRatio,
 simplificationInterval, checkCoalescence, runCrosschecks)
 }
 
@@ -832,6 +847,7 @@ simplificationInterval, checkCoalescence, runCrosschecks)
 #'4 63 will therefore be returned. These codon values can be useful in themselves;
 #'they can also be passed to codonsToAminoAcids() to translate them into the
 #'corresponding amino acid sequence if desired (see section 23.15.1).
+#'
 ancestralNucleotides <- function(start, end, format = "string") {
  .c$ancestralNucleotides(start, end, format = "string")
 }
@@ -872,6 +888,7 @@ ancestralNucleotides <- function(start, end, format = "string") {
 #'these two uses, parent is not used, and the caller does not guarantee that the
 #'generated breakpoints will actually be used to recombine the genomes of parent
 #'in particular.
+#'
 drawBreakpoints <- function(parent, n) {
  .c$drawBreakpoints(parent, n)
 }
@@ -897,6 +914,7 @@ drawBreakpoints <- function(parent, n) {
 #'readFromMS() or readFromVCF(), such as when resetting the simulation state to an
 #'earlier state in a conditional simulation; however, that is more commonly done
 #'using readFromPopulationFile() with a SLiM or .trees file.
+#'
 setAncestralNucleotides <- function(sequence) {
  .c$setAncestralNucleotides(sequence)
 }
@@ -924,6 +942,7 @@ setAncestralNucleotides <- function(sequence) {
 #'section 1.5.6 for discussion of the "DSB” recombination model). The meanings
 #'and effects of the parameters exactly mirror the initializeGeneConversion()
 #'function; see section 23.1 for details.
+#'
 setGeneConversion <- function(nonCrossoverFraction, meanLength,
 simpleConversionFraction, bias) {
  .c$setGeneConversion(nonCrossoverFraction, meanLength,
@@ -967,6 +986,7 @@ simpleConversionFraction, bias)
 #'male and female maps can simply be set to be identical the rest of the time. The
 #'hotspot map is normally constant in simulations, so be sure you know what you
 #'are doing.
+#'
 setHotspotMap <- function(multipliers, ends, sex) {
  .c$setHotspotMap(multipliers, ends, sex)
 }
@@ -1010,6 +1030,7 @@ setHotspotMap <- function(multipliers, ends, sex) {
 #'are doing. In nucleotide-based models, setMutationRate() may not be called. If
 #'variation in the mutation rate along the chromosome is desired, setHotspotMap()
 #'should be used.
+#'
 setMutationRate <- function(rates, ends, sex) {
  .c$setMutationRate(rates, ends, sex)
 }
@@ -1052,6 +1073,7 @@ setMutationRate <- function(rates, ends, sex) {
 #'maps can simply be set to be identical the rest of the time. The recombination
 #'intervals are normally a constant in simulations, so be sure you know what you
 #'are doing.
+#'
 setRecombinationRate <- function(rates, ends, sex) {
  .c$setRecombinationRate(rates, ends, sex)
 }
@@ -1075,6 +1097,7 @@ setRecombinationRate <- function(rates, ends, sex) {
 #'generation; if you want current fitness values to be affected, you can call
 #'SLiMSim’s method recalculateFitness() – but see the documentation of that method
 #'for caveats.
+#'
 addMutations <- function(mutations) {
  .G$addMutations(mutations)
 }
@@ -1149,6 +1172,7 @@ addMutations <- function(mutations) {
 #'the current generation (but not sooner); if you want current fitness values to
 #'be affected, you can call SLiMSim’s method recalculateFitness() – but see the
 #'documentation of that method for caveats.
+#'
 addNewDrawnMutation <- function(mutationType, position, originGeneration,
 originSubpop, nucleotide) {
  .G$addNewDrawnMutation(mutationType, position, originGeneration,
@@ -1221,6 +1245,7 @@ originSubpop, nucleotide)
 #'generation (but not sooner); if you want current fitness values to be affected,
 #'you can call SLiMSim’s method recalculateFitness() – but see the documentation
 #'of that method for caveats.
+#'
 addNewMutation <- function(mutationType, selectionCoeff, position,
 originGeneration, originSubpop, nucleotide) {
  .G$addNewMutation(mutationType, selectionCoeff, position, originGeneration,
@@ -1261,6 +1286,7 @@ originSubpop, nucleotide)
 #'at position will be returned; if more than one such mutation exists in the
 #'target genome, which one is returned is not defined. If returnMutation is T and
 #'no mutation of mutType is found at position, NULL will be returned.
+#'
 containsMarkerMutation <- function(mutType, position, returnMutation) {
  .G$containsMarkerMutation(mutType, position, returnMutation)
 }
@@ -1279,6 +1305,7 @@ containsMarkerMutation <- function(mutType, position, returnMutation) {
 #'indicates whether the corresponding mutation is present (T) or absent (F). This
 #'method is provided for speed; it is much faster than the corresponding Eidos
 #'code.
+#'
 containsMutations <- function(mutations) {
  .G$containsMutations(mutations)
 }
@@ -1298,6 +1325,7 @@ containsMutations <- function(mutations) {
 #'matching Mutation objects, rather than just a count, use -mutationsOfType().
 #'This method is provided for speed; it is much faster than the corresponding
 #'Eidos code.
+#'
 countOfMutationsOfType <- function(mutType) {
  .G$countOfMutationsOfType(mutType)
 }
@@ -1320,6 +1348,7 @@ countOfMutationsOfType <- function(mutType) {
 #'aiming for a sum of the selection coefficients of matching Mutation objects, use
 #'-sumOfMutationsOfType(). This method is provided for speed; it is much faster
 #'than the corresponding Eidos code.
+#'
 mutationsOfType <- function(mutType) {
  .G$mutationsOfType(mutType)
 }
@@ -1361,6 +1390,7 @@ mutationsOfType <- function(mutType) {
 #'as frequencies, and codonsToAminoAcids() to convert a codon sequence (such as
 #'provided by the codon format described above) to an amino acid sequence; see
 #'section 23.15.1.
+#'
 nucleotides <- function(start, end, format) {
  .G$nucleotides(start, end, format)
 }
@@ -1388,6 +1418,7 @@ nucleotides <- function(start, end, format) {
 #'or appending to the end of it if append is T. See outputMS() and outputVCF() for
 #'other output formats. Output is generally done in a late() event, so that the
 #'output reflects the state of the simulation at the end of a generation.
+#'
 output <- function(filePath, append) {
  .G$output(filePath, append)
 }
@@ -1425,6 +1456,7 @@ output <- function(filePath, append) {
 #'and outputVCF() for other output formats. Output is generally done in a late()
 #'event, so that the output reflects the state of the simulation at the end of a
 #'generation.
+#'
 outputMS <- function(filePath, append, filterMonomorphic) {
  .G$outputMS(filePath, append, filterMonomorphic)
 }
@@ -1463,6 +1495,7 @@ outputMS <- function(filePath, append, filterMonomorphic) {
 #'discussion. See outputMS() and output() for other output formats. Output is
 #'generally done in a late() event, so that the output reflects the state of the
 #'simulation at the end of a generation.
+#'
 outputVCF <- function(filePath, outputMultiallelics, append,
 simplifyNucleotides, outputNonnucleotides) {
  .G$outputVCF(filePath, outputMultiallelics, append, simplifyNucleotides,
@@ -1484,6 +1517,7 @@ outputNonnucleotides)
 #'matching Mutation objects, rather than just positions, use -mutationsOfType().
 #'This method is provided for speed; it is much faster than the corresponding
 #'Eidos code.
+#'
 positionsOfMutationsOfType <- function(mutType) {
  .G$positionsOfMutationsOfType(mutType)
 }
@@ -1519,6 +1553,7 @@ positionsOfMutationsOfType <- function(mutType) {
 #'genomes in the target vector will be skipped, and will not be used to correspond
 #'to any call line; however, care should be taken in this case that the lines in
 #'the MS file correspond to the target genomes in the manner desired.
+#'
 readFromMS <- function(filePath, mutationType) {
  .G$readFromMS(filePath, mutationType)
 }
@@ -1592,6 +1627,7 @@ readFromMS <- function(filePath, mutationType) {
 #'be skipped, and will not be used to correspond to any of i0…iN; however, care
 #'should be taken in this case that the genomes in the VCF file correspond to the
 #'target genomes in the manner desired.
+#'
 readFromVCF <- function(filePath, mutationType) {
  .G$readFromVCF(filePath, mutationType)
 }
@@ -1633,6 +1669,7 @@ readFromVCF <- function(filePath, mutationType) {
 #'sim.subpopulations.genomes.removeMutations(muts, T), such that the substituted
 #'mutations are guaranteed to be entirely removed from circulation. As mentioned
 #'above, substitute may not be T if mutations is NULL.
+#'
 removeMutations <- function(mutations, substitute) {
  .G$removeMutations(mutations, substitute)
 }
@@ -1655,6 +1692,7 @@ removeMutations <- function(mutations, substitute) {
 #'method is provided for speed; it is much faster than the corresponding Eidos
 #'code. Note that this method also exists on Individual, for cases in which the
 #'sum across both genomes of an individual is desired.
+#'
 sumOfMutationsOfType <- function(mutType) {
  .G$sumOfMutationsOfType(mutType)
 }
@@ -1676,6 +1714,7 @@ sumOfMutationsOfType <- function(mutType) {
 #'type for the element, either as a GenomicElementType object or as an integer
 #'identifier. The genomic element type for a genomic element is normally a
 #'constant in simulations, so be sure you know what you are doing.
+#'
 setGenomicElementType <- function(genomicElementType) {
  .GE$setGenomicElementType(genomicElementType)
 }
@@ -1697,6 +1736,7 @@ setGenomicElementType <- function(genomicElementType) {
 #'functionality is actually provided by the superclass of GenomicElementType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .GET$getValue(key)
 }
@@ -1719,6 +1759,7 @@ getValue <- function(key) {
 #'of mutations that will be drawn from each corresponding type (see section
 #'1.5.4). This is normally a constant in simulations, so be sure you know what you
 #'are doing.
+#'
 setMutationFractions <- function(mutationTypes, proportions) {
  .GET$setMutationFractions(mutationTypes, proportions)
 }
@@ -1736,6 +1777,7 @@ setMutationFractions <- function(mutationTypes, proportions) {
 #'element type. This replaces the mutation matrix originally set by
 #'initializeGenomicElementType(). This method may only be called in nucleotide-
 #'based models.
+#'
 setMutationMatrix <- function(mutationMatrix) {
  .GET$setMutationMatrix(mutationMatrix)
 }
@@ -1757,6 +1799,7 @@ setMutationMatrix <- function(mutationMatrix) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'GenomicElementType, SLiMEidosDictionary, although that fact is not presently
 #'visible in Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .GET$setValue(key, value)
 }
@@ -1777,6 +1820,7 @@ setValue <- function(key, value) {
 #'in the returned vector indicates whether the corresponding mutation is present
 #'(T) or absent (F). This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'
 containsMutations <- function(mutations) {
  .I$containsMutations(mutations)
 }
@@ -1797,6 +1841,7 @@ containsMutations <- function(mutations) {
 #'of the matching Mutation objects, rather than just a count, you should probably
 #'use uniqueMutationsOfType(). This method is provided for speed; it is much
 #'faster than the corresponding Eidos code.
+#'
 countOfMutationsOfType <- function(mutType) {
  .I$countOfMutationsOfType(mutType)
 }
@@ -1816,6 +1861,7 @@ countOfMutationsOfType <- function(mutType) {
 #'style functionality is actually provided by the superclass of Individual,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .I$getValue(key)
 }
@@ -1848,6 +1894,7 @@ getValue <- function(key) {
 #'is simply pedigree-based relatedness. This does not necessarily correspond
 #'to genetic relatedness, because of the effects of factors like assortment and
 #'recombination.
+#'
 relatedness <- function(individuals) {
  .I$relatedness(individuals)
 }
@@ -1885,6 +1932,7 @@ relatedness <- function(individuals) {
 #'concatenated, not interleaved, just as it would be returned by accessing the
 #'spatialPosition property on the vector of target individuals). Calling this
 #'method with a position vector of any other length is an error.
+#'
 setSpatialPosition <- function(position) {
  .I$setSpatialPosition(position)
 }
@@ -1906,6 +1954,7 @@ setSpatialPosition <- function(position) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Individual, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .I$setValue(key, value)
 }
@@ -1928,6 +1977,7 @@ setValue <- function(key, value) {
 #'QTLs for the given mutation type. This method is provided for speed; it is much
 #'faster than the corresponding Eidos code. Note that this method also exists on
 #'Genome, for cases in which the sum for just one genome is desired.
+#'
 sumOfMutationsOfType <- function(mutType) {
  .I$sumOfMutationsOfType(mutType)
 }
@@ -1956,6 +2006,7 @@ sumOfMutationsOfType <- function(mutType) {
 #'individual.genomes.mutationsOfType(mutType), and gives uniquing and sorting
 #'on top of that, so it is advantageous unless duplicate entries for homozygous
 #'mutations are actually needed.
+#'
 uniqueMutationsOfType <- function(mutType) {
  .I$uniqueMutationsOfType(mutType)
 }
@@ -1995,6 +2046,7 @@ uniqueMutationsOfType <- function(mutType) {
 #'distances for all pairs of individuals, even if the individuals are non-
 #'interacting; the distance() between an individual and itself will thus be 0. See
 #'interactionDistance() for an alternative distance definition.
+#'
 distance <- function(individuals1, individuals2) {
  .IT$distance(individuals1, individuals2)
 }
@@ -2029,6 +2081,7 @@ distance <- function(individuals1, individuals2) {
 #'interaction strengths. If the InteractionType is non-spatial, this method may
 #'not be called. The vector point must be exactly as long as the spatiality of the
 #'InteractionType.
+#'
 distanceToPoint <- function(individuals1, point) {
  .IT$distanceToPoint(individuals1, point)
 }
@@ -2060,6 +2113,7 @@ distanceToPoint <- function(individuals1, point) {
 #'values are simply used. Otherwise, calling this method triggers evaluation
 #'of the needed interactions, including calls to any applicable interaction()
 #'callbacks.
+#'
 drawByStrength <- function(individual, count) {
  .IT$drawByStrength(individual, count)
 }
@@ -2120,6 +2174,7 @@ drawByStrength <- function(individual, count) {
 #'overhead associated with the interaction for that subpopulation. Furthermore,
 #'attempting to query an interaction for an individual in a subpopulation that has
 #'not been evaluated is guaranteed to raise an error.
+#'
 evaluate <- function(subpops, immediate) {
  .IT$evaluate(subpops, immediate)
 }
@@ -2139,6 +2194,7 @@ evaluate <- function(subpops, immediate) {
 #'style functionality is actually provided by the superclass of InteractionType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .IT$getValue(key)
 }
@@ -2167,6 +2223,7 @@ getValue <- function(key) {
 #'eligibility as a criterion; it will not count neighbors that cannot exert an
 #'interaction upon a focal individual (due to sex-segregation, e.g.). (It also
 #'does not count a focal individual as a neighbor of itself.)
+#'
 interactingNeighborCount <- function(individuals) {
  .IT$interactingNeighborCount(individuals)
 }
@@ -2200,6 +2257,7 @@ interactingNeighborCount <- function(individuals) {
 #'itself will thus be INF, and likewise for pairs excluded from interacting by the
 #'sex segregation or max distance of the interaction type. See distance() for an
 #'alternative distance definition.
+#'
 interactionDistance <- function(receiver, exerters) {
  .IT$interactionDistance(receiver, exerters)
 }
@@ -2214,8 +2272,8 @@ interactionDistance <- function(receiver, exerters) {
 #'@param count An object of type integer. Must be of length 1 (a singleton). The
 #'default value is \code{1}. See details for description.
 #'
-#'@aliases
-#'InteractionType$nearestInteractingNeighbors .IT$nearestInteractingNeighbors
+#'@aliases InteractionType$nearestInteractingNeighbors .IT
+#'$nearestInteractingNeighbors
 #'@return An object of type Individual object.
 #'@details Returns up to count interacting individuals that are spatially
 #'closest to individual, according to the distance metric of the InteractionType.
@@ -2234,6 +2292,7 @@ interactionDistance <- function(receiver, exerters) {
 #'(It will also never return the focal individual as a neighbor of itself.) To
 #'find all neighbors of the focal individual, whether they can interact with it or
 #'not, use nearestNeighbors().
+#'
 nearestInteractingNeighbors <- function(individual, count) {
  .IT$nearestInteractingNeighbors(individual, count)
 }
@@ -2263,6 +2322,7 @@ nearestInteractingNeighbors <- function(individual, count) {
 #'focal individual as a neighbor of itself, however.) To find only neighbors
 #'that are eligible to exert an interaction upon the focal individual, use
 #'nearestInteractingNeighbors().
+#'
 nearestNeighbors <- function(individual, count) {
  .IT$nearestNeighbors(individual, count)
 }
@@ -2287,6 +2347,7 @@ nearestNeighbors <- function(individual, count) {
 #'if fewer than count individuals are within the maximum interaction distance, the
 #'vector returned may be shorter than count, or even zero-length; it is important
 #'to check for this possibility even when requesting a single neighbor.
+#'
 nearestNeighborsOfPoint <- function(subpop, point, count) {
  .IT$nearestNeighborsOfPoint(subpop, point, count)
 }
@@ -2317,6 +2378,7 @@ nearestNeighborsOfPoint <- function(subpop, point, count) {
 #'in that case. The interaction function for an interaction type is normally a
 #'constant in simulations; in any case, it cannot be changed when an interaction
 #'has already been evaluated for a given generation of individuals.
+#'
 setInteractionFunction <- function(functionType, ...) {
  .IT$setInteractionFunction(functionType, ...)
 }
@@ -2338,6 +2400,7 @@ setInteractionFunction <- function(functionType, ...) {
 #'This dictionary-style functionality is actually provided by the superclass
 #'of InteractionType, SLiMEidosDictionary, although that fact is not presently
 #'visible in Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .IT$setValue(key, value)
 }
@@ -2372,6 +2435,7 @@ setValue <- function(key, value) {
 #'needed interaction strengths have already been calculated, those cached values
 #'are simply returned. Otherwise, calling this method triggers evaluation of the
 #'needed interactions, including calls to any applicable interaction() callbacks.
+#'
 strength <- function(receiver, exerters) {
  .IT$strength(receiver, exerters)
 }
@@ -2407,6 +2471,7 @@ strength <- function(receiver, exerters) {
 #'already been calculated, those cached values are simply used. Otherwise, calling
 #'this method triggers evaluation of the needed interactions, including calls to
 #'any applicable interaction() callbacks.
+#'
 totalOfNeighborStrengths <- function(individuals) {
  .IT$totalOfNeighborStrengths(individuals)
 }
@@ -2437,6 +2502,7 @@ totalOfNeighborStrengths <- function(individuals) {
 #'viability/survival selection (before step 4 in the generation cycle; see section
 #'22.4). Given this automatic invalidation, most simulations have no reason to
 #'call unevaluate().
+#'
 unevaluate <- function(void) {
  .IT$unevaluate(void)
 }
@@ -2458,6 +2524,7 @@ unevaluate <- function(void) {
 #'style functionality is actually provided by the superclass of Mutation,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .M$getValue(key)
 }
@@ -2487,6 +2554,7 @@ getValue <- function(key) {
 #'a restriction applies: nucleotide-based mutations may not be changed to a non-
 #'nucleotide-based mutation type, and non-nucleotide-based mutations may not be
 #'changed to a nucleotide-based mutation type.
+#'
 setMutationType <- function(mutType) {
  .M$setMutationType(mutType)
 }
@@ -2513,6 +2581,7 @@ setMutationType <- function(mutType) {
 #'generation; if you want current fitness values to be affected, you can call
 #'SLiMSim’s method recalculateFitness() – but see the documentation of that method
 #'for caveats.
+#'
 setSelectionCoeff <- function(selectionCoeff) {
  .M$setSelectionCoeff(selectionCoeff)
 }
@@ -2534,6 +2603,7 @@ setSelectionCoeff <- function(selectionCoeff) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Mutation, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .M$setValue(key, value)
 }
@@ -2555,6 +2625,7 @@ setValue <- function(key, value) {
 #'type. See section 23.9 above for discussion of the supported distributions
 #'and their uses. If the DFE is type "s", this method will result in synchronous
 #'execution of the DFE’s script.
+#'
 drawSelectionCoefficient <- function(n) {
  .MT$drawSelectionCoefficient(n)
 }
@@ -2574,6 +2645,7 @@ drawSelectionCoefficient <- function(n) {
 #'style functionality is actually provided by the superclass of MutationType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .MT$getValue(key)
 }
@@ -2603,6 +2675,7 @@ getValue <- function(key) {
 #'for discussions of these distributions and their uses. The DFE for a mutation
 #'type is normally a constant in simulations, so be sure you know what you are
 #'doing.
+#'
 setDistribution <- function(distributionType, ...) {
  .MT$setDistribution(distributionType, ...)
 }
@@ -2624,6 +2697,7 @@ setDistribution <- function(distributionType, ...) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'MutationType, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .MT$setValue(key, value)
 }
@@ -2656,6 +2730,7 @@ setValue <- function(key, value) {
 #'method will initially consist of individuals with empty genomes. In order to
 #'model subpopulations that split from an already existing subpopulation, use
 #'addSubpopSplit().
+#'
 addSubpop <- function(subpopID, size, sexRatio) {
  .SS$addSubpop(subpopID, size, sexRatio)
 }
@@ -2698,6 +2773,7 @@ addSubpop <- function(subpopID, size, sexRatio) {
 #'Effectively, then, then new subpopulation is created empty, and is filled by
 #'migrating juveniles from the source subpopulation, in accordance with SLiM’s
 #'usual model of juvenile migration.
+#'
 addSubpopSplit <- function(subpopID, size, sourceSubpop, sexRatio) {
  .SS$addSubpopSplit(subpopID, size, sourceSubpop, sexRatio)
 }
@@ -2719,6 +2795,7 @@ addSubpopSplit <- function(subpopID, size, sourceSubpop, sexRatio) {
 #'whether an introduced mutation is still active (as opposed to being either
 #'lost or fixed). This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'
 countOfMutationsOfType <- function(mutType) {
  .SS$countOfMutationsOfType(mutType)
 }
@@ -2742,6 +2819,7 @@ countOfMutationsOfType <- function(mutType) {
 #'block from executing, even when it is scheduled to execute in the current stage
 #'of the current generation, use the active property of the script block (see
 #'sections 23.10.1 and 24.9).
+#'
 deregisterScriptBlock <- function(scriptBlocks) {
  .SS$deregisterScriptBlock(scriptBlocks)
 }
@@ -2761,6 +2839,7 @@ deregisterScriptBlock <- function(scriptBlocks) {
 #'style functionality is actually provided by the superclass of SLiMSim,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .SS$getValue(key)
 }
@@ -2786,6 +2865,7 @@ getValue <- function(key) {
 #'as would be returned by the mutations property of sim, in other words. See the
 #'-mutationFrequencies() method to obtain float frequencies instead of integer
 #'counts.
+#'
 mutationCounts <- function(subpops, mutations) {
  .SS$mutationCounts(subpops, mutations)
 }
@@ -2810,6 +2890,7 @@ mutationCounts <- function(subpops, mutations) {
 #'simulation – the same Mutation objects, and in the same order, as would
 #'be returned by the mutations property of sim, in other words. See the -
 #'mutationCounts() method to obtain integer counts instead of float frequencies.
+#'
 mutationFrequencies <- function(subpops, mutations) {
  .SS$mutationFrequencies(subpops, mutations)
 }
@@ -2832,6 +2913,7 @@ mutationFrequencies <- function(subpops, mutations) {
 #'in the simulation, since there is no way to keep persistent references to
 #'objects in SLiM. This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'
 mutationsOfType <- function(mutType) {
  .SS$mutationsOfType(mutType)
 }
@@ -2861,6 +2943,7 @@ mutationsOfType <- function(mutType) {
 #'the nucleotides associated with any nucleotide-based mutations; see section
 #'25.1.2. Output is generally done in a late() event, so that the output reflects
 #'the state of the simulation at the end of a generation.
+#'
 outputFixedMutations <- function(filePath, append) {
  .SS$outputFixedMutations(filePath, append)
 }
@@ -2929,6 +3012,7 @@ outputFixedMutations <- function(filePath, append) {
 #'the ancestralNucleotides flag governs only the ancestral sequence. Output is
 #'generally done in a late() event, so that the output reflects the state of the
 #'simulation at the end of a generation.
+#'
 outputFull <- function(filePath, binary, append, spatialPositions, ages,
 ancestralNucleotides) {
  .SS$outputFull(filePath, binary, append, spatialPositions, ages,
@@ -2958,6 +3042,7 @@ ancestralNucleotides)
 #'nucleotide-based mutations; see section 25.1.3. Output is generally done in a
 #'late() event, so that the output reflects the state of the simulation at the end
 #'of a generation.
+#'
 outputMutations <- function(mutations, filePath, append) {
  .SS$outputMutations(mutations, filePath, append)
 }
@@ -2980,6 +3065,7 @@ outputMutations <- function(mutations, filePath, append) {
 #'by SLiM and Eidos in directly allocated objects and buffers. To get the total
 #'memory usage of the running process (either current or peak), use the Eidos
 #'function usage().
+#'
 outputUsage <- function(void) {
  .SS$outputUsage(void)
 }
@@ -3069,6 +3155,7 @@ outputUsage <- function(void) {
 #'load saved population state many times (such as models that are conditional on
 #'fixation). If you suspect that a tree sequence file might be corrupted or read
 #'incorrectly, running a Debug build of SLiM enables crosschecks after every load.
+#'
 readFromPopulationFile <- function(filePath) {
  .SS$readFromPopulationFile(filePath)
 }
@@ -3112,6 +3199,7 @@ readFromPopulationFile <- function(filePath) {
 #'operation; you should think carefully about what side effects might result
 #'(which is why fitness recalculation does not just occur automatically after
 #'changes that might affect fitness values).
+#'
 recalculateFitness <- function(generation) {
  .SS$recalculateFitness(generation)
 }
@@ -3143,6 +3231,7 @@ recalculateFitness <- function(generation) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'
 registerEarlyEvent <- function(id, source, start, end) {
  .SS$registerEarlyEvent(id, source, start, end)
 }
@@ -3183,6 +3272,7 @@ registerEarlyEvent <- function(id, source, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'
 registerFitnessCallback <- function(id, source, mutType, subpop, start, end)
 {
  .SS$registerFitnessCallback(id, source, mutType, subpop, start, end)
@@ -3223,6 +3313,7 @@ registerFitnessCallback <- function(id, source, mutType, subpop, start, end)
 #'execute the next time an InteractionType is evaluated. The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'
 registerInteractionCallback <- function(id, source, intType, subpop, start,
 end) {
  .SS$registerInteractionCallback(id, source, intType, subpop, start, end)
@@ -3255,6 +3346,7 @@ end) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'
 registerLateEvent <- function(id, source, start, end) {
  .SS$registerLateEvent(id, source, start, end)
 }
@@ -3291,6 +3383,7 @@ registerLateEvent <- function(id, source, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'
 registerMateChoiceCallback <- function(id, source, subpop, start, end) {
  .SS$registerMateChoiceCallback(id, source, subpop, start, end)
 }
@@ -3327,6 +3420,7 @@ registerMateChoiceCallback <- function(id, source, subpop, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'
 registerModifyChildCallback <- function(id, source, subpop, start, end) {
  .SS$registerModifyChildCallback(id, source, subpop, start, end)
 }
@@ -3363,6 +3457,7 @@ registerModifyChildCallback <- function(id, source, subpop, start, end) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'
 registerRecombinationCallback <- function(id, source, subpop, start, end) {
  .SS$registerRecombinationCallback(id, source, subpop, start, end)
 }
@@ -3404,6 +3499,7 @@ registerRecombinationCallback <- function(id, source, subpop, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'
 registerMutationCallback <- function(id, source, mutType, subpop, start, end)
 {
  .SS$registerMutationCallback(id, source, mutType, subpop, start, end)
@@ -3445,6 +3541,7 @@ registerMutationCallback <- function(id, source, mutType, subpop, start, end)
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'
 registerReproductionCallback <- function(id, source, subpop, sex, start, end)
 {
  .SS$registerReproductionCallback(id, source, subpop, sex, start, end)
@@ -3508,6 +3605,7 @@ registerReproductionCallback <- function(id, source, subpop, sex, start, end)
 #'as a template script block, the template can be duplicated and scheduled for
 #'different generations. In fact, rescheduleScriptBlock() does essentially that
 #'internally.
+#'
 rescheduleScriptBlock <- function(block, start, end, generations) {
  .SS$rescheduleScriptBlock(block, start, end, generations)
 }
@@ -3529,6 +3627,7 @@ rescheduleScriptBlock <- function(block, start, end, generations) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'SLiMSim, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .SS$setValue(key, value)
 }
@@ -3552,6 +3651,7 @@ setValue <- function(key, value) {
 #'the current generation will finish executing; if you want the simulation to
 #'stop immediately, you can use the Eidos method stop(), which raises an error
 #'condition.
+#'
 simulationFinished <- function(void) {
  .SS$simulationFinished(void)
 }
@@ -3592,6 +3692,7 @@ simulationFinished <- function(void) {
 #'would be large, and most models do not need this level of precision; usually it
 #'is sufficient to know that the model has coalesced, without knowing whether that
 #'happened in the current generation or in a recent preceding generation.
+#'
 treeSeqCoalesced <- function(void) {
  .SS$treeSeqCoalesced(void)
 }
@@ -3615,6 +3716,7 @@ treeSeqCoalesced <- function(void) {
 #'desirable, unless a model wishes to avoid simplification entirely. A binary
 #'tree sequence file will be written to the specified path; a filename extension
 #'of .trees is suggested for this type of file.
+#'
 treeSeqOutput <- function(path, simplify) {
  .SS$treeSeqOutput(path, simplify)
 }
@@ -3657,6 +3759,7 @@ treeSeqOutput <- function(path, simplify) {
 #'treeSeqRememberIndividuals() explicitly on the first generation, after setting
 #'spatial locations, to update the archived information with the correct spatial
 #'positions.
+#'
 treeSeqRememberIndividuals <- function(individuals) {
  .SS$treeSeqRememberIndividuals(individuals)
 }
@@ -3679,6 +3782,7 @@ treeSeqRememberIndividuals <- function(individuals) {
 #'can also take a significant amount of time. Typically calling this method is not
 #'necessary; the automatic simplification performed occasionally by SLiM should be
 #'sufficient for most models.
+#'
 treeSeqSimplify <- function(void) {
  .SS$treeSeqSimplify(void)
 }
@@ -3704,6 +3808,7 @@ treeSeqSimplify <- function(void) {
 #'modifyChild() callbacks governing the generation of the offspring individual.
 #'Note that this method is only for use in nonWF models. See addCrossed() for
 #'further general notes on the addition of new offspring individuals.
+#'
 addCloned <- function(parent) {
  .P$addCloned(parent)
 }
@@ -3778,6 +3883,7 @@ addCloned <- function(parent) {
 #'called only from reproduction() callbacks, and may not be called at any other
 #'time. In WF models, offspring generation is managed automatically by the SLiM
 #'core.
+#'
 addCrossed <- function(parent1, parent2, sex) {
  .P$addCrossed(parent1, parent2, sex)
 }
@@ -3805,6 +3911,7 @@ addCrossed <- function(parent1, parent2, sex) {
 #'is treated as in addCrossed(). Note that this method is only for use in nonWF
 #'models. See addCrossed() for further general notes on the addition of new
 #'offspring individuals.
+#'
 addEmpty <- function(sex) {
  .P$addEmpty(sex)
 }
@@ -3892,6 +3999,7 @@ addEmpty <- function(sex) {
 #'gene conversion tracts with heteroduplex mismatch repair. Note that this method
 #'is only for use in nonWF models. See addCrossed() for further general notes on
 #'the addition of new offspring individuals.
+#'
 addRecombinant <- function(strand1, strand2, breaks1, strand3, strand4,
 breaks2, sex) {
  .P$addRecombinant(strand1, strand2, breaks1, strand3, strand4, breaks2, sex)
@@ -3922,6 +4030,7 @@ breaks2, sex) {
 #'selfing is assumed to be incidental). Note that this method is only for use in
 #'nonWF models. See addCrossed() for further general notes on the addition of new
 #'offspring individuals.
+#'
 addSelfed <- function(parent) {
  .P$addSelfed(parent)
 }
@@ -3948,6 +4057,7 @@ addSelfed <- function(parent) {
 #'fitness has not yet been calculated. When new subpopulations are first created
 #'with addSubpop() or addSubpopSplit(), the fitness of all of the newly created
 #'individuals is considered to be 1.0 until fitness values are recalculated.
+#'
 cachedFitness <- function(indices) {
  .P$cachedFitness(indices)
 }
@@ -3989,6 +4099,7 @@ cachedFitness <- function(indices) {
 #'be specified by name, or with hexadecimal RGB values of the form "#RRGGBB" (see
 #'the Eidos manual). If color is NULL or the empty string, "", SLiMgui’s default
 #'(fitness-based) color will be used.
+#'
 configureDisplay <- function(center, scale, color) {
  .P$configureDisplay(center, scale, color)
 }
@@ -4095,6 +4206,7 @@ configureDisplay <- function(center, scale, color) {
 #'multiple spatial maps with color-mapping parameters defined, SLiMgui will choose
 #'just one for display; it will prefer an "xy" map if one is available, but beyond
 #'that heuristic its choice will be arbitrary.
+#'
 defineSpatialMap <- function(name, spatiality, gridSize, values, interpolate,
 valueRange, colors) {
  .P$defineSpatialMap(name, spatiality, gridSize, values, interpolate,
@@ -4116,6 +4228,7 @@ valueRange, colors)
 #'style functionality is actually provided by the superclass of Subpopulation,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .P$getValue(key)
 }
@@ -4164,6 +4277,7 @@ getValue <- function(key) {
 #'and outputVCFSample() for other output formats. Output is generally done in a
 #'late() event, so that the output reflects the state of the simulation at the end
 #'of a generation.
+#'
 outputMSSample <- function(sampleSize, replace, requestedSex, filePath,
 append, filterMonomorphic) {
  .P$outputMSSample(sampleSize, replace, requestedSex, filePath, append,
@@ -4204,6 +4318,7 @@ filterMonomorphic)
 #'end of it if append is T. See outputMSSample() and outputVCFSample() for other
 #'output formats. Output is generally done in a late() event, so that the output
 #'reflects the state of the simulation at the end of a generation.
+#'
 outputSample <- function(sampleSize, replace, requestedSex, filePath, append)
 {
  .P$outputSample(sampleSize, replace, requestedSex, filePath, append)
@@ -4253,6 +4368,7 @@ outputSample <- function(sampleSize, replace, requestedSex, filePath, append)
 #'outputSample() for other output formats. Output is generally done in a late()
 #'event, so that the output reflects the state of the simulation at the end of a
 #'generation.
+#'
 outputVCFSample <- function(sampleSize, replace, requestedSex,
 outputMultiallelics, filePath, append, simplifyNucleotides,
 outputNonnucleotides) {
@@ -4281,6 +4397,7 @@ filePath, append, simplifyNucleotides, outputNonnucleotides)
 #'contain values comprising more than one point. In this case, a logical vector
 #'will be returned in which each element is T if the corresponding point in point
 #'is inside the spatial boundaries of the subpopulation, F otherwise.
+#'
 pointInBounds <- function(point) {
  .P$pointInBounds(point)
 }
@@ -4315,6 +4432,7 @@ pointInBounds <- function(point) {
 #'words, point may contain values comprising more than one point. In this case,
 #'each point will be processed as described above and a new vector containing all
 #'of the processed points will be returned.
+#'
 pointPeriodic <- function(point) {
  .P$pointPeriodic(point)
 }
@@ -4341,6 +4459,7 @@ pointPeriodic <- function(point) {
 #'comprising more than one point. In this case, each point will be processed as
 #'described above and a new vector containing all of the processed points will be
 #'returned.
+#'
 pointReflected <- function(point) {
  .P$pointReflected(point)
 }
@@ -4365,6 +4484,7 @@ pointReflected <- function(point) {
 #'comprising more than one point. In this case, each point will be processed as
 #'described above and a new vector containing all of the processed points will be
 #'returned.
+#'
 pointStopped <- function(point) {
  .P$pointStopped(point)
 }
@@ -4385,6 +4505,7 @@ pointStopped <- function(point) {
 #'equal to the dimensionality of the simulation, so it will be of total length
 #'n*dimensionality. This may only be called in simulations for which continuous
 #'space has been enabled with initializeSLiMOptions().
+#'
 pointUniform <- function(n) {
  .P$pointUniform(n)
 }
@@ -4411,6 +4532,7 @@ pointUniform <- function(n) {
 #'removed. WF models should therefore call setSubpopulationSize(0) instead of this
 #'method; setSubpopulationSize() is the standard way for WF models to change the
 #'subpopulation size, including to a size of 0.
+#'
 removeSubpopulation <- function(void) {
  .P$removeSubpopulation(void)
 }
@@ -4461,6 +4583,7 @@ removeSubpopulation <- function(void) {
 #'Eidos code, it is also much faster, and it does not fail if less than the full
 #'sample size is available. See subsetIndividuals() for a similar method that
 #'returns a full subset, rather than a sample.
+#'
 sampleIndividuals <- function(size, replace, exclude, sex, minAge, maxAge,
 migrant) {
  .P$sampleIndividuals(size, replace, exclude, sex, minAge, maxAge, migrant)
@@ -4487,6 +4610,7 @@ migrant) {
 #'be generated by cloning – by asexual reproduction without gametes or meiosis –
 #'will be equal to the cloning rate (for its sex, in sexual simulations) set in
 #'the parental (not the offspring!) subpopulation.
+#'
 setCloningRate <- function(rate) {
  .P$setCloningRate(rate)
 }
@@ -4511,6 +4635,7 @@ setCloningRate <- function(rate) {
 #'left unchanged (explicitly set a zero rate to turn off migration from a given
 #'subpopulation). The type of sourceSubpops may be either integer, specifying
 #'subpopulations by identifier, or object, specifying subpopulations directly.
+#'
 setMigrationRates <- function(sourceSubpops, rates) {
  .P$setMigrationRates(sourceSubpops, rates)
 }
@@ -4532,6 +4657,7 @@ setMigrationRates <- function(sourceSubpops, rates) {
 #'be generated by selfing – by self-fertilization via gametes produced by meiosis
 #'by a single parent – will be equal to the selfing rate set in the parental (not
 #'the offspring!) subpopulation (see section 21.2.1).
+#'
 setSelfingRate <- function(rate) {
  .P$setSelfingRate(rate)
 }
@@ -4554,6 +4680,7 @@ setSelfingRate <- function(rate) {
 #'deterministic: SLiM will generate offspring that exactly satisfy the requested
 #'sex ratio (within integer roundoff limits). See section 21.2.1 for further
 #'details.
+#'
 setSexRatio <- function(sexRatio) {
  .P$setSexRatio(sexRatio)
 }
@@ -4583,6 +4710,7 @@ setSexRatio <- function(sexRatio) {
 #'value of 0.0 (a restriction that allows the handling of periodicity to be
 #'somewhat more efficient). The current spatial bounds for the subpopulation may
 #'be obtained through the spatialBounds property.
+#'
 setSpatialBounds <- function(bounds) {
  .P$setSpatialBounds(bounds)
 }
@@ -4607,6 +4735,7 @@ setSpatialBounds <- function(bounds) {
 #'subpopulation itself remains unchanged until children are next generated (at
 #'which point it is deallocated), but it is no longer part of the simulation and
 #'should not be used.
+#'
 setSubpopulationSize <- function(size) {
  .P$setSubpopulationSize(size)
 }
@@ -4628,6 +4757,7 @@ setSubpopulationSize <- function(size) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Subpopulation, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .P$setValue(key, value)
 }
@@ -4650,6 +4780,7 @@ setValue <- function(key, value) {
 #'an error will result. See the documentation for defineSpatialMap() for
 #'information regarding the details of color translation. See the Eidos manual for
 #'further information on color strings.
+#'
 spatialMapColor <- function(name, value) {
  .P$spatialMapColor(name, value)
 }
@@ -4683,6 +4814,7 @@ spatialMapColor <- function(name, value) {
 #'1, then elements 2 and 3, etc.) will be taken as the x and z coordinates of the
 #'points to be evaluated. This allows spatialMapValue() to be used in a vectorized
 #'fashion.
+#'
 spatialMapValue <- function(name, point) {
  .P$spatialMapValue(name, point)
 }
@@ -4722,6 +4854,7 @@ spatialMapValue <- function(name, point) {
 #'the desired properties; besides being much simpler than the equivalent Eidos
 #'code, it is also much faster. See sampleIndividuals() for a similar method that
 #'returns a sample taken from a chosen subset of individuals.
+#'
 subsetIndividuals <- function(exclude, sex, minAge, maxAge, migrant) {
  .P$subsetIndividuals(exclude, sex, minAge, maxAge, migrant)
 }
@@ -4745,6 +4878,7 @@ subsetIndividuals <- function(exclude, sex, minAge, maxAge, migrant) {
 #'manually by the model script. In WF models, migration is managed automatically
 #'by the SLiM core based upon the migration rates set for each subpopulation with
 #'setMigrationRates().
+#'
 takeMigrants <- function(migrants) {
  .P$takeMigrants(migrants)
 }
@@ -4766,6 +4900,7 @@ takeMigrants <- function(migrants) {
 #'style functionality is actually provided by the superclass of Substitution,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'
 getValue <- function(key) {
  .S$getValue(key)
 }
@@ -4787,6 +4922,7 @@ getValue <- function(key) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Substitution, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'
 setValue <- function(key, value) {
  .S$setValue(key, value)
 }
@@ -4834,6 +4970,7 @@ setValue <- function(key, value) {
 #'"char" to obtain it as a string vector of single characters (e.g., "T", "A",
 #'"T", "A", "C", "G"), or "integer" to obtain it as an integer vector (e.g., 3, 0,
 #'3, 0, 1, 2), using SLiM’s standard code of A=0, C=1, G=2, T=3.
+#'@export
 codonsToAminoAcids <- function(codons, long, paste) {
  .SB$codonsToAminoAcids(codons, long, paste)
 }
@@ -4858,6 +4995,7 @@ codonsToAminoAcids <- function(codons, long, paste) {
 #'not depend only upon their central nucleotide. See the documentation for
 #'initializeGenomicElementType() in section 23.1 for further discussion of how
 #'these 64×4 mutation matrices are interpreted and used.
+#'@export
 mm16To256 <- function(mutationMatrix16) {
  .SB$mm16To256(mutationMatrix16)
 }
@@ -4878,6 +5016,7 @@ mm16To256 <- function(mutationMatrix16) {
 #'matrix is suitable for use with initializeGenomicElementType(). Note that the
 #'actual mutation rate produced by this matrix is 3*alpha. 0 α α α α 0 α α α α 0 α
 #'α α α 0
+#'@export
 mmJukesCantor <- function(alpha) {
  .SB$mmJukesCantor(alpha)
 }
@@ -4899,6 +5038,7 @@ mmJukesCantor <- function(alpha) {
 #'transition rate alpha and transversion rate beta: This 2×2 matrix is suitable
 #'for use with initializeGenomicElementType(). Note that the actual mutation rate
 #'produced by this model is alpha+2*beta.
+#'@export
 mmKimura <- function(alpha, beta) {
  .SB$mmKimura(alpha, beta)
 }
@@ -4920,6 +5060,7 @@ mmKimura <- function(alpha, beta) {
 #'string (e.g., "TATA"), a string vector of single characters (e.g., "T", "A",
 #'"T", "A"), or an integer vector (e.g., 3, 0, 3, 0), using SLiM’s standard code
 #'of A=0, C=1, G=2, T=3.
+#'@export
 nucleotideCounts <- function(sequence) {
  .SB$nucleotideCounts(sequence)
 }
@@ -4941,6 +5082,7 @@ nucleotideCounts <- function(sequence) {
 #'a singleton string (e.g., "TATA"), a string vector of single characters (e.g.,
 #'"T", "A", "T", "A"), or an integer vector (e.g., 3, 0, 3, 0), using SLiM’s
 #'standard code of A=0, C=1, G=2, T=3.
+#'@export
 nucleotideFrequencies <- function(sequence) {
  .SB$nucleotideFrequencies(sequence)
 }
@@ -4995,6 +5137,7 @@ nucleotideFrequencies <- function(sequence) {
 #'and much more if stored in the other formats. However, the other formats can
 #'be easier to work with in Eidos, and so may be preferable for relatively short
 #'chromosomes if you are manipulating the generated sequence.
+#'@export
 nucleotidesToCodons <- function(sequence) {
  .SB$nucleotidesToCodons(sequence)
 }

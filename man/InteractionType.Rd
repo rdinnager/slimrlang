@@ -5,7 +5,9 @@
 \alias{InteractionType}
 \alias{.IT}
 \title{InteractionType}
-\format{An object of class \code{list} of length 21.}
+\format{
+An object of class \code{list} of length 21.
+}
 \usage{
 InteractionType
 }
