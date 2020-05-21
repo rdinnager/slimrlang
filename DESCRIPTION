@@ -22,7 +22,8 @@ Imports:
     dplyr,
     tibble,
     glue,
-    rlang (>= 0.1.2)
+    rlang (>= 0.1.2),
+    prettycode
 Suggests: 
     roxygen2,
     knitr,

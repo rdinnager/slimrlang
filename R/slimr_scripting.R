@@ -320,4 +320,3 @@ as.character.slim_script <- function(x) {
                  "\n}\n")
   code
 }
-
