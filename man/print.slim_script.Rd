@@ -15,6 +15,3 @@ The formatted string (invisibly)
 \description{
 Print a slim_script object with highlighting
 }
-\examples{
-print(slimr::slim_get_recipe() \%>\% slimr::slim_script_from_text())
-}
