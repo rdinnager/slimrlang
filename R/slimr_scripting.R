@@ -268,7 +268,6 @@ validate_slim_script <- function(slim_script) {
 #' @export
 #'
 #' @examples
-#' print(slimr::slim_get_recipe() %>% slimr::slim_script_from_text())
 print.slim_script <- function(x, ...) {
 
   # code <- purrr::map(x$code,
