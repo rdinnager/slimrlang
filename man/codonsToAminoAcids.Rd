@@ -25,6 +25,12 @@ or integer.
 \description{
 Documentation for SLiM function \code{codonsToAminoAcids}, which is a method of
 the SLiM class \code{SLiMBuiltin}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Returns the amino acid sequence corresponding to the codon sequence
@@ -53,4 +59,19 @@ may be "string" to obtain the sequence as a singleton string (e.g., "TATACG"),
 "char" to obtain it as a string vector of single characters (e.g., "T", "A",
 "T", "A", "C", "G"), or "integer" to obtain it as an integer vector (e.g., 3, 0,
 3, 0, 1, 2), using SLiM’s standard code of A=0, C=1, G=2, T=3.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

@@ -46,6 +46,12 @@ An object of type void.
 \description{
 Documentation for SLiM function \code{initializeSLiMOptions}, which is a method
 of the SLiM class \code{Initialize}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Configure options for the simulation. If initializeSLiMOptions()
@@ -147,4 +153,19 @@ section 1.8 for further discussion. This function will likely be extended with
 further options in the future, added on to the end of the argument list. Using
 named arguments with this call is recommended for readability. Note that turning
 on optional features may increase the runtime and memory footprint of SLiM.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

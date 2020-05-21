@@ -5,13 +5,15 @@
 \alias{validate_slim_script}
 \title{slim_script constructor and validator}
 \usage{
-new_slim_script(x, nrow, slim_output = "None", slim_input = "None")
+new_slim_script(x, ..., nrow, slim_output = "None", slim_input = "None")
 
 validate_slim_script(slim_script)
 }
 \arguments{
 \item{x}{A named list where each element is a list or vector component of a \code{slim_script},
-which includes "block_id", "start_gen", "end_gen", "callback", and "code"}
+which includes "block_name", "block_id", "start_gen", "end_gen", "callback", and "code"}
+
+\item{...}{Optional attributes to add to the \code{slim_script} object, as name-value pairs.}
 
 \item{nrow}{The number of rows, required}
 

@@ -18,6 +18,12 @@ An object of type integer.
 \description{
 Documentation for SLiM function \code{interactingNeighborCount}, which is a
 method of the SLiM class \code{InteractionType}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Returns the number of interacting individuals for each individual
@@ -34,4 +40,19 @@ unlike nearestInteractingNeighbors(). Note that this method uses interaction
 eligibility as a criterion; it will not count neighbors that cannot exert an
 interaction upon a focal individual (due to sex-segregation, e.g.). (It also
 does not count a focal individual as a neighbor of itself.)
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

@@ -37,6 +37,12 @@ singleton)
 \description{
 Documentation for SLiM function \code{initializeInteractionType}, which is a
 method of the SLiM class \code{Initialize}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Add an interaction type at initialization time. The id must not
@@ -108,4 +114,19 @@ always have a strength of 0.0, and the interaction strength of an individual
 with itself is always 0.0, regardless of the interaction function or callbacks.
 The global symbol for the new interaction type is immediately available; the
 return value also provides the new object.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

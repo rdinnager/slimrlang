@@ -36,6 +36,12 @@ An object of type void.
 \description{
 Documentation for SLiM function \code{outputVCF}, which is a method of the SLiM
 class \code{Genome}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Output the target genomes in VCF format (see sections 25.2.3, 25.2.4,
@@ -54,4 +60,19 @@ the format of the output produced; see sections 25.2.3 and 25.2.4 for further
 discussion. See outputMS() and output() for other output formats. Output is
 generally done in a late() event, so that the output reflects the state of the
 simulation at the end of a generation.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

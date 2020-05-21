@@ -3,8 +3,7 @@
 \name{initializeAncestralNucleotides}
 \alias{initializeAncestralNucleotides}
 \alias{Initialize$initializeAncestralNucleotides}
-\alias{.Init}
-\alias{$initializeAncestralNucleotides}
+\alias{.Init$initializeAncestralNucleotides}
 \title{SLiM method initializeAncestralNucleotides}
 \usage{
 initializeAncestralNucleotides(sequence)
@@ -19,6 +18,12 @@ An object of type integer. Return will be of length 1 (a singleton)
 \description{
 Documentation for SLiM function \code{initializeAncestralNucleotides}, which is
 a method of the SLiM class \code{Initialize}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 This function, which may be called only in nucleotide-based models
@@ -36,4 +41,19 @@ a singleton string that contains only the letters ACGT will be assumed to be a
 nucleotide sequence rather than a filename. The length of the ancestral sequence
 is returned. A utility function, randomNucleotides(), is provided by SLiM to
 assist in generating simple random nucleotide sequences; see section 23.15.1.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

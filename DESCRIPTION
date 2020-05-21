@@ -26,5 +26,7 @@ Imports:
 Suggests: 
     roxygen2,
     knitr,
-    rmarkdown
+    rmarkdown,
+    fansi,
+    printr
 VignetteBuilder: knitr

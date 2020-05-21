@@ -17,6 +17,12 @@ An object of type void.
 \description{
 Documentation for SLiM function \code{removeSubpopulation}, which is a method of
 the SLiM class \code{Subpopulation}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Removes this subpopulation from the model. The subpopulation is
@@ -32,4 +38,19 @@ do not make this distinction; when a subpopulation is empty it is automatically
 removed. WF models should therefore call setSubpopulationSize(0) instead of this
 method; setSubpopulationSize() is the standard way for WF models to change the
 subpopulation size, including to a size of 0.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

@@ -3,8 +3,7 @@
 \name{initializeRecombinationRate}
 \alias{initializeRecombinationRate}
 \alias{Initialize$initializeRecombinationRate}
-\alias{.Init}
-\alias{$initializeRecombinationRate}
+\alias{.Init$initializeRecombinationRate}
 \title{SLiM method initializeRecombinationRate}
 \usage{
 initializeRecombinationRate(rates, ends, sex)
@@ -24,6 +23,12 @@ An object of type void.
 \description{
 Documentation for SLiM function \code{initializeRecombinationRate}, which is a
 method of the SLiM class \code{Initialize}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Set the recombination rate per base position per generation along the
@@ -72,4 +77,19 @@ sexual simulations sex may be "M" or "F" instead, in which case the supplied
 recombination map is used only for that sex. In this case, two calls must be
 made to initializeRecombinationRate(), one for each sex, even if a rate of zero
 is desired for the other sex; no default recombination map is supplied.
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }

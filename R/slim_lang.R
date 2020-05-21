@@ -2,12 +2,18 @@
 #'
 #'Documentation for SLiM function \code{initializeAncestralNucleotides}, which is
 #'a method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sequence An object of type integer or string. See details for
 #'description.
 #'
-#'@aliases Initialize$initializeAncestralNucleotides .Init
-#'$initializeAncestralNucleotides
+#'@aliases
+#'Initialize$initializeAncestralNucleotides .Init$initializeAncestralNucleotides
 #'@return An object of type integer. Return will be of length 1 (a singleton)
 #'@details This function, which may be called only in nucleotide-based models
 #'(see section 1.8), supplies an ancestral nucleotide sequence for the model.
@@ -24,6 +30,16 @@
 #'nucleotide sequence rather than a filename. The length of the ancestral sequence
 #'is returned. A utility function, randomNucleotides(), is provided by SLiM to
 #'assist in generating simple random nucleotide sequences; see section 23.15.1.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeAncestralNucleotides <- function(sequence) {
  .Init$initializeAncestralNucleotides(sequence)
@@ -33,6 +49,12 @@ initializeAncestralNucleotides <- function(sequence) {
 #'
 #'Documentation for SLiM function \code{initializeGeneConversion}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param nonCrossoverFraction An object of type numeric or numeric or numeric or
 #'numeric. Must be of length 1 (a singleton). See details for description.
@@ -63,6 +85,16 @@ initializeAncestralNucleotides <- function(sequence) {
 #'over G/C mutations. A non-zero bias may only be set in nucleotide-based models
 #'(see section 1.8). This function, and the way that gene conversion is modeled,
 #'fundamentally changed in SLiM 3.3; see section 1.5.6 for discussion.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeGeneConversion <- function(nonCrossoverFraction, meanLength,
 simpleConversionFraction, bias) {
@@ -74,6 +106,12 @@ simpleConversionFraction, bias)
 #'
 #'Documentation for SLiM function \code{initializeGenomicElement}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param genomicElementType An object of type integer or GenomicElementType
 #'object. See details for description.
@@ -99,6 +137,16 @@ simpleConversionFraction, bias)
 #'ascending position with a vectorized call. The return value provides the genomic
 #'element(s) created by the call, in the order in which they were specified in the
 #'parameters to initializeGenomicElement().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeGenomicElement <- function(genomicElementType, start, end) {
  .Init$initializeGenomicElement(genomicElementType, start, end)
@@ -108,6 +156,12 @@ initializeGenomicElement <- function(genomicElementType, start, end) {
 #'
 #'Documentation for SLiM function \code{initializeGenomicElementType}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -117,8 +171,8 @@ initializeGenomicElement <- function(genomicElementType, start, end) {
 #'@param mutationMatrix An object of type null or float. The default value is
 #'\code{NULL}. See details for description.
 #'
-#'@aliases Initialize$initializeGenomicElementType .Init
-#'$initializeGenomicElementType
+#'@aliases
+#'Initialize$initializeGenomicElementType .Init$initializeGenomicElementType
 #'@return An object of type GenomicElementType object. Return will be of length 1
 #'(a singleton)
 #'@details Add a genomic element type at initialization time. The id must
@@ -170,6 +224,16 @@ initializeGenomicElement <- function(genomicElementType, start, end) {
 #'PACA→AAA * PACA→AGA PACA→ATA PACC→AAC * PACC→AGC PACC→ATC PACG→AAG * PACG→AGG
 #'PACG→ATG . . . . . . . . . . . . PTTC→TAC PTTC→TCC PTTC→TGC * PTTG→TAG PTTG→TCG
 #'PTTG→TGG * PTTT→TAT PTTT→TCT PTTT→TGT *
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeGenomicElementType <- function(id, mutationTypes, proportions,
 mutationMatrix) {
@@ -181,6 +245,12 @@ mutationMatrix)
 #'
 #'Documentation for SLiM function \code{initializeHotspotMap}, which is a method
 #'of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param multipliers An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -227,6 +297,16 @@ mutationMatrix)
 #'case, two calls must be made to initializeHotspotMap(), one for each sex, even
 #'if a multiplier of 1.0 is desired for the other sex; no default hotspot map is
 #'supplied.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeHotspotMap <- function(multipliers, ends, sex) {
  .Init$initializeHotspotMap(multipliers, ends, sex)
@@ -236,6 +316,12 @@ initializeHotspotMap <- function(multipliers, ends, sex) {
 #'
 #'Documentation for SLiM function \code{initializeInteractionType}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -320,6 +406,16 @@ initializeHotspotMap <- function(multipliers, ends, sex) {
 #'with itself is always 0.0, regardless of the interaction function or callbacks.
 #'The global symbol for the new interaction type is immediately available; the
 #'return value also provides the new object.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeInteractionType <- function(id, spatiality, reciprocal,
 maxDistance, sexSegregation) {
@@ -331,6 +427,12 @@ sexSegregation)
 #'
 #'Documentation for SLiM function \code{initializeMutationRate}, which is a method
 #'of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rates An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -385,6 +487,16 @@ sexSegregation)
 #'in the mutationMatrix parameter to initializeGenomicElementType(). If variation
 #'in the mutation rate along the chromosome is desired, initializeHotspotMap()
 #'should be used.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeMutationRate <- function(rates, ends, sex) {
  .Init$initializeMutationRate(rates, ends, sex)
@@ -394,6 +506,12 @@ initializeMutationRate <- function(rates, ends, sex) {
 #'
 #'Documentation for SLiM function \code{initializeMutationType}, which is a method
 #'of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -435,6 +553,16 @@ initializeMutationRate <- function(rates, ends, sex) {
 #'nonWF models for neutral mutation types with no indirect fitness effects, you
 #'should therefore set convertToSubstitution to T. See sections 21.3, 22.5, and
 #'23.9.1 for further discussion regarding the convertToSubstitution property.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeMutationType <- function(id, dominanceCoeff, distributionType, ...)
 {
@@ -445,6 +573,12 @@ initializeMutationType <- function(id, dominanceCoeff, distributionType, ...)
 #'
 #'Documentation for SLiM function \code{initializeMutationTypeNuc}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -469,6 +603,16 @@ initializeMutationType <- function(id, dominanceCoeff, distributionType, ...)
 #'mutations. These values are set automatically by initializeMutationTypeNuc(),
 #'and may not be changed. See the documentation for initializeMutationType() for
 #'all other discussion.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeMutationTypeNuc <- function(id, dominanceCoeff,
 distributionType, ...) {
@@ -479,6 +623,12 @@ distributionType, ...) {
 #'
 #'Documentation for SLiM function \code{initializeRecombinationRate}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rates An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -486,8 +636,8 @@ distributionType, ...) {
 #'@param sex An object of type string. Must be of length 1 (a singleton). The
 #'default value is \code{"*"}. See details for description.
 #'
-#'@aliases Initialize$initializeRecombinationRate .Init
-#'$initializeRecombinationRate
+#'@aliases
+#'Initialize$initializeRecombinationRate .Init$initializeRecombinationRate
 #'@return An object of type void.
 #'@details Set the recombination rate per base position per generation along the
 #'chromosome. To be precise, this recombination rate is the probability that a
@@ -535,6 +685,16 @@ distributionType, ...) {
 #'recombination map is used only for that sex. In this case, two calls must be
 #'made to initializeRecombinationRate(), one for each sex, even if a rate of zero
 #'is desired for the other sex; no default recombination map is supplied.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeRecombinationRate <- function(rates, ends, sex) {
  .Init$initializeRecombinationRate(rates, ends, sex)
@@ -544,6 +704,12 @@ initializeRecombinationRate <- function(rates, ends, sex) {
 #'
 #'Documentation for SLiM function \code{initializeSex}, which is a method of the
 #'SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param chromosomeType An object of type string or numeric. Must be of length 1
 #'(a singleton). See details for description.
@@ -562,6 +728,16 @@ initializeRecombinationRate <- function(rates, ends, sex) {
 #'than hermaphroditic) regardless of the chromosomeType chosen for simulation.
 #'There is no way to disable sex once it has been enabled; if you don’t want to
 #'have sex, don’t call this function.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeSex <- function(chromosomeType, xDominanceCoeff) {
  .Init$initializeSex(chromosomeType, xDominanceCoeff)
@@ -571,6 +747,12 @@ initializeSex <- function(chromosomeType, xDominanceCoeff) {
 #'
 #'Documentation for SLiM function \code{initializeSLiMModelType}, which is a
 #'method of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param modelType An object of type string. Must be of length 1 (a singleton).
 #'See details for description.
@@ -586,6 +768,16 @@ initializeSex <- function(chromosomeType, xDominanceCoeff) {
 #'1.6). If initializeSLiMModelType() is called at all then it must be called
 #'before any other initialization function, so that SLiM knows from the outset
 #'which features are enabled and which are not.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeSLiMModelType <- function(modelType) {
  .Init$initializeSLiMModelType(modelType)
@@ -595,6 +787,12 @@ initializeSLiMModelType <- function(modelType) {
 #'
 #'Documentation for SLiM function \code{initializeSLiMOptions}, which is a method
 #'of the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param keepPedigrees An object of type logical or string or string or integer
 #'or logical or logical. Must be of length 1 (a singleton). The default value is
@@ -716,6 +914,16 @@ initializeSLiMModelType <- function(modelType) {
 #'further options in the future, added on to the end of the argument list. Using
 #'named arguments with this call is recommended for readability. Note that turning
 #'on optional features may increase the runtime and memory footprint of SLiM.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeSLiMOptions <- function(keepPedigrees, dimensionality, periodicity,
 mutationRuns, preventIncidentalSelfing, nucleotideBased) {
@@ -727,6 +935,12 @@ mutationRuns, preventIncidentalSelfing, nucleotideBased)
 #'
 #'Documentation for SLiM function \code{initializeTreeSeq}, which is a method of
 #'the SLiM class \code{Initialize}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param recordMutations An object of type logical. Must be of length 1 (a
 #'singleton). The default value is \code{T}. See details for description.
@@ -797,6 +1011,16 @@ mutationRuns, preventIncidentalSelfing, nucleotideBased)
 #'to confirm that the two data structures do indeed represent the same conceptual
 #'state. This slows down the model considerably, however, and would normally be
 #'turned on only for debugging purposes, so it is turned off by default.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 initializeTreeSeq <- function(recordMutations, simplificationRatio,
 simplificationInterval, checkCoalescence, runCrosschecks) {
@@ -810,6 +1034,12 @@ simplificationInterval, checkCoalescence, runCrosschecks)
 #'
 #'Documentation for SLiM function \code{ancestralNucleotides}, which is a method
 #'of the SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param start An object of type null or integer. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -847,6 +1077,16 @@ simplificationInterval, checkCoalescence, runCrosschecks)
 #'4 63 will therefore be returned. These codon values can be useful in themselves;
 #'they can also be passed to codonsToAminoAcids() to translate them into the
 #'corresponding amino acid sequence if desired (see section 23.15.1).
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 ancestralNucleotides <- function(start, end, format = "string") {
  .c$ancestralNucleotides(start, end, format = "string")
@@ -856,6 +1096,12 @@ ancestralNucleotides <- function(start, end, format = "string") {
 #'
 #'Documentation for SLiM function \code{drawBreakpoints}, which is a method of the
 #'SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param parent An object of type null or Individual object. Must be of length 1
 #'(a singleton). The default value is \code{NULL}. See details for description.
@@ -888,6 +1134,16 @@ ancestralNucleotides <- function(start, end, format = "string") {
 #'these two uses, parent is not used, and the caller does not guarantee that the
 #'generated breakpoints will actually be used to recombine the genomes of parent
 #'in particular.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 drawBreakpoints <- function(parent, n) {
  .c$drawBreakpoints(parent, n)
@@ -897,6 +1153,12 @@ drawBreakpoints <- function(parent, n) {
 #'
 #'Documentation for SLiM function \code{setAncestralNucleotides}, which is a
 #'method of the SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sequence An object of type integer or string. See details for
 #'description.
@@ -914,6 +1176,16 @@ drawBreakpoints <- function(parent, n) {
 #'readFromMS() or readFromVCF(), such as when resetting the simulation state to an
 #'earlier state in a conditional simulation; however, that is more commonly done
 #'using readFromPopulationFile() with a SLiM or .trees file.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setAncestralNucleotides <- function(sequence) {
  .c$setAncestralNucleotides(sequence)
@@ -923,6 +1195,12 @@ setAncestralNucleotides <- function(sequence) {
 #'
 #'Documentation for SLiM function \code{setGeneConversion}, which is a method of
 #'the SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param nonCrossoverFraction An object of type numeric or numeric or numeric or
 #'numeric. Must be of length 1 (a singleton). See details for description.
@@ -942,6 +1220,16 @@ setAncestralNucleotides <- function(sequence) {
 #'section 1.5.6 for discussion of the "DSB” recombination model). The meanings
 #'and effects of the parameters exactly mirror the initializeGeneConversion()
 #'function; see section 23.1 for details.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setGeneConversion <- function(nonCrossoverFraction, meanLength,
 simpleConversionFraction, bias) {
@@ -953,6 +1241,12 @@ simpleConversionFraction, bias)
 #'
 #'Documentation for SLiM function \code{setHotspotMap}, which is a method of the
 #'SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param multipliers An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -986,6 +1280,16 @@ simpleConversionFraction, bias)
 #'male and female maps can simply be set to be identical the rest of the time. The
 #'hotspot map is normally constant in simulations, so be sure you know what you
 #'are doing.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setHotspotMap <- function(multipliers, ends, sex) {
  .c$setHotspotMap(multipliers, ends, sex)
@@ -995,6 +1299,12 @@ setHotspotMap <- function(multipliers, ends, sex) {
 #'
 #'Documentation for SLiM function \code{setMutationRate}, which is a method of the
 #'SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rates An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -1030,6 +1340,16 @@ setHotspotMap <- function(multipliers, ends, sex) {
 #'are doing. In nucleotide-based models, setMutationRate() may not be called. If
 #'variation in the mutation rate along the chromosome is desired, setHotspotMap()
 #'should be used.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setMutationRate <- function(rates, ends, sex) {
  .c$setMutationRate(rates, ends, sex)
@@ -1039,6 +1359,12 @@ setMutationRate <- function(rates, ends, sex) {
 #'
 #'Documentation for SLiM function \code{setRecombinationRate}, which is a method
 #'of the SLiM class \code{Chromosome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rates An object of type numeric. See details for description.
 #'@param ends An object of type null or integer. The default value is \code{NULL}.
@@ -1073,6 +1399,16 @@ setMutationRate <- function(rates, ends, sex) {
 #'maps can simply be set to be identical the rest of the time. The recombination
 #'intervals are normally a constant in simulations, so be sure you know what you
 #'are doing.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setRecombinationRate <- function(rates, ends, sex) {
  .c$setRecombinationRate(rates, ends, sex)
@@ -1084,6 +1420,12 @@ setRecombinationRate <- function(rates, ends, sex) {
 #'
 #'Documentation for SLiM function \code{addMutations}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutations An object of type Mutation object. See details for description.
 #'
@@ -1097,6 +1439,16 @@ setRecombinationRate <- function(rates, ends, sex) {
 #'generation; if you want current fitness values to be affected, you can call
 #'SLiMSim’s method recalculateFitness() – but see the documentation of that method
 #'for caveats.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addMutations <- function(mutations) {
  .G$addMutations(mutations)
@@ -1106,6 +1458,12 @@ addMutations <- function(mutations) {
 #'
 #'Documentation for SLiM function \code{addNewDrawnMutation}, which is a method of
 #'the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutationType An object of type integer or MutationType object. See
 #'details for description.
@@ -1172,6 +1530,16 @@ addMutations <- function(mutations) {
 #'the current generation (but not sooner); if you want current fitness values to
 #'be affected, you can call SLiMSim’s method recalculateFitness() – but see the
 #'documentation of that method for caveats.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addNewDrawnMutation <- function(mutationType, position, originGeneration,
 originSubpop, nucleotide) {
@@ -1183,6 +1551,12 @@ originSubpop, nucleotide)
 #'
 #'Documentation for SLiM function \code{addNewMutation}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutationType An object of type integer or MutationType object. See
 #'details for description.
@@ -1245,6 +1619,16 @@ originSubpop, nucleotide)
 #'generation (but not sooner); if you want current fitness values to be affected,
 #'you can call SLiMSim’s method recalculateFitness() – but see the documentation
 #'of that method for caveats.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addNewMutation <- function(mutationType, selectionCoeff, position,
 originGeneration, originSubpop, nucleotide) {
@@ -1256,6 +1640,12 @@ originSubpop, nucleotide)
 #'
 #'Documentation for SLiM function \code{containsMarkerMutation}, which is a method
 #'of the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1286,6 +1676,16 @@ originSubpop, nucleotide)
 #'at position will be returned; if more than one such mutation exists in the
 #'target genome, which one is returned is not defined. If returnMutation is T and
 #'no mutation of mutType is found at position, NULL will be returned.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 containsMarkerMutation <- function(mutType, position, returnMutation) {
  .G$containsMarkerMutation(mutType, position, returnMutation)
@@ -1295,6 +1695,12 @@ containsMarkerMutation <- function(mutType, position, returnMutation) {
 #'
 #'Documentation for SLiM function \code{containsMutations}, which is a method of
 #'the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutations An object of type Mutation object. See details for description.
 #'
@@ -1305,6 +1711,16 @@ containsMarkerMutation <- function(mutType, position, returnMutation) {
 #'indicates whether the corresponding mutation is present (T) or absent (F). This
 #'method is provided for speed; it is much faster than the corresponding Eidos
 #'code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 containsMutations <- function(mutations) {
  .G$containsMutations(mutations)
@@ -1314,6 +1730,12 @@ containsMutations <- function(mutations) {
 #'
 #'Documentation for SLiM function \code{countOfMutationsOfType}, which is a method
 #'of the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1325,6 +1747,16 @@ containsMutations <- function(mutations) {
 #'matching Mutation objects, rather than just a count, use -mutationsOfType().
 #'This method is provided for speed; it is much faster than the corresponding
 #'Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 countOfMutationsOfType <- function(mutType) {
  .G$countOfMutationsOfType(mutType)
@@ -1334,6 +1766,12 @@ countOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{mutationsOfType}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1348,6 +1786,16 @@ countOfMutationsOfType <- function(mutType) {
 #'aiming for a sum of the selection coefficients of matching Mutation objects, use
 #'-sumOfMutationsOfType(). This method is provided for speed; it is much faster
 #'than the corresponding Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 mutationsOfType <- function(mutType) {
  .G$mutationsOfType(mutType)
@@ -1357,6 +1805,12 @@ mutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{nucleotides}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param start An object of type null or integer. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -1390,6 +1844,16 @@ mutationsOfType <- function(mutType) {
 #'as frequencies, and codonsToAminoAcids() to convert a codon sequence (such as
 #'provided by the codon format described above) to an amino acid sequence; see
 #'section 23.15.1.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 nucleotides <- function(start, end, format) {
  .G$nucleotides(start, end, format)
@@ -1399,6 +1863,12 @@ nucleotides <- function(start, end, format) {
 #'
 #'Documentation for SLiM function \code{output}, which is a method of the SLiM
 #'class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type null or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -1418,6 +1888,16 @@ nucleotides <- function(start, end, format) {
 #'or appending to the end of it if append is T. See outputMS() and outputVCF() for
 #'other output formats. Output is generally done in a late() event, so that the
 #'output reflects the state of the simulation at the end of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 output <- function(filePath, append) {
  .G$output(filePath, append)
@@ -1427,6 +1907,12 @@ output <- function(filePath, append) {
 #'
 #'Documentation for SLiM function \code{outputMS}, which is a method of the SLiM
 #'class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type null or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -1456,6 +1942,16 @@ output <- function(filePath, append) {
 #'and outputVCF() for other output formats. Output is generally done in a late()
 #'event, so that the output reflects the state of the simulation at the end of a
 #'generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputMS <- function(filePath, append, filterMonomorphic) {
  .G$outputMS(filePath, append, filterMonomorphic)
@@ -1465,6 +1961,12 @@ outputMS <- function(filePath, append, filterMonomorphic) {
 #'
 #'Documentation for SLiM function \code{outputVCF}, which is a method of the SLiM
 #'class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type null or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -1495,6 +1997,16 @@ outputMS <- function(filePath, append, filterMonomorphic) {
 #'discussion. See outputMS() and output() for other output formats. Output is
 #'generally done in a late() event, so that the output reflects the state of the
 #'simulation at the end of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputVCF <- function(filePath, outputMultiallelics, append,
 simplifyNucleotides, outputNonnucleotides) {
@@ -1506,6 +2018,12 @@ outputNonnucleotides)
 #'
 #'Documentation for SLiM function \code{positionsOfMutationsOfType}, which is a
 #'method of the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1517,6 +2035,16 @@ outputNonnucleotides)
 #'matching Mutation objects, rather than just positions, use -mutationsOfType().
 #'This method is provided for speed; it is much faster than the corresponding
 #'Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 positionsOfMutationsOfType <- function(mutType) {
  .G$positionsOfMutationsOfType(mutType)
@@ -1526,6 +2054,12 @@ positionsOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{readFromMS}, which is a method of the SLiM
 #'class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -1553,6 +2087,16 @@ positionsOfMutationsOfType <- function(mutType) {
 #'genomes in the target vector will be skipped, and will not be used to correspond
 #'to any call line; however, care should be taken in this case that the lines in
 #'the MS file correspond to the target genomes in the manner desired.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 readFromMS <- function(filePath, mutationType) {
  .G$readFromMS(filePath, mutationType)
@@ -1562,6 +2106,12 @@ readFromMS <- function(filePath, mutationType) {
 #'
 #'Documentation for SLiM function \code{readFromVCF}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -1627,6 +2177,16 @@ readFromMS <- function(filePath, mutationType) {
 #'be skipped, and will not be used to correspond to any of i0…iN; however, care
 #'should be taken in this case that the genomes in the VCF file correspond to the
 #'target genomes in the manner desired.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 readFromVCF <- function(filePath, mutationType) {
  .G$readFromVCF(filePath, mutationType)
@@ -1636,6 +2196,12 @@ readFromVCF <- function(filePath, mutationType) {
 #'
 #'Documentation for SLiM function \code{removeMutations}, which is a method of the
 #'SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutations An object of type null or Mutation object. The default value is
 #'\code{NULL}. See details for description.
@@ -1669,6 +2235,16 @@ readFromVCF <- function(filePath, mutationType) {
 #'sim.subpopulations.genomes.removeMutations(muts, T), such that the substituted
 #'mutations are guaranteed to be entirely removed from circulation. As mentioned
 #'above, substitute may not be T if mutations is NULL.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 removeMutations <- function(mutations, substitute) {
  .G$removeMutations(mutations, substitute)
@@ -1678,6 +2254,12 @@ removeMutations <- function(mutations, substitute) {
 #'
 #'Documentation for SLiM function \code{sumOfMutationsOfType}, which is a method
 #'of the SLiM class \code{Genome}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1692,6 +2274,16 @@ removeMutations <- function(mutations, substitute) {
 #'method is provided for speed; it is much faster than the corresponding Eidos
 #'code. Note that this method also exists on Individual, for cases in which the
 #'sum across both genomes of an individual is desired.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 sumOfMutationsOfType <- function(mutType) {
  .G$sumOfMutationsOfType(mutType)
@@ -1703,6 +2295,12 @@ sumOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{setGenomicElementType}, which is a method
 #'of the SLiM class \code{GenomicElement}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param genomicElementType An object of type integer or GenomicElementType
 #'object. Must be of length 1 (a singleton). See details for description.
@@ -1714,6 +2312,16 @@ sumOfMutationsOfType <- function(mutType) {
 #'type for the element, either as a GenomicElementType object or as an integer
 #'identifier. The genomic element type for a genomic element is normally a
 #'constant in simulations, so be sure you know what you are doing.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setGenomicElementType <- function(genomicElementType) {
  .GE$setGenomicElementType(genomicElementType)
@@ -1725,6 +2333,12 @@ setGenomicElementType <- function(genomicElementType) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{GenomicElementType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -1736,6 +2350,16 @@ setGenomicElementType <- function(genomicElementType) {
 #'functionality is actually provided by the superclass of GenomicElementType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .GET$getValue(key)
@@ -1745,6 +2369,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{setMutationFractions}, which is a method
 #'of the SLiM class \code{GenomicElementType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutationTypes An object of type integer or MutationType object. See
 #'details for description.
@@ -1759,6 +2389,16 @@ getValue <- function(key) {
 #'of mutations that will be drawn from each corresponding type (see section
 #'1.5.4). This is normally a constant in simulations, so be sure you know what you
 #'are doing.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setMutationFractions <- function(mutationTypes, proportions) {
  .GET$setMutationFractions(mutationTypes, proportions)
@@ -1768,6 +2408,12 @@ setMutationFractions <- function(mutationTypes, proportions) {
 #'
 #'Documentation for SLiM function \code{setMutationMatrix}, which is a method of
 #'the SLiM class \code{GenomicElementType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutationMatrix An object of type float. See details for description.
 #'
@@ -1777,6 +2423,16 @@ setMutationFractions <- function(mutationTypes, proportions) {
 #'element type. This replaces the mutation matrix originally set by
 #'initializeGenomicElementType(). This method may only be called in nucleotide-
 #'based models.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setMutationMatrix <- function(mutationMatrix) {
  .GET$setMutationMatrix(mutationMatrix)
@@ -1786,6 +2442,12 @@ setMutationMatrix <- function(mutationMatrix) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{GenomicElementType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -1799,6 +2461,16 @@ setMutationMatrix <- function(mutationMatrix) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'GenomicElementType, SLiMEidosDictionary, although that fact is not presently
 #'visible in Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .GET$setValue(key, value)
@@ -1810,6 +2482,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{containsMutations}, which is a method of
 #'the SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutations An object of type Mutation object. See details for description.
 #'
@@ -1820,6 +2498,16 @@ setValue <- function(key, value) {
 #'in the returned vector indicates whether the corresponding mutation is present
 #'(T) or absent (F). This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 containsMutations <- function(mutations) {
  .I$containsMutations(mutations)
@@ -1829,6 +2517,12 @@ containsMutations <- function(mutations) {
 #'
 #'Documentation for SLiM function \code{countOfMutationsOfType}, which is a method
 #'of the SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1841,6 +2535,16 @@ containsMutations <- function(mutations) {
 #'of the matching Mutation objects, rather than just a count, you should probably
 #'use uniqueMutationsOfType(). This method is provided for speed; it is much
 #'faster than the corresponding Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 countOfMutationsOfType <- function(mutType) {
  .I$countOfMutationsOfType(mutType)
@@ -1850,6 +2554,12 @@ countOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -1861,6 +2571,16 @@ countOfMutationsOfType <- function(mutType) {
 #'style functionality is actually provided by the superclass of Individual,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .I$getValue(key)
@@ -1870,6 +2590,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{relatedness}, which is a method of the
 #'SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals An object of type Individual object. See details for
 #'description.
@@ -1894,6 +2620,16 @@ getValue <- function(key) {
 #'is simply pedigree-based relatedness. This does not necessarily correspond
 #'to genetic relatedness, because of the effects of factors like assortment and
 #'recombination.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 relatedness <- function(individuals) {
  .I$relatedness(individuals)
@@ -1903,6 +2639,12 @@ relatedness <- function(individuals) {
 #'
 #'Documentation for SLiM function \code{setSpatialPosition}, which is a method of
 #'the SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param position An object of type float. See details for description.
 #'
@@ -1932,6 +2674,16 @@ relatedness <- function(individuals) {
 #'concatenated, not interleaved, just as it would be returned by accessing the
 #'spatialPosition property on the vector of target individuals). Calling this
 #'method with a position vector of any other length is an error.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSpatialPosition <- function(position) {
  .I$setSpatialPosition(position)
@@ -1941,6 +2693,12 @@ setSpatialPosition <- function(position) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -1954,6 +2712,16 @@ setSpatialPosition <- function(position) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Individual, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .I$setValue(key, value)
@@ -1963,6 +2731,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{sumOfMutationsOfType}, which is a method
 #'of the SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -1977,6 +2751,16 @@ setValue <- function(key, value) {
 #'QTLs for the given mutation type. This method is provided for speed; it is much
 #'faster than the corresponding Eidos code. Note that this method also exists on
 #'Genome, for cases in which the sum for just one genome is desired.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 sumOfMutationsOfType <- function(mutType) {
  .I$sumOfMutationsOfType(mutType)
@@ -1986,6 +2770,12 @@ sumOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{uniqueMutationsOfType}, which is a method
 #'of the SLiM class \code{Individual}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -2006,6 +2796,16 @@ sumOfMutationsOfType <- function(mutType) {
 #'individual.genomes.mutationsOfType(mutType), and gives uniquing and sorting
 #'on top of that, so it is advantageous unless duplicate entries for homozygous
 #'mutations are actually needed.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 uniqueMutationsOfType <- function(mutType) {
  .I$uniqueMutationsOfType(mutType)
@@ -2017,6 +2817,12 @@ uniqueMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{distance}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals1 An object of type Individual object. See details for
 #'description.
@@ -2046,6 +2852,16 @@ uniqueMutationsOfType <- function(mutType) {
 #'distances for all pairs of individuals, even if the individuals are non-
 #'interacting; the distance() between an individual and itself will thus be 0. See
 #'interactionDistance() for an alternative distance definition.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 distance <- function(individuals1, individuals2) {
  .IT$distance(individuals1, individuals2)
@@ -2055,6 +2871,12 @@ distance <- function(individuals1, individuals2) {
 #'
 #'Documentation for SLiM function \code{distanceToPoint}, which is a method of the
 #'SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals1 An object of type Individual object. See details for
 #'description.
@@ -2081,6 +2903,16 @@ distance <- function(individuals1, individuals2) {
 #'interaction strengths. If the InteractionType is non-spatial, this method may
 #'not be called. The vector point must be exactly as long as the spatiality of the
 #'InteractionType.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 distanceToPoint <- function(individuals1, point) {
  .IT$distanceToPoint(individuals1, point)
@@ -2090,6 +2922,12 @@ distanceToPoint <- function(individuals1, point) {
 #'
 #'Documentation for SLiM function \code{drawByStrength}, which is a method of the
 #'SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individual An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2113,6 +2951,16 @@ distanceToPoint <- function(individuals1, point) {
 #'values are simply used. Otherwise, calling this method triggers evaluation
 #'of the needed interactions, including calls to any applicable interaction()
 #'callbacks.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 drawByStrength <- function(individual, count) {
  .IT$drawByStrength(individual, count)
@@ -2122,6 +2970,12 @@ drawByStrength <- function(individual, count) {
 #'
 #'Documentation for SLiM function \code{evaluate}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpops An object of type null or Subpopulation object. The default value
 #'is \code{NULL}. See details for description.
@@ -2174,6 +3028,16 @@ drawByStrength <- function(individual, count) {
 #'overhead associated with the interaction for that subpopulation. Furthermore,
 #'attempting to query an interaction for an individual in a subpopulation that has
 #'not been evaluated is guaranteed to raise an error.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 evaluate <- function(subpops, immediate) {
  .IT$evaluate(subpops, immediate)
@@ -2183,6 +3047,12 @@ evaluate <- function(subpops, immediate) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -2194,6 +3064,16 @@ evaluate <- function(subpops, immediate) {
 #'style functionality is actually provided by the superclass of InteractionType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .IT$getValue(key)
@@ -2203,6 +3083,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{interactingNeighborCount}, which is a
 #'method of the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals An object of type Individual object. See details for
 #'description.
@@ -2223,6 +3109,16 @@ getValue <- function(key) {
 #'eligibility as a criterion; it will not count neighbors that cannot exert an
 #'interaction upon a focal individual (due to sex-segregation, e.g.). (It also
 #'does not count a focal individual as a neighbor of itself.)
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 interactingNeighborCount <- function(individuals) {
  .IT$interactingNeighborCount(individuals)
@@ -2232,6 +3128,12 @@ interactingNeighborCount <- function(individuals) {
 #'
 #'Documentation for SLiM function \code{interactionDistance}, which is a method of
 #'the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param receiver An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2257,6 +3159,16 @@ interactingNeighborCount <- function(individuals) {
 #'itself will thus be INF, and likewise for pairs excluded from interacting by the
 #'sex segregation or max distance of the interaction type. See distance() for an
 #'alternative distance definition.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 interactionDistance <- function(receiver, exerters) {
  .IT$interactionDistance(receiver, exerters)
@@ -2266,14 +3178,20 @@ interactionDistance <- function(receiver, exerters) {
 #'
 #'Documentation for SLiM function \code{nearestInteractingNeighbors}, which is a
 #'method of the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individual An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
 #'@param count An object of type integer. Must be of length 1 (a singleton). The
 #'default value is \code{1}. See details for description.
 #'
-#'@aliases InteractionType$nearestInteractingNeighbors .IT
-#'$nearestInteractingNeighbors
+#'@aliases
+#'InteractionType$nearestInteractingNeighbors .IT$nearestInteractingNeighbors
 #'@return An object of type Individual object.
 #'@details Returns up to count interacting individuals that are spatially
 #'closest to individual, according to the distance metric of the InteractionType.
@@ -2292,6 +3210,16 @@ interactionDistance <- function(receiver, exerters) {
 #'(It will also never return the focal individual as a neighbor of itself.) To
 #'find all neighbors of the focal individual, whether they can interact with it or
 #'not, use nearestNeighbors().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 nearestInteractingNeighbors <- function(individual, count) {
  .IT$nearestInteractingNeighbors(individual, count)
@@ -2301,6 +3229,12 @@ nearestInteractingNeighbors <- function(individual, count) {
 #'
 #'Documentation for SLiM function \code{nearestNeighbors}, which is a method of
 #'the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individual An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2322,6 +3256,16 @@ nearestInteractingNeighbors <- function(individual, count) {
 #'focal individual as a neighbor of itself, however.) To find only neighbors
 #'that are eligible to exert an interaction upon the focal individual, use
 #'nearestInteractingNeighbors().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 nearestNeighbors <- function(individual, count) {
  .IT$nearestNeighbors(individual, count)
@@ -2331,6 +3275,12 @@ nearestNeighbors <- function(individual, count) {
 #'
 #'Documentation for SLiM function \code{nearestNeighborsOfPoint}, which is a
 #'method of the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpop An object of type Subpopulation object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2347,6 +3297,16 @@ nearestNeighbors <- function(individual, count) {
 #'if fewer than count individuals are within the maximum interaction distance, the
 #'vector returned may be shorter than count, or even zero-length; it is important
 #'to check for this possibility even when requesting a single neighbor.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 nearestNeighborsOfPoint <- function(subpop, point, count) {
  .IT$nearestNeighborsOfPoint(subpop, point, count)
@@ -2356,6 +3316,12 @@ nearestNeighborsOfPoint <- function(subpop, point, count) {
 #'
 #'Documentation for SLiM function \code{setInteractionFunction}, which is a method
 #'of the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param functionType An object of type string. Must be of length 1 (a singleton).
 #'See details for description.
@@ -2378,6 +3344,16 @@ nearestNeighborsOfPoint <- function(subpop, point, count) {
 #'in that case. The interaction function for an interaction type is normally a
 #'constant in simulations; in any case, it cannot be changed when an interaction
 #'has already been evaluated for a given generation of individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setInteractionFunction <- function(functionType, ...) {
  .IT$setInteractionFunction(functionType, ...)
@@ -2387,6 +3363,12 @@ setInteractionFunction <- function(functionType, ...) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2400,6 +3382,16 @@ setInteractionFunction <- function(functionType, ...) {
 #'This dictionary-style functionality is actually provided by the superclass
 #'of InteractionType, SLiMEidosDictionary, although that fact is not presently
 #'visible in Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .IT$setValue(key, value)
@@ -2409,6 +3401,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{strength}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param receiver An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2435,6 +3433,16 @@ setValue <- function(key, value) {
 #'needed interaction strengths have already been calculated, those cached values
 #'are simply returned. Otherwise, calling this method triggers evaluation of the
 #'needed interactions, including calls to any applicable interaction() callbacks.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 strength <- function(receiver, exerters) {
  .IT$strength(receiver, exerters)
@@ -2444,6 +3452,12 @@ strength <- function(receiver, exerters) {
 #'
 #'Documentation for SLiM function \code{totalOfNeighborStrengths}, which is a
 #'method of the SLiM class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals An object of type Individual object. See details for
 #'description.
@@ -2471,6 +3485,16 @@ strength <- function(receiver, exerters) {
 #'already been calculated, those cached values are simply used. Otherwise, calling
 #'this method triggers evaluation of the needed interactions, including calls to
 #'any applicable interaction() callbacks.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 totalOfNeighborStrengths <- function(individuals) {
  .IT$totalOfNeighborStrengths(individuals)
@@ -2480,6 +3504,12 @@ totalOfNeighborStrengths <- function(individuals) {
 #'
 #'Documentation for SLiM function \code{unevaluate}, which is a method of the SLiM
 #'class \code{InteractionType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -2502,6 +3532,16 @@ totalOfNeighborStrengths <- function(individuals) {
 #'viability/survival selection (before step 4 in the generation cycle; see section
 #'22.4). Given this automatic invalidation, most simulations have no reason to
 #'call unevaluate().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 unevaluate <- function(void) {
  .IT$unevaluate(void)
@@ -2513,6 +3553,12 @@ unevaluate <- function(void) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{Mutation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -2524,6 +3570,16 @@ unevaluate <- function(void) {
 #'style functionality is actually provided by the superclass of Mutation,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .M$getValue(key)
@@ -2533,6 +3589,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{setMutationType}, which is a method of the
 #'SLiM class \code{Mutation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -2554,6 +3616,16 @@ getValue <- function(key) {
 #'a restriction applies: nucleotide-based mutations may not be changed to a non-
 #'nucleotide-based mutation type, and non-nucleotide-based mutations may not be
 #'changed to a nucleotide-based mutation type.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setMutationType <- function(mutType) {
  .M$setMutationType(mutType)
@@ -2563,6 +3635,12 @@ setMutationType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{setSelectionCoeff}, which is a method of
 #'the SLiM class \code{Mutation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param selectionCoeff An object of type float. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2581,6 +3659,16 @@ setMutationType <- function(mutType) {
 #'generation; if you want current fitness values to be affected, you can call
 #'SLiMSim’s method recalculateFitness() – but see the documentation of that method
 #'for caveats.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSelectionCoeff <- function(selectionCoeff) {
  .M$setSelectionCoeff(selectionCoeff)
@@ -2590,6 +3678,12 @@ setSelectionCoeff <- function(selectionCoeff) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{Mutation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2603,6 +3697,16 @@ setSelectionCoeff <- function(selectionCoeff) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Mutation, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .M$setValue(key, value)
@@ -2614,6 +3718,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{drawSelectionCoefficient}, which is a
 #'method of the SLiM class \code{MutationType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param n An object of type integer. Must be of length 1 (a singleton). The
 #'default value is \code{1}. See details for description.
@@ -2625,6 +3735,16 @@ setValue <- function(key, value) {
 #'type. See section 23.9 above for discussion of the supported distributions
 #'and their uses. If the DFE is type "s", this method will result in synchronous
 #'execution of the DFE’s script.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 drawSelectionCoefficient <- function(n) {
  .MT$drawSelectionCoefficient(n)
@@ -2634,6 +3754,12 @@ drawSelectionCoefficient <- function(n) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{MutationType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -2645,6 +3771,16 @@ drawSelectionCoefficient <- function(n) {
 #'style functionality is actually provided by the superclass of MutationType,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .MT$getValue(key)
@@ -2654,6 +3790,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{setDistribution}, which is a method of the
 #'SLiM class \code{MutationType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param distributionType An object of type string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2675,6 +3817,16 @@ getValue <- function(key) {
 #'for discussions of these distributions and their uses. The DFE for a mutation
 #'type is normally a constant in simulations, so be sure you know what you are
 #'doing.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setDistribution <- function(distributionType, ...) {
  .MT$setDistribution(distributionType, ...)
@@ -2684,6 +3836,12 @@ setDistribution <- function(distributionType, ...) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{MutationType}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2697,6 +3855,16 @@ setDistribution <- function(distributionType, ...) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'MutationType, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .MT$setValue(key, value)
@@ -2708,6 +3876,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{addSubpop}, which is a method of the SLiM
 #'class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpopID An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2730,6 +3904,16 @@ setValue <- function(key, value) {
 #'method will initially consist of individuals with empty genomes. In order to
 #'model subpopulations that split from an already existing subpopulation, use
 #'addSubpopSplit().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addSubpop <- function(subpopID, size, sexRatio) {
  .SS$addSubpop(subpopID, size, sexRatio)
@@ -2739,6 +3923,12 @@ addSubpop <- function(subpopID, size, sexRatio) {
 #'
 #'Documentation for SLiM function \code{addSubpopSplit}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpopID An object of type integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -2773,6 +3963,16 @@ addSubpop <- function(subpopID, size, sexRatio) {
 #'Effectively, then, then new subpopulation is created empty, and is filled by
 #'migrating juveniles from the source subpopulation, in accordance with SLiM’s
 #'usual model of juvenile migration.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addSubpopSplit <- function(subpopID, size, sourceSubpop, sexRatio) {
  .SS$addSubpopSplit(subpopID, size, sourceSubpop, sexRatio)
@@ -2782,6 +3982,12 @@ addSubpopSplit <- function(subpopID, size, sourceSubpop, sexRatio) {
 #'
 #'Documentation for SLiM function \code{countOfMutationsOfType}, which is a method
 #'of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -2795,6 +4001,16 @@ addSubpopSplit <- function(subpopID, size, sourceSubpop, sexRatio) {
 #'whether an introduced mutation is still active (as opposed to being either
 #'lost or fixed). This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 countOfMutationsOfType <- function(mutType) {
  .SS$countOfMutationsOfType(mutType)
@@ -2804,6 +4020,12 @@ countOfMutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{deregisterScriptBlock}, which is a method
 #'of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param scriptBlocks An object of type integer or SLiMEidosBlock object. See
 #'details for description.
@@ -2819,6 +4041,16 @@ countOfMutationsOfType <- function(mutType) {
 #'block from executing, even when it is scheduled to execute in the current stage
 #'of the current generation, use the active property of the script block (see
 #'sections 23.10.1 and 24.9).
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 deregisterScriptBlock <- function(scriptBlocks) {
  .SS$deregisterScriptBlock(scriptBlocks)
@@ -2828,6 +4060,12 @@ deregisterScriptBlock <- function(scriptBlocks) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -2839,6 +4077,16 @@ deregisterScriptBlock <- function(scriptBlocks) {
 #'style functionality is actually provided by the superclass of SLiMSim,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .SS$getValue(key)
@@ -2848,6 +4096,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{mutationCounts}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpops An object of type null or Subpopulation object. See details for
 #'description.
@@ -2865,6 +4119,16 @@ getValue <- function(key) {
 #'as would be returned by the mutations property of sim, in other words. See the
 #'-mutationFrequencies() method to obtain float frequencies instead of integer
 #'counts.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 mutationCounts <- function(subpops, mutations) {
  .SS$mutationCounts(subpops, mutations)
@@ -2874,6 +4138,12 @@ mutationCounts <- function(subpops, mutations) {
 #'
 #'Documentation for SLiM function \code{mutationFrequencies}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param subpops An object of type null or Subpopulation object. See details for
 #'description.
@@ -2890,6 +4160,16 @@ mutationCounts <- function(subpops, mutations) {
 #'simulation – the same Mutation objects, and in the same order, as would
 #'be returned by the mutations property of sim, in other words. See the -
 #'mutationCounts() method to obtain integer counts instead of float frequencies.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 mutationFrequencies <- function(subpops, mutations) {
  .SS$mutationFrequencies(subpops, mutations)
@@ -2899,6 +4179,12 @@ mutationFrequencies <- function(subpops, mutations) {
 #'
 #'Documentation for SLiM function \code{mutationsOfType}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutType An object of type integer or MutationType object. Must be of
 #'length 1 (a singleton). See details for description.
@@ -2913,6 +4199,16 @@ mutationFrequencies <- function(subpops, mutations) {
 #'in the simulation, since there is no way to keep persistent references to
 #'objects in SLiM. This method is provided for speed; it is much faster than the
 #'corresponding Eidos code.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 mutationsOfType <- function(mutType) {
  .SS$mutationsOfType(mutType)
@@ -2922,6 +4218,12 @@ mutationsOfType <- function(mutType) {
 #'
 #'Documentation for SLiM function \code{outputFixedMutations}, which is a method
 #'of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type null or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -2943,6 +4245,16 @@ mutationsOfType <- function(mutType) {
 #'the nucleotides associated with any nucleotide-based mutations; see section
 #'25.1.2. Output is generally done in a late() event, so that the output reflects
 #'the state of the simulation at the end of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputFixedMutations <- function(filePath, append) {
  .SS$outputFixedMutations(filePath, append)
@@ -2952,6 +4264,12 @@ outputFixedMutations <- function(filePath, append) {
 #'
 #'Documentation for SLiM function \code{outputFull}, which is a method of the SLiM
 #'class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type null or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -3012,6 +4330,16 @@ outputFixedMutations <- function(filePath, append) {
 #'the ancestralNucleotides flag governs only the ancestral sequence. Output is
 #'generally done in a late() event, so that the output reflects the state of the
 #'simulation at the end of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputFull <- function(filePath, binary, append, spatialPositions, ages,
 ancestralNucleotides) {
@@ -3023,6 +4351,12 @@ ancestralNucleotides)
 #'
 #'Documentation for SLiM function \code{outputMutations}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutations An object of type Mutation object. See details for description.
 #'@param filePath An object of type null or string. Must be of length 1 (a
@@ -3042,6 +4376,16 @@ ancestralNucleotides)
 #'nucleotide-based mutations; see section 25.1.3. Output is generally done in a
 #'late() event, so that the output reflects the state of the simulation at the end
 #'of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputMutations <- function(mutations, filePath, append) {
  .SS$outputMutations(mutations, filePath, append)
@@ -3051,6 +4395,12 @@ outputMutations <- function(mutations, filePath, append) {
 #'
 #'Documentation for SLiM function \code{outputUsage}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -3065,6 +4415,16 @@ outputMutations <- function(mutations, filePath, append) {
 #'by SLiM and Eidos in directly allocated objects and buffers. To get the total
 #'memory usage of the running process (either current or peak), use the Eidos
 #'function usage().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputUsage <- function(void) {
  .SS$outputUsage(void)
@@ -3074,6 +4434,12 @@ outputUsage <- function(void) {
 #'
 #'Documentation for SLiM function \code{readFromPopulationFile}, which is a method
 #'of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param filePath An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -3155,6 +4521,16 @@ outputUsage <- function(void) {
 #'load saved population state many times (such as models that are conditional on
 #'fixation). If you suspect that a tree sequence file might be corrupted or read
 #'incorrectly, running a Debug build of SLiM enables crosschecks after every load.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 readFromPopulationFile <- function(filePath) {
  .SS$readFromPopulationFile(filePath)
@@ -3164,6 +4540,12 @@ readFromPopulationFile <- function(filePath) {
 #'
 #'Documentation for SLiM function \code{recalculateFitness}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param generation An object of type null or integer. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -3199,6 +4581,16 @@ readFromPopulationFile <- function(filePath) {
 #'operation; you should think carefully about what side effects might result
 #'(which is why fitness recalculation does not just occur automatically after
 #'changes that might affect fitness values).
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 recalculateFitness <- function(generation) {
  .SS$recalculateFitness(generation)
@@ -3208,6 +4600,12 @@ recalculateFitness <- function(generation) {
 #'
 #'Documentation for SLiM function \code{registerEarlyEvent}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3231,6 +4629,16 @@ recalculateFitness <- function(generation) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerEarlyEvent <- function(id, source, start, end) {
  .SS$registerEarlyEvent(id, source, start, end)
@@ -3240,6 +4648,12 @@ registerEarlyEvent <- function(id, source, start, end) {
 #'
 #'Documentation for SLiM function \code{registerFitnessCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3272,6 +4686,16 @@ registerEarlyEvent <- function(id, source, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerFitnessCallback <- function(id, source, mutType, subpop, start, end)
 {
@@ -3282,6 +4706,12 @@ registerFitnessCallback <- function(id, source, mutType, subpop, start, end)
 #'
 #'Documentation for SLiM function \code{registerInteractionCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3313,6 +4743,16 @@ registerFitnessCallback <- function(id, source, mutType, subpop, start, end)
 #'execute the next time an InteractionType is evaluated. The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerInteractionCallback <- function(id, source, intType, subpop, start,
 end) {
@@ -3323,6 +4763,12 @@ end) {
 #'
 #'Documentation for SLiM function \code{registerLateEvent}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3346,6 +4792,16 @@ end) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerLateEvent <- function(id, source, start, end) {
  .SS$registerLateEvent(id, source, start, end)
@@ -3355,6 +4811,12 @@ registerLateEvent <- function(id, source, start, end) {
 #'
 #'Documentation for SLiM function \code{registerMateChoiceCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3383,6 +4845,16 @@ registerLateEvent <- function(id, source, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerMateChoiceCallback <- function(id, source, subpop, start, end) {
  .SS$registerMateChoiceCallback(id, source, subpop, start, end)
@@ -3392,6 +4864,12 @@ registerMateChoiceCallback <- function(id, source, subpop, start, end) {
 #'
 #'Documentation for SLiM function \code{registerModifyChildCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3420,6 +4898,16 @@ registerMateChoiceCallback <- function(id, source, subpop, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerModifyChildCallback <- function(id, source, subpop, start, end) {
  .SS$registerModifyChildCallback(id, source, subpop, start, end)
@@ -3429,6 +4917,12 @@ registerModifyChildCallback <- function(id, source, subpop, start, end) {
 #'
 #'Documentation for SLiM function \code{registerRecombinationCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3457,6 +4951,16 @@ registerModifyChildCallback <- function(id, source, subpop, start, end) {
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerRecombinationCallback <- function(id, source, subpop, start, end) {
  .SS$registerRecombinationCallback(id, source, subpop, start, end)
@@ -3466,6 +4970,12 @@ registerRecombinationCallback <- function(id, source, subpop, start, end) {
 #'
 #'Documentation for SLiM function \code{registerMutationCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3499,6 +5009,16 @@ registerRecombinationCallback <- function(id, source, subpop, start, end) {
 #'in the current generation (see section 24.9 for details). The new SLiMEidosBlock
 #'will be defined as a global variable immediately by this method (see section
 #'23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerMutationCallback <- function(id, source, mutType, subpop, start, end)
 {
@@ -3509,6 +5029,12 @@ registerMutationCallback <- function(id, source, mutType, subpop, start, end)
 #'
 #'Documentation for SLiM function \code{registerReproductionCallback}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param id An object of type null or integer or string. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3541,6 +5067,16 @@ registerMutationCallback <- function(id, source, mutType, subpop, start, end)
 #'to execute in the current generation (see section 24.9 for details). The new
 #'SLiMEidosBlock will be defined as a global variable immediately by this method
 #'(see section 23.10), and will also be returned by this method.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 registerReproductionCallback <- function(id, source, subpop, sex, start, end)
 {
@@ -3551,6 +5087,12 @@ registerReproductionCallback <- function(id, source, subpop, sex, start, end)
 #'
 #'Documentation for SLiM function \code{rescheduleScriptBlock}, which is a method
 #'of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param block An object of type SLiMEidosBlock object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3605,6 +5147,16 @@ registerReproductionCallback <- function(id, source, subpop, sex, start, end)
 #'as a template script block, the template can be duplicated and scheduled for
 #'different generations. In fact, rescheduleScriptBlock() does essentially that
 #'internally.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 rescheduleScriptBlock <- function(block, start, end, generations) {
  .SS$rescheduleScriptBlock(block, start, end, generations)
@@ -3614,6 +5166,12 @@ rescheduleScriptBlock <- function(block, start, end, generations) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3627,6 +5185,16 @@ rescheduleScriptBlock <- function(block, start, end, generations) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'SLiMSim, SLiMEidosDictionary, although that fact is not presently visible in
 #'Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .SS$setValue(key, value)
@@ -3636,6 +5204,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{simulationFinished}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -3651,6 +5225,16 @@ setValue <- function(key, value) {
 #'the current generation will finish executing; if you want the simulation to
 #'stop immediately, you can use the Eidos method stop(), which raises an error
 #'condition.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 simulationFinished <- function(void) {
  .SS$simulationFinished(void)
@@ -3660,6 +5244,12 @@ simulationFinished <- function(void) {
 #'
 #'Documentation for SLiM function \code{treeSeqCoalesced}, which is a method of
 #'the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -3692,6 +5282,16 @@ simulationFinished <- function(void) {
 #'would be large, and most models do not need this level of precision; usually it
 #'is sufficient to know that the model has coalesced, without knowing whether that
 #'happened in the current generation or in a recent preceding generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 treeSeqCoalesced <- function(void) {
  .SS$treeSeqCoalesced(void)
@@ -3701,6 +5301,12 @@ treeSeqCoalesced <- function(void) {
 #'
 #'Documentation for SLiM function \code{treeSeqOutput}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param path An object of type string or logical. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3716,6 +5322,16 @@ treeSeqCoalesced <- function(void) {
 #'desirable, unless a model wishes to avoid simplification entirely. A binary
 #'tree sequence file will be written to the specified path; a filename extension
 #'of .trees is suggested for this type of file.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 treeSeqOutput <- function(path, simplify) {
  .SS$treeSeqOutput(path, simplify)
@@ -3725,6 +5341,12 @@ treeSeqOutput <- function(path, simplify) {
 #'
 #'Documentation for SLiM function \code{treeSeqRememberIndividuals}, which is a
 #'method of the SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param individuals An object of type Individual object. See details for
 #'description.
@@ -3759,6 +5381,16 @@ treeSeqOutput <- function(path, simplify) {
 #'treeSeqRememberIndividuals() explicitly on the first generation, after setting
 #'spatial locations, to update the archived information with the correct spatial
 #'positions.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 treeSeqRememberIndividuals <- function(individuals) {
  .SS$treeSeqRememberIndividuals(individuals)
@@ -3768,6 +5400,12 @@ treeSeqRememberIndividuals <- function(individuals) {
 #'
 #'Documentation for SLiM function \code{treeSeqSimplify}, which is a method of the
 #'SLiM class \code{SLiMSim}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -3782,6 +5420,16 @@ treeSeqRememberIndividuals <- function(individuals) {
 #'can also take a significant amount of time. Typically calling this method is not
 #'necessary; the automatic simplification performed occasionally by SLiM should be
 #'sufficient for most models.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 treeSeqSimplify <- function(void) {
  .SS$treeSeqSimplify(void)
@@ -3793,6 +5441,12 @@ treeSeqSimplify <- function(void) {
 #'
 #'Documentation for SLiM function \code{addCloned}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param parent An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3808,6 +5462,16 @@ treeSeqSimplify <- function(void) {
 #'modifyChild() callbacks governing the generation of the offspring individual.
 #'Note that this method is only for use in nonWF models. See addCrossed() for
 #'further general notes on the addition of new offspring individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addCloned <- function(parent) {
  .P$addCloned(parent)
@@ -3817,6 +5481,12 @@ addCloned <- function(parent) {
 #'
 #'Documentation for SLiM function \code{addCrossed}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param parent1 An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3883,6 +5553,16 @@ addCloned <- function(parent) {
 #'called only from reproduction() callbacks, and may not be called at any other
 #'time. In WF models, offspring generation is managed automatically by the SLiM
 #'core.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addCrossed <- function(parent1, parent2, sex) {
  .P$addCrossed(parent1, parent2, sex)
@@ -3892,6 +5572,12 @@ addCrossed <- function(parent1, parent2, sex) {
 #'
 #'Documentation for SLiM function \code{addEmpty}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sex An object of type null or float or string. Must be of length 1 (a
 #'singleton). The default value is \code{NULL}. See details for description.
@@ -3911,6 +5597,16 @@ addCrossed <- function(parent1, parent2, sex) {
 #'is treated as in addCrossed(). Note that this method is only for use in nonWF
 #'models. See addCrossed() for further general notes on the addition of new
 #'offspring individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addEmpty <- function(sex) {
  .P$addEmpty(sex)
@@ -3920,6 +5616,12 @@ addEmpty <- function(sex) {
 #'
 #'Documentation for SLiM function \code{addRecombinant}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param strand1 An object of type null or Genome object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -3999,6 +5701,16 @@ addEmpty <- function(sex) {
 #'gene conversion tracts with heteroduplex mismatch repair. Note that this method
 #'is only for use in nonWF models. See addCrossed() for further general notes on
 #'the addition of new offspring individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addRecombinant <- function(strand1, strand2, breaks1, strand3, strand4,
 breaks2, sex) {
@@ -4009,6 +5721,12 @@ breaks2, sex) {
 #'
 #'Documentation for SLiM function \code{addSelfed}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param parent An object of type Individual object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -4030,6 +5748,16 @@ breaks2, sex) {
 #'selfing is assumed to be incidental). Note that this method is only for use in
 #'nonWF models. See addCrossed() for further general notes on the addition of new
 #'offspring individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 addSelfed <- function(parent) {
  .P$addSelfed(parent)
@@ -4039,6 +5767,12 @@ addSelfed <- function(parent) {
 #'
 #'Documentation for SLiM function \code{cachedFitness}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param indices An object of type null or integer. See details for description.
 #'
@@ -4057,6 +5791,16 @@ addSelfed <- function(parent) {
 #'fitness has not yet been calculated. When new subpopulations are first created
 #'with addSubpop() or addSubpopSplit(), the fitness of all of the newly created
 #'individuals is considered to be 1.0 until fitness values are recalculated.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 cachedFitness <- function(indices) {
  .P$cachedFitness(indices)
@@ -4066,6 +5810,12 @@ cachedFitness <- function(indices) {
 #'
 #'Documentation for SLiM function \code{configureDisplay}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param center An object of type null or float. The default value is \code{NULL}.
 #'See details for description.
@@ -4099,6 +5849,16 @@ cachedFitness <- function(indices) {
 #'be specified by name, or with hexadecimal RGB values of the form "#RRGGBB" (see
 #'the Eidos manual). If color is NULL or the empty string, "", SLiMgui’s default
 #'(fitness-based) color will be used.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 configureDisplay <- function(center, scale, color) {
  .P$configureDisplay(center, scale, color)
@@ -4108,6 +5868,12 @@ configureDisplay <- function(center, scale, color) {
 #'
 #'Documentation for SLiM function \code{defineSpatialMap}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param name An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4206,6 +5972,16 @@ configureDisplay <- function(center, scale, color) {
 #'multiple spatial maps with color-mapping parameters defined, SLiMgui will choose
 #'just one for display; it will prefer an "xy" map if one is available, but beyond
 #'that heuristic its choice will be arbitrary.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 defineSpatialMap <- function(name, spatiality, gridSize, values, interpolate,
 valueRange, colors) {
@@ -4217,6 +5993,12 @@ valueRange, colors)
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4228,6 +6010,16 @@ valueRange, colors)
 #'style functionality is actually provided by the superclass of Subpopulation,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .P$getValue(key)
@@ -4237,6 +6029,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{outputMSSample}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sampleSize An object of type integer. Must be of length 1 (a singleton).
 #'See details for description.
@@ -4277,6 +6075,16 @@ getValue <- function(key) {
 #'and outputVCFSample() for other output formats. Output is generally done in a
 #'late() event, so that the output reflects the state of the simulation at the end
 #'of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputMSSample <- function(sampleSize, replace, requestedSex, filePath,
 append, filterMonomorphic) {
@@ -4288,6 +6096,12 @@ filterMonomorphic)
 #'
 #'Documentation for SLiM function \code{outputSample}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sampleSize An object of type integer. Must be of length 1 (a singleton).
 #'See details for description.
@@ -4318,6 +6132,16 @@ filterMonomorphic)
 #'end of it if append is T. See outputMSSample() and outputVCFSample() for other
 #'output formats. Output is generally done in a late() event, so that the output
 #'reflects the state of the simulation at the end of a generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputSample <- function(sampleSize, replace, requestedSex, filePath, append)
 {
@@ -4328,6 +6152,12 @@ outputSample <- function(sampleSize, replace, requestedSex, filePath, append)
 #'
 #'Documentation for SLiM function \code{outputVCFSample}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sampleSize An object of type integer. Must be of length 1 (a singleton).
 #'See details for description.
@@ -4368,6 +6198,16 @@ outputSample <- function(sampleSize, replace, requestedSex, filePath, append)
 #'outputSample() for other output formats. Output is generally done in a late()
 #'event, so that the output reflects the state of the simulation at the end of a
 #'generation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 outputVCFSample <- function(sampleSize, replace, requestedSex,
 outputMultiallelics, filePath, append, simplifyNucleotides,
@@ -4380,6 +6220,12 @@ filePath, append, simplifyNucleotides, outputNonnucleotides)
 #'
 #'Documentation for SLiM function \code{pointInBounds}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param point An object of type float. See details for description.
 #'
@@ -4397,6 +6243,16 @@ filePath, append, simplifyNucleotides, outputNonnucleotides)
 #'contain values comprising more than one point. In this case, a logical vector
 #'will be returned in which each element is T if the corresponding point in point
 #'is inside the spatial boundaries of the subpopulation, F otherwise.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 pointInBounds <- function(point) {
  .P$pointInBounds(point)
@@ -4406,6 +6262,12 @@ pointInBounds <- function(point) {
 #'
 #'Documentation for SLiM function \code{pointPeriodic}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param point An object of type float. See details for description.
 #'
@@ -4432,6 +6294,16 @@ pointInBounds <- function(point) {
 #'words, point may contain values comprising more than one point. In this case,
 #'each point will be processed as described above and a new vector containing all
 #'of the processed points will be returned.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 pointPeriodic <- function(point) {
  .P$pointPeriodic(point)
@@ -4441,6 +6313,12 @@ pointPeriodic <- function(point) {
 #'
 #'Documentation for SLiM function \code{pointReflected}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param point An object of type float. See details for description.
 #'
@@ -4459,6 +6337,16 @@ pointPeriodic <- function(point) {
 #'comprising more than one point. In this case, each point will be processed as
 #'described above and a new vector containing all of the processed points will be
 #'returned.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 pointReflected <- function(point) {
  .P$pointReflected(point)
@@ -4468,6 +6356,12 @@ pointReflected <- function(point) {
 #'
 #'Documentation for SLiM function \code{pointStopped}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param point An object of type float. See details for description.
 #'
@@ -4484,6 +6378,16 @@ pointReflected <- function(point) {
 #'comprising more than one point. In this case, each point will be processed as
 #'described above and a new vector containing all of the processed points will be
 #'returned.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 pointStopped <- function(point) {
  .P$pointStopped(point)
@@ -4493,6 +6397,12 @@ pointStopped <- function(point) {
 #'
 #'Documentation for SLiM function \code{pointUniform}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param n An object of type integer. Must be of length 1 (a singleton). The
 #'default value is \code{1}. See details for description.
@@ -4505,6 +6415,16 @@ pointStopped <- function(point) {
 #'equal to the dimensionality of the simulation, so it will be of total length
 #'n*dimensionality. This may only be called in simulations for which continuous
 #'space has been enabled with initializeSLiMOptions().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 pointUniform <- function(n) {
  .P$pointUniform(n)
@@ -4514,6 +6434,12 @@ pointUniform <- function(n) {
 #'
 #'Documentation for SLiM function \code{removeSubpopulation}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param void An object of type . See details for description.
 #'
@@ -4532,6 +6458,16 @@ pointUniform <- function(n) {
 #'removed. WF models should therefore call setSubpopulationSize(0) instead of this
 #'method; setSubpopulationSize() is the standard way for WF models to change the
 #'subpopulation size, including to a size of 0.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 removeSubpopulation <- function(void) {
  .P$removeSubpopulation(void)
@@ -4541,6 +6477,12 @@ removeSubpopulation <- function(void) {
 #'
 #'Documentation for SLiM function \code{sampleIndividuals}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param size An object of type integer. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4583,6 +6525,16 @@ removeSubpopulation <- function(void) {
 #'Eidos code, it is also much faster, and it does not fail if less than the full
 #'sample size is available. See subsetIndividuals() for a similar method that
 #'returns a full subset, rather than a sample.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 sampleIndividuals <- function(size, replace, exclude, sex, minAge, maxAge,
 migrant) {
@@ -4593,6 +6545,12 @@ migrant) {
 #'
 #'Documentation for SLiM function \code{setCloningRate}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rate An object of type numeric. See details for description.
 #'
@@ -4610,6 +6568,16 @@ migrant) {
 #'be generated by cloning – by asexual reproduction without gametes or meiosis –
 #'will be equal to the cloning rate (for its sex, in sexual simulations) set in
 #'the parental (not the offspring!) subpopulation.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setCloningRate <- function(rate) {
  .P$setCloningRate(rate)
@@ -4619,6 +6587,12 @@ setCloningRate <- function(rate) {
 #'
 #'Documentation for SLiM function \code{setMigrationRates}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sourceSubpops An object of type integer or Subpopulation object. See
 #'details for description.
@@ -4635,6 +6609,16 @@ setCloningRate <- function(rate) {
 #'left unchanged (explicitly set a zero rate to turn off migration from a given
 #'subpopulation). The type of sourceSubpops may be either integer, specifying
 #'subpopulations by identifier, or object, specifying subpopulations directly.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setMigrationRates <- function(sourceSubpops, rates) {
  .P$setMigrationRates(sourceSubpops, rates)
@@ -4644,6 +6628,12 @@ setMigrationRates <- function(sourceSubpops, rates) {
 #'
 #'Documentation for SLiM function \code{setSelfingRate}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param rate An object of type numeric. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4657,6 +6647,16 @@ setMigrationRates <- function(sourceSubpops, rates) {
 #'be generated by selfing – by self-fertilization via gametes produced by meiosis
 #'by a single parent – will be equal to the selfing rate set in the parental (not
 #'the offspring!) subpopulation (see section 21.2.1).
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSelfingRate <- function(rate) {
  .P$setSelfingRate(rate)
@@ -4666,6 +6666,12 @@ setSelfingRate <- function(rate) {
 #'
 #'Documentation for SLiM function \code{setSexRatio}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sexRatio An object of type float. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4680,6 +6686,16 @@ setSelfingRate <- function(rate) {
 #'deterministic: SLiM will generate offspring that exactly satisfy the requested
 #'sex ratio (within integer roundoff limits). See section 21.2.1 for further
 #'details.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSexRatio <- function(sexRatio) {
  .P$setSexRatio(sexRatio)
@@ -4689,6 +6705,12 @@ setSexRatio <- function(sexRatio) {
 #'
 #'Documentation for SLiM function \code{setSpatialBounds}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param bounds An object of type numeric. See details for description.
 #'
@@ -4710,6 +6732,16 @@ setSexRatio <- function(sexRatio) {
 #'value of 0.0 (a restriction that allows the handling of periodicity to be
 #'somewhat more efficient). The current spatial bounds for the subpopulation may
 #'be obtained through the spatialBounds property.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSpatialBounds <- function(bounds) {
  .P$setSpatialBounds(bounds)
@@ -4719,6 +6751,12 @@ setSpatialBounds <- function(bounds) {
 #'
 #'Documentation for SLiM function \code{setSubpopulationSize}, which is a method
 #'of the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param size An object of type integer. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4735,6 +6773,16 @@ setSpatialBounds <- function(bounds) {
 #'subpopulation itself remains unchanged until children are next generated (at
 #'which point it is deallocated), but it is no longer part of the simulation and
 #'should not be used.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setSubpopulationSize <- function(size) {
  .P$setSubpopulationSize(size)
@@ -4744,6 +6792,12 @@ setSubpopulationSize <- function(size) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -4757,6 +6811,16 @@ setSubpopulationSize <- function(size) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Subpopulation, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .P$setValue(key, value)
@@ -4766,6 +6830,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{spatialMapColor}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param name An object of type string or numeric. Must be of length 1 (a
 #'singleton). See details for description.
@@ -4780,6 +6850,16 @@ setValue <- function(key, value) {
 #'an error will result. See the documentation for defineSpatialMap() for
 #'information regarding the details of color translation. See the Eidos manual for
 #'further information on color strings.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 spatialMapColor <- function(name, value) {
  .P$spatialMapColor(name, value)
@@ -4789,6 +6869,12 @@ spatialMapColor <- function(name, value) {
 #'
 #'Documentation for SLiM function \code{spatialMapValue}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param name An object of type string or float. Must be of length 1 (a
 #'singleton). See details for description.
@@ -4814,6 +6900,16 @@ spatialMapColor <- function(name, value) {
 #'1, then elements 2 and 3, etc.) will be taken as the x and z coordinates of the
 #'points to be evaluated. This allows spatialMapValue() to be used in a vectorized
 #'fashion.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 spatialMapValue <- function(name, point) {
  .P$spatialMapValue(name, point)
@@ -4823,6 +6919,12 @@ spatialMapValue <- function(name, point) {
 #'
 #'Documentation for SLiM function \code{subsetIndividuals}, which is a method of
 #'the SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param exclude An object of type null or Individual object. Must be of length 1
 #'(a singleton). The default value is \code{NULL}. See details for description.
@@ -4854,6 +6956,16 @@ spatialMapValue <- function(name, point) {
 #'the desired properties; besides being much simpler than the equivalent Eidos
 #'code, it is also much faster. See sampleIndividuals() for a similar method that
 #'returns a sample taken from a chosen subset of individuals.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 subsetIndividuals <- function(exclude, sex, minAge, maxAge, migrant) {
  .P$subsetIndividuals(exclude, sex, minAge, maxAge, migrant)
@@ -4863,6 +6975,12 @@ subsetIndividuals <- function(exclude, sex, minAge, maxAge, migrant) {
 #'
 #'Documentation for SLiM function \code{takeMigrants}, which is a method of the
 #'SLiM class \code{Subpopulation}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param migrants An object of type Individual object. See details for
 #'description.
@@ -4878,6 +6996,16 @@ subsetIndividuals <- function(exclude, sex, minAge, maxAge, migrant) {
 #'manually by the model script. In WF models, migration is managed automatically
 #'by the SLiM core based upon the migration rates set for each subpopulation with
 #'setMigrationRates().
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 takeMigrants <- function(migrants) {
  .P$takeMigrants(migrants)
@@ -4889,6 +7017,12 @@ takeMigrants <- function(migrants) {
 #'
 #'Documentation for SLiM function \code{getValue}, which is a method of the SLiM
 #'class \code{Substitution}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string. Must be of length 1 (a singleton). See
 #'details for description.
@@ -4900,6 +7034,16 @@ takeMigrants <- function(migrants) {
 #'style functionality is actually provided by the superclass of Substitution,
 #'SLiMEidosDictionary, although that fact is not presently visible in Eidos since
 #'superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 getValue <- function(key) {
  .S$getValue(key)
@@ -4909,6 +7053,12 @@ getValue <- function(key) {
 #'
 #'Documentation for SLiM function \code{setValue}, which is a method of the SLiM
 #'class \code{Substitution}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param key An object of type string or any but object. Must be of length 1 (a
 #'singleton). See details for description.
@@ -4922,6 +7072,16 @@ getValue <- function(key) {
 #'This dictionary-style functionality is actually provided by the superclass of
 #'Substitution, SLiMEidosDictionary, although that fact is not presently visible
 #'in Eidos since superclasses are not introspectable.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'
 setValue <- function(key, value) {
  .S$setValue(key, value)
@@ -4933,6 +7093,12 @@ setValue <- function(key, value) {
 #'
 #'Documentation for SLiM function \code{codonsToAminoAcids}, which is a method of
 #'the SLiM class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param codons An object of type integer or logical or logical. See details for
 #'description.
@@ -4970,6 +7136,16 @@ setValue <- function(key, value) {
 #'"char" to obtain it as a string vector of single characters (e.g., "T", "A",
 #'"T", "A", "C", "G"), or "integer" to obtain it as an integer vector (e.g., 3, 0,
 #'3, 0, 1, 2), using SLiM’s standard code of A=0, C=1, G=2, T=3.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 codonsToAminoAcids <- function(codons, long, paste) {
  .SB$codonsToAminoAcids(codons, long, paste)
@@ -4979,6 +7155,12 @@ codonsToAminoAcids <- function(codons, long, paste) {
 #'
 #'Documentation for SLiM function \code{mm16To256}, which is a method of the SLiM
 #'class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param mutationMatrix16 An object of type float. See details for description.
 #'
@@ -4995,6 +7177,16 @@ codonsToAminoAcids <- function(codons, long, paste) {
 #'not depend only upon their central nucleotide. See the documentation for
 #'initializeGenomicElementType() in section 23.1 for further discussion of how
 #'these 64×4 mutation matrices are interpreted and used.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 mm16To256 <- function(mutationMatrix16) {
  .SB$mm16To256(mutationMatrix16)
@@ -5004,6 +7196,12 @@ mm16To256 <- function(mutationMatrix16) {
 #'
 #'Documentation for SLiM function \code{mmJukesCantor}, which is a method of the
 #'SLiM class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param alpha An object of type float. Must be of length 1 (a singleton). See
 #'details for description.
@@ -5016,6 +7214,16 @@ mm16To256 <- function(mutationMatrix16) {
 #'matrix is suitable for use with initializeGenomicElementType(). Note that the
 #'actual mutation rate produced by this matrix is 3*alpha. 0 α α α α 0 α α α α 0 α
 #'α α α 0
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 mmJukesCantor <- function(alpha) {
  .SB$mmJukesCantor(alpha)
@@ -5025,6 +7233,12 @@ mmJukesCantor <- function(alpha) {
 #'
 #'Documentation for SLiM function \code{mmKimura}, which is a method of the SLiM
 #'class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param alpha An object of type float or float. Must be of length 1 (a
 #'singleton). See details for description.
@@ -5038,6 +7252,16 @@ mmJukesCantor <- function(alpha) {
 #'transition rate alpha and transversion rate beta: This 2×2 matrix is suitable
 #'for use with initializeGenomicElementType(). Note that the actual mutation rate
 #'produced by this model is alpha+2*beta.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 mmKimura <- function(alpha, beta) {
  .SB$mmKimura(alpha, beta)
@@ -5047,6 +7271,12 @@ mmKimura <- function(alpha, beta) {
 #'
 #'Documentation for SLiM function \code{nucleotideCounts}, which is a method of
 #'the SLiM class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sequence An object of type integer or string. See details for
 #'description.
@@ -5060,6 +7290,16 @@ mmKimura <- function(alpha, beta) {
 #'string (e.g., "TATA"), a string vector of single characters (e.g., "T", "A",
 #'"T", "A"), or an integer vector (e.g., 3, 0, 3, 0), using SLiM’s standard code
 #'of A=0, C=1, G=2, T=3.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 nucleotideCounts <- function(sequence) {
  .SB$nucleotideCounts(sequence)
@@ -5069,6 +7309,12 @@ nucleotideCounts <- function(sequence) {
 #'
 #'Documentation for SLiM function \code{nucleotideFrequencies}, which is a method
 #'of the SLiM class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sequence An object of type integer or string. See details for
 #'description.
@@ -5082,6 +7328,16 @@ nucleotideCounts <- function(sequence) {
 #'a singleton string (e.g., "TATA"), a string vector of single characters (e.g.,
 #'"T", "A", "T", "A"), or an integer vector (e.g., 3, 0, 3, 0), using SLiM’s
 #'standard code of A=0, C=1, G=2, T=3.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 nucleotideFrequencies <- function(sequence) {
  .SB$nucleotideFrequencies(sequence)
@@ -5091,6 +7347,12 @@ nucleotideFrequencies <- function(sequence) {
 #'
 #'Documentation for SLiM function \code{nucleotidesToCodons}, which is a method of
 #'the SLiM class \code{SLiMBuiltin}.
+#'Note that the R function is a stub, it does not do anything in R (except bring
+#'up this documentation). It will only do
+#'anything useful when used inside a \code{\link{slim_block}} function further
+#'nested in a \code{\link{slim_script}}
+#'function call, where it will be translated into valid SLiM code as part of a
+#'full SLiM script.
 #'
 #'@param sequence An object of type integer or string. See details for
 #'description.
@@ -5137,6 +7399,16 @@ nucleotideFrequencies <- function(sequence) {
 #'and much more if stored in the other formats. However, the other formats can
 #'be easier to work with in Eidos, and so may be preferable for relatively short
 #'chromosomes if you are manipulating the generated sequence.
+#'@section Copyright:
+#'This is documentation for a function in the SLiM software, and has been
+#'reproduced from the official manual,
+#'which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+#'documentation is
+#'Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+#'about SLiM can be found
+#'on the official website: \url{https://messerlab.org/slim/}
+#'@author Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+#'(\email{messer@cornell.edu})
 #'@export
 nucleotidesToCodons <- function(sequence) {
  .SB$nucleotidesToCodons(sequence)

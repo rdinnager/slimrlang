@@ -3,8 +3,7 @@
 \name{initializeGenomicElementType}
 \alias{initializeGenomicElementType}
 \alias{Initialize$initializeGenomicElementType}
-\alias{.Init}
-\alias{$initializeGenomicElementType}
+\alias{.Init$initializeGenomicElementType}
 \title{SLiM method initializeGenomicElementType}
 \usage{
 initializeGenomicElementType(id, mutationTypes, proportions, mutationMatrix)
@@ -28,6 +27,12 @@ An object of type GenomicElementType object. Return will be of length 1
 \description{
 Documentation for SLiM function \code{initializeGenomicElementType}, which is a
 method of the SLiM class \code{Initialize}.
+Note that the R function is a stub, it does not do anything in R (except bring
+up this documentation). It will only do
+anything useful when used inside a \code{\link{slim_block}} function further
+nested in a \code{\link{slim_script}}
+function call, where it will be translated into valid SLiM code as part of a
+full SLiM script.
 }
 \details{
 Add a genomic element type at initialization time. The id must
@@ -79,4 +84,19 @@ PAAC→AGC PAAC→ATC * PAAG→ACG PAAG→AGG PAAG→ATG * PAAT→ACT PAAT→AGT
 PACA→AAA * PACA→AGA PACA→ATA PACC→AAC * PACC→AGC PACC→ATC PACG→AAG * PACG→AGG
 PACG→ATG . . . . . . . . . . . . PTTC→TAC PTTC→TCC PTTC→TGC * PTTG→TAG PTTG→TCG
 PTTG→TGG * PTTT→TAT PTTT→TCT PTTT→TGT *
+}
+\section{Copyright}{
+
+This is documentation for a function in the SLiM software, and has been
+reproduced from the official manual,
+which can be found here: \url{http://benhaller.com/slim/SLiM_Manual.pdf}. This
+documentation is
+Copyright © 2016–2020 Philipp Messer. All rights reserved. More information
+about SLiM can be found
+on the official website: \url{https://messerlab.org/slim/}
+}
+
+\author{
+Benjamin C Haller (\email{bhaller@benhaller.com}) and Philipp W Messer
+(\email{messer@cornell.edu})
 }
