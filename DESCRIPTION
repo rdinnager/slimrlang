@@ -23,7 +23,8 @@ Imports:
     tibble,
     glue,
     rlang (>= 0.1.2),
-    prettycode
+    prettycode,
+    vctrs
 Suggests: 
     roxygen2,
     knitr,

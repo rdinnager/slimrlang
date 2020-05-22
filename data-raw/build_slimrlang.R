@@ -452,6 +452,8 @@ r_script <- stringr::str_replace_all(r_script,
 
 readr::write_lines(r_script, "R/slim_lang.R")
 
+slim_classes <- class_abbrs
+
 usethis::use_data(Initialize,
                   Chromosome,
                   Genome,
@@ -480,6 +482,7 @@ usethis::use_data(Initialize,
                   .SS,
                   .P,
                   .S,
+                  slim_classes,
                   overwrite = TRUE
 )
 

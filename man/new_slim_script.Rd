@@ -11,7 +11,7 @@ validate_slim_script(slim_script)
 }
 \arguments{
 \item{x}{A named list where each element is a list or vector component of a \code{slim_script},
-which includes "block_name", "block_id", "start_gen", "colon", "end_gen", "callback", and "code"}
+which includes "block_name", "block_id", "start_gen", "end_gen", "callback", and "code"}
 
 \item{...}{Optional attributes to add to the \code{slim_script} object, as name-value pairs.}
 

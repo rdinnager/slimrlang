@@ -58,4 +58,4 @@ callbacks$reproduction <- function(subpop_id, sex) {
   cb
 }
 
-callbacks <- list2env(callbacks, parent = .GlobalEnv)
+callbacks <- list2env(callbacks)

@@ -22,13 +22,12 @@ slim_script <- function(...) {
     dplyr::mutate(block_name = ifelse(.data$callback == "initialize()",
                                       "block_init",
                                       .data$block_name)) %>%
-    dplyr::select(block_name,
-                  block_id,
-                  start_gen,
-                  colon,
-                  end_gen,
-                  callback,
-                  code) %>%
+    dplyr::select(!!c("block_name",
+                      "block_id",
+                      "start_gen",
+                      "end_gen",
+                      "callback",
+                      "code")) %>%
     new_slim_script(nrow = n_row)
 
   suppressWarnings(end_gen <- max(as.numeric(c(script$start_gen, script$end_gen)), na.rm = TRUE))
@@ -36,6 +35,8 @@ slim_script <- function(...) {
   script$end_gen <- purrr::map_chr(script$end_gen,
                               ~glue::glue(.x, .na = NULL) %>%
                                 as.character())
+
+  script$code <- SLiMify(script$code)
 
 
   script
@@ -80,7 +81,7 @@ slim_block <- function(...) {
                                     ~stringr::str_sub(.x, 1, 2)) %>%
       paste0(collapse = "")
 
-    code <- deparse(args[[n_args]])
+    code <- deparse(args[[n_args]], control = NULL, width.cutoff = 500)
 
     if(code[1] == "{") {
       code <- code[2:(length(code) - 1L)]
@@ -90,84 +91,72 @@ slim_block <- function(...) {
       arg_signature,
       chnunuca = list(block_id = args_eval[[1]],
                       start_gen = as.character(args_eval[[2]]),
-                      colon = ":",
                       end_gen = as.character(args_eval[[3]]),
                       callback = args_eval[[4]],
                       code = list(code)),
 
       chnunaca = list(block_id = args_eval[[1]],
                       start_gen = as.character(args_eval[[2]]),
-                      colon = ":",
                       end_gen = {end_gen},
                       callback = args_eval[[4]],
                       code = list(code)),
 
       nunuca = list(block_id = "",
                     start_gen = as.character(args_eval[[1]]),
-                    colon = ":",
                     end_gen = as.character(args_eval[[2]]),
                     callback = args_eval[[3]],
                     code = list(code)),
 
       nunaca = list(block_id = "",
                     start_gen = as.character(args_eval[[1]]),
-                    colon = ":",
                     end_gen = "{end_gen}",
                     callback = args_eval[[3]],
                     code = list(code)),
 
       chnuca = list(block_id = args_eval[[1]],
                     start_gen = as.character(args_eval[[2]]),
-                    colon = "",
                     end_gen = NA,
                     callback = args_eval[[3]],
                     code = list(code)),
 
       chnunu = list(block_id = args_eval[[1]],
                     start_gen = as.character(args_eval[[2]]),
-                    colon = ":",
                     end_gen = as.character(args_eval[[3]]),
                     callback = "early()",
                     code = list(code)),
 
       chnuna = list(block_id = args_eval[[1]],
                     start_gen = as.character(args_eval[[2]]),
-                    colon = ":",
                     end_gen = "{end_gen}",
                     callback = "early()",
                     code = list(code)),
 
       nunu = list(block_id = "",
                   start_gen = as.character(args_eval[[1]]),
-                  colon = ":",
                   end_gen = as.character(args_eval[[2]]),
                   callback = callbacks$early(),
                   code = list(code)),
 
       nuna = list(block_id = "",
                   start_gen = as.character(args_eval[[1]]),
-                  colon = ":",
                   end_gen = "{end_gen}",
                   callback = callbacks$early(),
                   code = list(code)),
 
       chnu = list(block_id = args_eval[[1]],
                   start_gen = as.character(args_eval[[2]]),
-                  colon = "",
                   end_gen = NA,
                   callback = callbacks$early(),
                   code = list(code)),
 
       chca = list(block_id = args_eval[[1]],
                   start_gen = "1",
-                  colon = ":",
                   end_gen = "{end_gen}",
                   callback = args_eval[[2]],
                   code = list(code)),
 
       nuca = list(block_id = "",
                   start_gen = as.character(args_eval[[1]]),
-                  colon = "",
                   end_gen = NA,
                   callback = args_eval[[2]],
                   code = list(code)),
@@ -181,21 +170,18 @@ slim_block <- function(...) {
 
       nu = list(block_id = "",
                 start_gen = as.character(args_eval[[1]]),
-                colon = "",
                 end_gen = NA,
                 callback = callbacks$early(),
                 code = list(code)),
 
       ca = list(block_id = "",
                 start_gen = "1",
-                colon = ":",
                 end_gen = "{end_gen}",
                 callback = args_eval[[1]],
                 code = list(code)),
 
       list(block_id = NA,
            start_gen = NA,
-           colon = NA,
            end_gen = NA,
            callback = NA,
            code = NA)
@@ -205,7 +191,6 @@ slim_block <- function(...) {
 
     block_row <- list(block_id = "",
                       start_gen = "1",
-                      colon = ":",
                       end_gen = "{end_gen}",
                       callback = "early()",
                       code = list(code))
@@ -219,7 +204,6 @@ slim_block <- function(...) {
   if(block_row$callback == "initialize()") {
     block_row$start_gen <- NA
     block_row$end_gen <- NA
-    block_row$colon <- ""
   }
 
   block_row
@@ -231,7 +215,7 @@ slim_block <- function(...) {
 #' Constructs or Validates a `slim_script` object. This is mostly for internal use.
 #'
 #' @param x A named list where each element is a list or vector component of a `slim_script`,
-#' which includes "block_name", "block_id", "start_gen", "colon", "end_gen", "callback", and "code"
+#' which includes "block_name", "block_id", "start_gen", "end_gen", "callback", and "code"
 #' @param ... Optional attributes to add to the `slim_script` object, as name-value pairs.
 #' @param nrow The number of rows, required
 #' @param slim_output Optional `slim_output` attribute
@@ -311,7 +295,8 @@ print.slim_script <- function(x, ...) {
 as.character.slim_script <- function(x) {
   code <- paste0(ifelse(is.na(x$block_id), "", paste0(x$block_id, " ")),
                  ifelse(is.na(x$start_gen), "", x$start_gen),
-                 x$colon, ifelse(is.na(x$end_gen), "", x$end_gen),
+                 ifelse(is.na(x$end_gen), "", ":"),
+                 ifelse(is.na(x$end_gen), "", x$end_gen),
                  " ",
                  x$callback,
                  " {\n",
@@ -319,3 +304,78 @@ as.character.slim_script <- function(x) {
                  "\n}\n")
   code
 }
+
+#' slimrlang stub for the SLiM '.' operator
+#'
+#' Use this in place of '.' from SLiM to specify a method or a property coming from a
+#' particular SLiM class. Note that the R function is a stub, it does not do anything in R
+#' (except bring up this documentation). It will only do anything useful when used inside
+#' a \\code{\\link{slim_block}} function further nested in a \\code{\\link{slim_script}}
+#' function call, where it will be translated into valid SLiM code as part of a full SLiM script.
+#'
+#' @param lhs Object of class \code{rhs}, to extract methods or properties from
+#' @param rhs SLiM class R object (such as \code{Subpopulation}, \code{.M}, etc.). Type \code{\link{slim_classes}} for a table of possible values.
+#'
+#' @export
+#'
+#' @section Copyright:
+#'  This is documentation for a function in the SLiM software, and has been reproduced from the official manual,
+#'  which can be found here: \\url{http://benhaller.com/slim/SLiM_Manual.pdf}. This documentation is
+#'  Copyright © 2016–2020 Philipp Messer. All rights reserved. More information about SLiM can be found
+#'  on the official website: \\url{https://messerlab.org/slim/}
+#' @author Benjamin C Haller (\\email{bhaller@benhaller.com}) and Philipp W Messer (\\email{messer@cornell.edu})
+`%.%` <- function(lhs, rhs) {
+  print(paste0(lhs, ".", rhs))
+  ?`%.%`
+}
+
+#' slimrlang stub for the first part of the SLiM ternary operator (\code{condition ? yes else no}).
+#'
+#' This is used in conjunction with %else% to use the SLiM ternary operator in \code{slimrlang}
+#' which will make the code valid in R. Note that the R function is a stub, it does not do anything in R
+#' (except bring up this documentation). It will only do anything useful when used inside
+#' a \\code{\\link{slim_block}} function further nested in a \\code{\\link{slim_script}}
+#' function call, where it will be translated into valid SLiM code as part of a full SLiM script.
+#'
+#' @param lhs A condition
+#' @param rhs A SLiM expression to be executed if the condition is \code{TRUE}
+#'
+#' @export
+#'
+#' @section Copyright:
+#'  This is documentation for a function in the SLiM software, and has been reproduced from the official manual,
+#'  which can be found here: \\url{http://benhaller.com/slim/SLiM_Manual.pdf}. This documentation is
+#'  Copyright © 2016–2020 Philipp Messer. All rights reserved. More information about SLiM can be found
+#'  on the official website: \\url{https://messerlab.org/slim/}
+#' @author Benjamin C Haller (\\email{bhaller@benhaller.com}) and Philipp W Messer (\\email{messer@cornell.edu})
+`%?%` <- function(lhs, rhs) {
+  print(paste0(lhs, " ? ", rhs))
+  ?`%?%`
+}
+
+#' slimrlang stub for the second part of the SLiM ternary operator (\code{condition ? yes else no}).
+#'
+#' This is used in conjunction with %?% to use the SLiM ternary operator in \code{slimrlang}
+#' which will make the code valid in R. Note that the R function is a stub, it does not do anything in R
+#' (except bring up this documentation). It will only do anything useful when used inside
+#' a \\code{\\link{slim_block}} function further nested in a \\code{\\link{slim_script}}
+#' function call, where it will be translated into valid SLiM code as part of a full SLiM script.
+#'
+#' @param lhs A SLiM expression to be executed if the condition (before the companion %?%)
+#' is \code{TRUE}
+#' @param rhs A SLiM expression to be executed if the condition (before the companion %?%)
+#' is \code{FALSE}
+#'
+#' @export
+#'
+#' @section Copyright:
+#'  This is documentation for a function in the SLiM software, and has been reproduced from the official manual,
+#'  which can be found here: \\url{http://benhaller.com/slim/SLiM_Manual.pdf}. This documentation is
+#'  Copyright © 2016–2020 Philipp Messer. All rights reserved. More information about SLiM can be found
+#'  on the official website: \\url{https://messerlab.org/slim/}
+#' @author Benjamin C Haller (\\email{bhaller@benhaller.com}) and Philipp W Messer (\\email{messer@cornell.edu})
+`%?%` <- function(lhs, rhs) {
+  print(paste0(lhs, " ? ", rhs))
+  ?`%?%`
+}
+
