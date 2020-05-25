@@ -1,8 +1,8 @@
 SLiMify <- function(code) {
-  code <- slimr_code_add_semicolons(code)
-  code <- slimr_code_replace_dots(code)
-  code <- slimr_code_remove_special_classes(code)
-  code <- slimr_code_replace_ternary(code)
+  code <- slimr_code_add_semicolons_one(code)
+  code <- slimr_code_replace_dots_one(code)
+  code <- slimr_code_remove_special_classes_one(code)
+  code <- slimr_code_replace_ternary_one(code)
 
   code
 }
@@ -53,4 +53,12 @@ slimr_code_replace_ternary_one <- function(code_one) {
 slimr_code_replace_ternary <- function(code) {
   purrr::map(code,
              ~slimr_code_replace_ternary_one(.x))
+}
+
+assert_valid_code <- function(code_txt) {
+  code <- try(parse(text = code_txt))
+  if(inherits(code, "try-error")) {
+    stop(paste("Not valid R code; something went wrong in translation.", "error:", code))
+  }
+  code_txt
 }

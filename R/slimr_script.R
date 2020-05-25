@@ -7,6 +7,7 @@ NULL
 
 #' @export
 new_slimr_code <- function(x = list()) {
+  x <- assert_valid_code(x)
   new_list_of(x, ptype = character(), class = "slimr_code")
 }
 
@@ -44,6 +45,10 @@ obj_print_data.slimr_code <- function(x, ...) {
 
 #' @export
 vec_ptype2.slimr_code.slimr_code <- function(x, to, ...) x
+
+#' @export
+vec_ptype2.slimr_code.character <- function(x, to, ...) x
+
 
 #' @export
 new_slimr_script <- function(block_name = character(),
@@ -191,3 +196,5 @@ obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
   string <- paste(string, collapse = "\n\n")
   cat(string)
 }
+
+
