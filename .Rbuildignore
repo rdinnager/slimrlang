@@ -8,3 +8,5 @@
 ^docs$
 ^pkgdown$
 ^slim_man$
+^doc$
+^Meta$

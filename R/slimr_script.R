@@ -6,7 +6,7 @@
 NULL
 
 #' @export
-new_slimr_code <- function(x) {
+new_slimr_code <- function(x = list()) {
   new_list_of(x, ptype = character(), class = "slimr_code")
 }
 
@@ -51,14 +51,16 @@ new_slimr_script <- function(block_name = character(),
                              start_gen = character(),
                              end_gen = character(),
                              callback = character(),
-                             code = character()) {
+                             code = new_slimr_code(),
+                             slimr_output = "none",
+                             slimr_input = "none") {
 
   vec_assert(block_name, ptype = character())
   vec_assert(block_id, ptype = character())
   vec_assert(start_gen, ptype = character())
   vec_assert(end_gen, ptype = character())
   vec_assert(callback, character())
-  vec_assert(code, new_slimr_code(list()))
+  vec_assert(code, new_slimr_code())
 
   new_rcrd(list(block_name = block_name,
                 block_id = block_id,
@@ -66,6 +68,8 @@ new_slimr_script <- function(block_name = character(),
                 end_gen = end_gen,
                 callback = callback,
                 code = code),
+           slimr_output = slimr_output,
+           slimr_input = slimr_input,
            class = "slimr_script")
 }
 
@@ -89,7 +93,7 @@ as.character.slimr_script <- function(x) {
 }
 
 #' @export
-format.slimr_script <- function(x, ...) {
+format.slimr_script <- function(x, add_block_names = TRUE, ...) {
 
   if(length(x) == 0) {
     return("{}")
@@ -97,7 +101,9 @@ format.slimr_script <- function(x, ...) {
 
     string <- as.character(x)
 
-    string <- paste0(field(x, "block_name"), ":\n", string)
+    if(add_block_names) {
+      string <- paste0(field(x, "block_name"), ":\n", string)
+    }
 
   }
 
@@ -105,17 +111,19 @@ format.slimr_script <- function(x, ...) {
 }
 
 #' @export
-obj_print_data.slimr_script <- function(x, ...) {
+obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat = FALSE, ...) {
   if (length(x) == 0) {
     return()
   } else {
 
-    string <- format(x)
-    string <- stringr::str_replace_all(string,
-                                       "(block_(.*?)\\:)\n",
-                                       glue::glue("<<crayon::bold$bgCyan('\\\\1')>>\n",
-                                                  .open = "<<",
-                                                  .close = ">>"))
+    string <- format(x, add_block_names)
+    if(add_block_names) {
+      string <- stringr::str_replace_all(string,
+                                         "(block_(.*?)\\:)\n",
+                                         glue::glue("<<crayon::bold$bgCyan('\\\\1')>>\n",
+                                                    .open = "<<",
+                                                    .close = ">>"))
+    }
 
     code <- stringr::str_match_all(string,
                                    stringr::regex("\\{\n(.*)\n\\}$", dotall = TRUE))
@@ -133,6 +141,53 @@ obj_print_data.slimr_script <- function(x, ...) {
 
     string <- paste(string, collapse = "\n")
 
+  }
+  if(!suppress_cat) {
     cat(string)
   }
+  return(invisible(string))
+
+}
+
+#' @export
+new_slimr_script_coll <- function(x = list()) {
+  new_list_of(x, ptype = new_slimr_script(), class = "slimr_script_coll")
+}
+
+#' @export
+slimr_script_coll <- function(...) {
+  x <- list(...)
+  x <- lapply(x, vec_cast, new_slimr_script())
+  new_slimr_script_coll(x)
+}
+
+#' @export
+format.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
+
+  if(length(x) == 0) {
+    return("{}")
+  } else {
+
+    string <- vapply(x, format, character(), add_block_names = add_block_names)
+
+  }
+
+  paste(string, collapse = "\n\n")
+}
+
+#' @export
+obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
+
+  if(length(x) == 0) {
+    return("{}")
+  } else {
+
+    string <- vapply(x, obj_print_data, character(1),
+                     add_block_names = add_block_names,
+                     suppress_cat = TRUE)
+
+  }
+
+  string <- paste(string, collapse = "\n\n")
+  cat(string)
 }

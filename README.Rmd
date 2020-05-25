@@ -12,18 +12,6 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-
-```{r color, echo = FALSE, results='asis'}
-# crayon needs to be explicitly activated in Rmd
-options(crayon.enabled = TRUE)
-# Hooks needs to be set to deal with outputs
-# thanks to fansi logic
-if(requireNamespace("fansi", quietly = TRUE)) {
-  old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks, 
-                                     which = c("output", "message", "error"))
-}
-```
-
 # slimrlang
 
 <!-- badges: start -->

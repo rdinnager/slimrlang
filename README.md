@@ -1,10 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<STYLE type='text/css' scoped>
-PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
-</STYLE>
-
 # slimrlang
 
 <!-- badges: start -->
@@ -63,24 +59,22 @@ slim_script(
 ) -> script_1
 
 script_1
+#> block_init   initialize() {
+#>      initializeMutationRate(1e-07);
+#>      initializeMutationType("m1", 0.5, "f", 0);
+#>      initializeGenomicElementType("g1", m1, 1);
+#>      initializeGenomicElement(g1, 0, 99999);
+#>      initializeRecombinationRate(1e-08);
+#> }
+#> 
+#> block_2  1 early() {
+#>      sim.addSubpop("p1", 500);
+#> }
+#> 
+#> block_3  10000 early() {
+#>      sim.simulationFinished();
+#> }
 ```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='background-color: #00BBBB;font-weight: bold;'>block_init</span><span>   initialize() {
-#&gt;       </span><span style='color: #00BBBB;'>initializeMutationRate</span><span style='color: #BBBB00;'>(</span><span style='color: #0000BB;'>1e-07</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt;       </span><span style='color: #00BBBB;'>initializeMutationType</span><span style='color: #BBBB00;'>("m1"</span><span>, </span><span style='color: #0000BB;'>0.5</span><span>, </span><span style='color: #BBBB00;'>"f"</span><span>, </span><span style='color: #0000BB;'>0</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt;       </span><span style='color: #00BBBB;'>initializeGenomicElementType</span><span style='color: #BBBB00;'>("g1"</span><span>, m1, </span><span style='color: #0000BB;'>1</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt;       </span><span style='color: #00BBBB;'>initializeGenomicElement</span><span style='color: #BBBB00;'>(</span><span>g1, </span><span style='color: #0000BB;'>0</span><span>, </span><span style='color: #0000BB;'>99999</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt;       </span><span style='color: #00BBBB;'>initializeRecombinationRate</span><span style='color: #BBBB00;'>(</span><span style='color: #0000BB;'>1e-08</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt; }
-#&gt; 
-#&gt; </span><span style='background-color: #00BBBB;font-weight: bold;'>block_2</span><span>  1 early() {
-#&gt;       </span><span style='color: #00BBBB;'>sim.addSubpop</span><span style='color: #BBBB00;'>("p1"</span><span>, </span><span style='color: #0000BB;'>500</span><span style='color: #BBBB00;'>)</span><span>;
-#&gt; }
-#&gt; 
-#&gt; </span><span style='background-color: #00BBBB;font-weight: bold;'>block_3</span><span>  10000 early() {
-#&gt;       </span><span style='color: #00BBBB;'>sim.simulationFinished</span><span style='color: #BBBB00;'>()</span><span>;
-#&gt; }
-</span></CODE></PRE>
 
 You can output this script to text to run in a standalone SLiM
 installation, or you can run it in SLiM directly from R using functions
