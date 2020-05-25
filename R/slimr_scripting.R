@@ -56,13 +56,19 @@ slim_block <- function(...) {
 
   n_args <- length(args)
 
+  if(n_args > 5) {
+    stop("You've provided too many arguments. There shouldn't be more than 5 at max (block id, start generation, end generation, callback function, and slimr_code block expression)")
+  }
+
+  if(n_args < 1) {
+    stop("slim_block requires at least one argument")
+  }
+
   if(!is.call(args[[n_args]])) {
     stop("The last argument of slim_block should be a valid slimr_code block expression.")
   }
 
-  if(n_args > 5) {
-    stop("You've provided too many arguments. There shouldn't be more than 5 at max (block id, start generation, end generation, callback function, and slimr_code block expression)")
-  }
+  code <- deparse(args[[n_args]], control = NULL, width.cutoff = 500)
 
   if(n_args > 1L) {
     other_args <- args[-n_args]
@@ -81,7 +87,6 @@ slim_block <- function(...) {
                                     ~stringr::str_sub(.x, 1, 2)) %>%
       paste0(collapse = "")
 
-    code <- deparse(args[[n_args]], control = NULL, width.cutoff = 500)
 
     if(code[1] == "{") {
       code <- code[2:(length(code) - 1L)]
