@@ -174,3 +174,36 @@ slim_script(
 
 script_2
 ```
+
+Okay, next up, let's see some of the neat stuff we can do to manipulate these SLiM scripts in R. First, we will see how to use R to fill in parts of the SLiM script with data from R. This is accomplished using the `slimr_template` function, which can be used to insert R generated data into a SLiM script. This is the simplest to get a SLiM script which has elements that can be filled in later with a templating mechanism. So, how does that work? Well, anywhere we want something in the SLiM script to be 'in-fillable', that is, to contain a variable section of the script that we can subsitute data into later, you can use the `slimr_template` function in place of what was formerly a hard-coded value. Here is an example using the same recipe as above, but in this case we want to be able to fill-in the genome size and the muation rate later:
+
+```{r fillin_demo}
+slim_script(
+  slim_block(initialize(),
+             {
+               ## set the overall mutation rate (default = 1e-7)
+               initializeMutationRate( slimr_template("mut_rate", 1e-7) ); 
+               ## m1 mutation type: neutral
+               initializeMutationType("m1", 0.5, "f", 0.0);
+               ## g1 genomic element type: uses m1 for all mutations
+               initializeGenomicElementType("g1", m1, 1.0);
+               ## uniform chromosome of length "genome_size" (default = 99999)
+               initializeGenomicElement(g1, 0, slimr_template("genome_size", 99999) );
+               ## uniform recombination along the chromosome
+               initializeRecombinationRate(1e-8);
+             }),
+  slim_block(1,
+             {
+               sim.addSubpop("p1", 500);
+             }),
+  slim_block(10000,
+             {
+               sim.simulationFinished();
+             })
+) -> script_temp
+
+script_temp
+
+```
+
+The first argument to `slimr_template` provides a name for the variable that will later be used to label values for replacement. The second argument provides a default value. Anytime this script is used without providing values for the templated variables, the default values will be used. This argument is optional, and if not provided, an error will be thrown if any variables have no values provided when later using this script. 

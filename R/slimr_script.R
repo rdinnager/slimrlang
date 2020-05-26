@@ -46,8 +46,12 @@ obj_print_data.slimr_code <- function(x, ...) {
 #' @export
 vec_ptype2.slimr_code.slimr_code <- function(x, to, ...) x
 
+
 #' @export
-vec_ptype2.slimr_code.character <- function(x, to, ...) x
+as.character.slimr_code <- function(x, ...) {
+  purrr::map_chr(x,
+                 ~paste(.x, collapse = "\n"))
+}
 
 
 #' @export
@@ -84,7 +88,7 @@ vec_ptype_full.slimr_script <- function(x, ...) "slimr_script"
 vec_ptype_abbr.slimr_script <- function(x, ...) "s-scrpt"
 
 #' @export
-as.character.slimr_script <- function(x) {
+as.character.slimr_script <- function(x, ...) {
   code <- paste0(ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), " ")),
                  ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
                  ifelse(is.na(field(x, "end_gen")), "", ":"),
@@ -153,6 +157,18 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
   return(invisible(string))
 
 }
+
+#' @export
+get_block <- function(x, i) {
+  #vec_assert(x, new_slimr_script())
+  vec_slice(x, vec_as_location(i, vec_size(x), names = field(x, "block_name")))
+}
+
+#' @export
+code.slimr_script <- function(x) {
+  field(x, "code")
+}
+
 
 #' @export
 new_slimr_script_coll <- function(x = list()) {

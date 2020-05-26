@@ -7,6 +7,15 @@ SLiMify <- function(code) {
   code
 }
 
+SLiMify_all <- function(code) {
+  code <- slimr_code_add_semicolons(code)
+  code <- slimr_code_replace_dots(code)
+  code <- slimr_code_remove_special_classes(code)
+  code <- slimr_code_replace_ternary(code)
+
+  code
+}
+
 slimr_code_add_semicolons_one <- function(code_one) {
   brace_lines <- stringr::str_detect(code_one,
                                      "(\\{$|\\}$)")

@@ -26,4 +26,8 @@ globalVariables(c(".G",
        envir = parent.env(environment()))
   .resources$classes_regex <- paste0("(", paste(c(slim_classes$class_name, slim_classes$class_abbr),
                                     collapse = "|"), ")")
+  .resources$temp_slimr_input <- list()
+  .resources$temp_slimr_input$var_name <- list()
+  .resources$temp_slimr_input$default <- list()
+  .resources$temp_slimr_output <- list()
 }

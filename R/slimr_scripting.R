@@ -15,28 +15,44 @@ slim_script <- function(...) {
   script <- script_list %>%
     purrr::transpose() %>%
     purrr::simplify_all()
-  
+
   block_names = paste0("block_", stringr::str_pad(seq_len(n_row),
                                                  nchar(trunc(n_row)),
                                                  pad = "0"))
-  
+
   block_names = ifelse(script$callback == "initialize()",
                        "block_init",
                        block_names)
-  
-  
+
+
   suppressWarnings(end_gen <- max(as.numeric(c(script$start_gen, script$end_gen)), na.rm = TRUE))
 
   script$end_gen <- purrr::map_chr(script$end_gen,
                               ~glue::glue(.x, .na = NULL) %>%
                                 as.character())
-  
-  script <- new_slimr_script(block_name = block_names, 
+
+  code <- vec_unchop(script$code)
+
+  template_processed <- gather_tmplt(as.character.slimr_code(code)) %>%
+    purrr::transpose()
+
+  new_code <- SLiMify_all(template_processed$new_code)
+
+  code <- new_slimr_code(new_code)
+
+  slimr_input_attr <- purrr::transpose(template_processed$input_info) %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate("block_name" := block_names) %>%
+    tidyr::unnest(c(var_names, defaults),
+                  keep_empty = TRUE)
+
+  script <- new_slimr_script(block_name = block_names,
                              block_id = script$block_id,
                              start_gen = script$start_gen,
                              end_gen = script$end_gen,
                              callback = script$callback,
-                             code = vec_unchop(script$code))
+                             code = code,
+                             slimr_input = slimr_input_attr)
 
   script
 }
@@ -66,15 +82,15 @@ slim_block <- function(...) {
   if(!is.call(args[[n_args]])) {
     stop("The last argument of slim_block should be a valid slimr_code block expression.")
   }
-  
+
   code <- deparse(args[[n_args]], width.cutoff = 500, control = NULL)
-  
+
   if(code[1] == "{") {
     code <- code[2:(length(code) - 1L)]
   }
-  
+
   code <- SLiMify(code)
-  
+
   code <- new_slimr_code(list(code))
 
   if(n_args > 1L) {
@@ -291,3 +307,37 @@ slim_block <- function(...) {
   ?`%?%`
 }
 
+slimr_template <- function(var_name, default = NULL) {
+  .resources$temp_slimr_input$var_name <- c(.resources$temp_slimr_input$var_name,
+                                   var_name)
+  .resources$temp_slimr_input$default <- c(.resources$temp_slimr_input$default,
+                                   default)
+  rlang::sym(paste0("..", var_name, ".."))
+}
+
+tmplt <- function(var_name, default = NULL) {
+  slimr_template(var_name, default)
+}
+
+tmplt_replace <- function(code) {
+  code <- stringr::str_replace_all(code, "slimr_template", "!!slimr_template")
+  code_expr <- rlang::parse_exprs(paste(code, collapse = ""))
+  code <- purrr::map_chr(code_expr, ~rlang::expr_interp(.x) %>%
+                           rlang::expr_deparse())
+  code
+}
+
+gather_tmplt_one <- function(code_one) {
+  code_one <- tmplt_replace(code_one)
+  input_info <- list(var_names = .resources$temp_slimr_input$var_name,
+                     defaults = .resources$temp_slimr_input$default)
+  .resources$temp_slimr_input$var_name <- list()
+  .resources$temp_slimr_input$default <- list()
+  list(new_code = code_one, input_info = input_info)
+}
+
+gather_tmplt <- function(code) {
+  res <- purrr::map(code,
+                    ~gather_tmplt_one(.x))
+  res
+}
