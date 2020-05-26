@@ -24,7 +24,8 @@ Imports:
     glue,
     rlang (>= 0.1.2),
     prettycode,
-    vctrs
+    vctrs,
+    tidyr
 Suggests: 
     roxygen2,
     knitr,
