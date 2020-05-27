@@ -25,7 +25,8 @@ Imports:
     rlang (>= 0.1.2),
     prettycode,
     vctrs,
-    tidyr
+    tidyr,
+    zeallot
 Suggests: 
     roxygen2,
     knitr,

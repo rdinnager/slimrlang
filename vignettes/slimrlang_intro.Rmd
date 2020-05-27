@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  warning = FALSE
 )
 
 ```
@@ -177,7 +178,7 @@ script_2
 
 Okay, next up, let's see some of the neat stuff we can do to manipulate these SLiM scripts in R. First, we will see how to use R to fill in parts of the SLiM script with data from R. This is accomplished using the `slimr_template` function, which can be used to insert R generated data into a SLiM script. This is the simplest to get a SLiM script which has elements that can be filled in later with a templating mechanism. So, how does that work? Well, anywhere we want something in the SLiM script to be 'in-fillable', that is, to contain a variable section of the script that we can subsitute data into later, you can use the `slimr_template` function in place of what was formerly a hard-coded value. Here is an example using the same recipe as above, but in this case we want to be able to fill-in the genome size and the muation rate later:
 
-```{r fillin_demo}
+```{r fillin_demo, warning=FALSE}
 slim_script(
   slim_block(initialize(),
              {
@@ -206,4 +207,24 @@ script_temp
 
 ```
 
-The first argument to `slimr_template` provides a name for the variable that will later be used to label values for replacement. The second argument provides a default value. Anytime this script is used without providing values for the templated variables, the default values will be used. This argument is optional, and if not provided, an error will be thrown if any variables have no values provided when later using this script. 
+The first argument to `slimr_template` provides a name for the variable that will later be used to label values for replacement. The second argument provides a default value. Anytime this script is used without providing values for the templated variables, the default values will be used. This argument is optional, and if not provided, an error will be thrown if any variables have no values provided when later using this script. The above printed script shows that it is templated by printing a message describing the details below it, as well as inserting the templated variables in the script with green `..x..`, where `x` is the name of the variable. Replacing values is now as simple as running `slimr_script_render`.
+
+```{r script_render}
+single_script <- slimr_script_render(script_temp, 
+                                     template = list(mut_rate = 1e-6, genome_size = 1999))
+
+single_script
+```
+
+So we can see that we now have a `slimr_script` object where our templated variables have been replaced! `slimr_script_render` can also render multiple different values for the templated variables at the same time. To do this we can just pass in a list of lists (or a data.frame), where each element at the top level has a different set of values, and `slimr_script_render` will return a `slimr_script_coll` object, which stands for a slimr script collection. Let's try it.
+
+```{r slimr_script_coll_template}
+multi_script <- slimr_script_render(script_temp,
+                                    template = list(
+                                        list(mut_rate = 1e-5, genome_size = 1999),
+                                        list(mut_rate = 1e-6, genome_size = 2999),
+                                        list(mut_rate = 1e-7, genome_size = 3999)
+                                      ))
+
+multi_script
+```

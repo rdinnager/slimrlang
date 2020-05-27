@@ -62,7 +62,8 @@ new_slimr_script <- function(block_name = character(),
                              callback = character(),
                              code = new_slimr_code(),
                              slimr_output = "none",
-                             slimr_input = "none") {
+                             slimr_input = "none",
+                             slimr_template = "none") {
 
   vec_assert(block_name, ptype = character())
   vec_assert(block_id, ptype = character())
@@ -79,6 +80,7 @@ new_slimr_script <- function(block_name = character(),
                 code = code),
            slimr_output = slimr_output,
            slimr_input = slimr_input,
+           slimr_template = slimr_template,
            class = "slimr_script")
 }
 
@@ -95,8 +97,8 @@ as.character.slimr_script <- function(x, ...) {
                  ifelse(is.na(field(x, "end_gen")), "", field(x, "end_gen")),
                  " ",
                  field(x, "callback"),
-                 " {\n",
-                 purrr::map_chr(field(x, "code"), ~paste(.x, collapse = "\n")),
+                 " {\n    ",
+                 purrr::map_chr(field(x, "code"), ~paste(.x, collapse = "\n    ")),
                  "\n}\n")
   code
 }
@@ -148,6 +150,10 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
                                        stringr::regex("\\{\n((.*))\n\\}$", dotall = TRUE),
                                        prettify_code)
 
+    string <- stringr::str_replace_all(string,
+                                       "(\\.\\.[:word:]+\\.\\.)",
+                                       crayon::green)
+
     string <- paste(string, collapse = "\n")
 
   }
@@ -159,13 +165,33 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
 }
 
 #' @export
+obj_print_footer.slimr_script <- function(x, ...) {
+  slimr_template_attr <- attr(x, "slimr_template")
+  if(any(!is.na(slimr_template_attr$var_names))) {
+    blocks_w_template <- !is.na(slimr_template_attr$var_names)
+
+    template_text <- glue::glue("This slimr_script has templating in block(s)
+                                {crayon::bold$bgCyan(paste(unique(slimr_template_attr$block_name[blocks_w_template],
+                                collapse = ' and ')))} for variables
+                                {paste(crayon::green(slimr_template_attr$var_names[blocks_w_template]),
+                                collapse = ' and ')}.\n") %>%
+      stringr::str_wrap()
+  } else {
+    template_text <- ""
+  }
+
+  cat(template_text)
+  invisible(template_text)
+}
+
+#' @export
 get_block <- function(x, i) {
   #vec_assert(x, new_slimr_script())
   vec_slice(x, vec_as_location(i, vec_size(x), names = field(x, "block_name")))
 }
 
 #' @export
-code.slimr_script <- function(x) {
+code <- function(x) {
   field(x, "code")
 }
 
@@ -197,11 +223,19 @@ format.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
 }
 
 #' @export
-obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
+obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, max_show = 3, ...) {
+
+  max_exceeded <- FALSE
 
   if(length(x) == 0) {
     return("{}")
   } else {
+
+    if(length(x) > max_show) {
+      max_exceeded <- TRUE
+      how_many_more <- length(x) - max_show
+      x <- x[1:max_show]
+    }
 
     string <- vapply(x, obj_print_data, character(1),
                      add_block_names = add_block_names,
@@ -209,8 +243,23 @@ obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, ...) {
 
   }
 
-  string <- paste(string, collapse = "\n\n")
+  string <- paste0(crayon::red(paste0("<", 1:length(x), ">")),
+                   "\n\n",
+                   string)
+  string <- paste(string, collapse = "\n")
+  if(max_exceeded) {
+    string <- paste0(string,
+                     "\n\n",
+                     crayon::red("<...>"),
+                     "\n\n",
+                     glue::glue("and {crayon::cyan(how_many_more)} more."),
+                     "\n")
+  }
   cat(string)
 }
 
+#' @export
+vec_ptype_full.slimr_script_coll <- function(x, ...) "slimr_script_coll"
+#' @export
+vec_ptype_abbr.slimr_script_coll <- function(x, ...) "s-s-col"
 

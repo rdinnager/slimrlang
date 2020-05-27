@@ -33,18 +33,10 @@ slim_script <- function(...) {
 
   code <- vec_unchop(script$code)
 
-  template_processed <- gather_tmplt(as.character.slimr_code(code)) %>%
-    purrr::transpose()
+  ## process for template
+  c(code, slimr_template_attr) %<-% process_template(code, block_names)
 
-  new_code <- SLiMify_all(template_processed$new_code)
-
-  code <- new_slimr_code(new_code)
-
-  slimr_input_attr <- purrr::transpose(template_processed$input_info) %>%
-    tibble::as_tibble() %>%
-    dplyr::mutate("block_name" := block_names) %>%
-    tidyr::unnest(c(var_names, defaults),
-                  keep_empty = TRUE)
+  code <- new_slimr_code(code)
 
   script <- new_slimr_script(block_name = block_names,
                              block_id = script$block_id,
@@ -52,7 +44,7 @@ slim_script <- function(...) {
                              end_gen = script$end_gen,
                              callback = script$callback,
                              code = code,
-                             slimr_input = slimr_input_attr)
+                             slimr_template = slimr_template_attr)
 
   script
 }
@@ -308,9 +300,9 @@ slim_block <- function(...) {
 }
 
 slimr_template <- function(var_name, default = NULL) {
-  .resources$temp_slimr_input$var_name <- c(.resources$temp_slimr_input$var_name,
+  .resources$temp_slimr_template$var_name <- c(.resources$temp_slimr_template$var_name,
                                    var_name)
-  .resources$temp_slimr_input$default <- c(.resources$temp_slimr_input$default,
+  .resources$temp_slimr_template$default <- c(.resources$temp_slimr_template$default,
                                    default)
   rlang::sym(paste0("..", var_name, ".."))
 }
@@ -328,11 +320,11 @@ tmplt_replace <- function(code) {
 }
 
 gather_tmplt_one <- function(code_one) {
+  .resources$temp_slimr_template$var_name <- list()
+  .resources$temp_slimr_template$default <- list()
   code_one <- tmplt_replace(code_one)
-  input_info <- list(var_names = .resources$temp_slimr_input$var_name,
-                     defaults = .resources$temp_slimr_input$default)
-  .resources$temp_slimr_input$var_name <- list()
-  .resources$temp_slimr_input$default <- list()
+  input_info <- list(var_names = .resources$temp_slimr_template$var_name,
+                     defaults = .resources$temp_slimr_template$default)
   list(new_code = code_one, input_info = input_info)
 }
 
@@ -340,4 +332,99 @@ gather_tmplt <- function(code) {
   res <- purrr::map(code,
                     ~gather_tmplt_one(.x))
   res
+}
+
+process_template <- function(code, block_names) {
+  template_processed <- gather_tmplt(as.character.slimr_code(code)) %>%
+    purrr::transpose()
+
+  slimr_template_attr <- purrr::transpose(template_processed$input_info) %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate("block_name" := block_names) %>%
+    tidyr::unnest(c(var_names, defaults),
+                  keep_empty = TRUE) %>%
+    dplyr::mutate_at(c("var_names", "defaults"),
+                     ~purrr::map(.,
+                          ~ purrr::`%||%`(.x, NA))) %>%
+    dplyr::mutate_at(c("var_names"),
+                     ~vec_unchop(.))
+
+  new_code <- SLiMify_all(template_processed$new_code)
+
+  list(new_code, slimr_template_attr)
+}
+
+
+#' Render a SLiM script with special slimrlang formatting
+#'
+#' If your \code{slimr_script} object has made use of special \code{slimrlang}
+#' syntax such as \code{\link{slimr_template}}, \code{\link{slimr_input}},
+#' or \code{\link{slimr_output}}, this function will 'render' the \code{slimr_script}
+#' into valid SLiM syntax, ready to be run with SLiM or \code{\link[slimr]{slim_run_script}}
+#'
+#' @param slimr_script The \code{slimr_script} object to be rendered
+#' @param template A list or data.frame containing values for any templated variables. If a list,
+#' it must be named, where the names correspond to the variables. If a list of lists, the internal
+#' lists must be names with the variable names, and \code{slimr_script_render} will render a
+#' separate \code{slimr_script} for each top-level lsit element and return it as a \code{slimr_script_coll}
+#' object. If a \code{data.frame} (or \code{tibble}), then the column names should match the templated
+#' variables, and \code{slimr_script_render} will render a separate \code{slim_script} for each row
+#' and return it as a \code{slimr_script_coll} object.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+slimr_script_render <- function(slimr_script, template = NULL) {
+  list_length_1 <- FALSE
+  slimr_template_attr <- attr(slimr_script, "slimr_template")
+  if(any(!is.na(slimr_template_attr$var_names))) {
+    if(is.null(template)) {
+      stop("This slimr_script has templating.. You must provide a template argument, which can be a list, a data.frame, or an environment")
+    }
+    if(inherits(template, "list")) {
+      if(!inherits(template[[1]], "list")) {
+        list_length_1 <- TRUE
+        template <- list(template)
+      }
+      new_scripts <- purrr::map(template,
+                             ~replace_double_dots(slimr_script,
+                                                  .x))
+      if(list_length_1) {
+        new_scripts <- new_scripts[[1]]
+      }
+    }
+  }
+
+  if(!list_length_1) {
+    new_scripts <- new_slimr_script_coll(new_scripts)
+  }
+
+  new_scripts
+
+}
+
+replace_double_dots <- function(slimr_script, envir = parent.frame()) {
+  code_text <- as.character.slimr_code(code(slimr_script))
+  new_code <- purrr::map(code_text,
+                         ~glue::glue(.x,
+                                     .envir = envir,
+                                     .open = "..",
+                                     .close = "..") %>%
+                           stringr::str_split("\n") %>%
+                           unlist())
+
+  block_names <- field(slimr_script, "block_name")
+
+  c(new_code, slimr_template_attr) %<-% process_template(new_code, block_names)
+
+  new_code <- new_slimr_code(new_code)
+  slimr_script <- new_slimr_script(block_name = block_names,
+                                   block_id = field(slimr_script, "block_id"),
+                                   start_gen = field(slimr_script, "start_gen"),
+                                   end_gen = field(slimr_script, "end_gen"),
+                                   callback = field(slimr_script, "callback"),
+                                   code = new_code,
+                                   slimr_template = slimr_template_attr)
+  slimr_script
 }
