@@ -4,7 +4,7 @@
 \alias{slimr_script_render}
 \title{Render a SLiM script with special slimrlang formatting}
 \usage{
-slimr_script_render(slimr_script, template = NULL)
+slimr_script_render(slimr_script, template = NULL, replace_NAs = FALSE)
 }
 \arguments{
 \item{slimr_script}{The \code{slimr_script} object to be rendered}

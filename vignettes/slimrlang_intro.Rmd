@@ -228,3 +228,57 @@ multi_script <- slimr_script_render(script_temp,
 
 multi_script
 ```
+
+To save typing you can also just include `..x..` specifications in the SLiM code and this will be recognized as a templated variable. The disadvantage of this though is that you cannot specify a default value, which can be pretty handy. Default values are useful if, for example, you want to prototype a templated script, the default values can serve as "test" values that will be filled in automatically everytime you want to test the script. Another potential use is so that you only have to specify some of your variables in your call to `slimr_script_render`, in which case, anything you don't specify will take their default values. Additionally `slimr_script_render` has an argument that allows you to use the default values in the case of a missing value in the data you supply (such as in the data.frame style specification). Let's look at an example of both of these scenarios.
+
+```{r default_interp}
+script_partial <- slimr_script_render(script_temp,
+                                    template = list(
+                                        list(mut_rate = 1e-5),
+                                        list(genome_size = 2999)
+                                      ))
+
+script_partial
+```
+
+Warnings are generated to help prevent unexpected behaviour. For example if you simply mispelled one of the templated variable names in the template, this would be replaced by the default value. And without the above warnings you would never know that it happened. If you intended to specify all templated variables but you get this warning, check that the template you specified is correct! As we mentioned above, using a `data.frame` as a template is also possible. Here is an example.
+
+```{r data_frame_example_1}
+
+script_temp_df <- slimr_script_render(script_temp,
+                                      template = data.frame(
+                                        mut_rate = c(1e-5, NA, 1e-6, 1e-7),
+                                        genome_size = c(2000, 3000, NA, 5000)
+                                      )
+                                      )
+
+script_temp_df
+
+```
+
+So in this case the default settings are to not replace NAs, because in some cases NA may be a valid value you want to insert in a SLiM script (rarely). You can change this behaviour by setting `replace_NAs = TRUE`.
+
+```{r data_frame_example_2}
+
+script_temp_df2 <- slimr_script_render(script_temp,
+                                      template = data.frame(
+                                        mut_rate = c(1e-5, NA, 1e-6, 1e-7),
+                                        genome_size = c(2000, 3000, NA, 5000)
+                                      ),
+                                      replace_NAs = TRUE)
+
+script_temp_df2
+
+```
+
+Now all values have been replaced, either by their values in the `data.frame` or by their defaults in the case that the `data.frame` value was missing. This example also shows the default print maximum for `slimr_script_coll` objects is 3. To see the remaining `slimr_script` you can either use `print(script_temp_df2, max_show = 4)` or you can subset in the standard way, e.g:
+
+```{r subset}
+script_temp_df2[3:4]
+```
+
+If you want to check what the template settings for a `slimr_script` are, use `slimr_template_info()`.
+
+```{r template_info}
+slimr_template_info(script_temp)
+```
