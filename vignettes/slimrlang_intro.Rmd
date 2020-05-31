@@ -230,7 +230,7 @@ multi_script <- slimr_script_render(script_temp,
                                         list(mut_rate = 1e-5, genome_size = 1999),
                                         list(mut_rate = 1e-6, genome_size = 2999),
                                         list(mut_rate = 1e-7, genome_size = 3999)
-                                      ))
+                                    ))
 
 multi_script
 ```
