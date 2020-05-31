@@ -1,13 +1,16 @@
-slimr_template <- function(var_name, default = NULL) {
+slimr_template <- function(var_name, default = NULL, unquote_strings = FALSE) {
   .resources$temp_slimr_template$var_name <- c(.resources$temp_slimr_template$var_name,
                                                var_name)
   .resources$temp_slimr_template$default <- c(.resources$temp_slimr_template$default,
                                               default)
+  .resources$temp_slimr_template$unquote <- c(.resources$temp_slimr_template$unquote,
+                                              unquote_strings)
+  
   rlang::sym(paste0("..", var_name, ".."))
 }
 
-tmplt <- function(var_name, default = NULL) {
-  slimr_template(var_name, default)
+tmplt <- function(var_name, default = NULL, unquote_strings = FALSE) {
+  slimr_template(var_name, default, unquote_strings)
 }
 
 tmplt_replace <- function(code) {
@@ -21,9 +24,11 @@ tmplt_replace <- function(code) {
 gather_tmplt_one <- function(code_one) {
   .resources$temp_slimr_template$var_name <- list()
   .resources$temp_slimr_template$default <- list()
+  .resources$temp_slimr_template$unquote <- list()
   code_one <- tmplt_replace(code_one)
   input_info <- list(var_names = .resources$temp_slimr_template$var_name,
-                     defaults = .resources$temp_slimr_template$default)
+                     defaults = .resources$temp_slimr_template$default,
+                     unquote = .resources$temp_slimr_template$unquote)
   list(new_code = code_one, input_info = input_info)
 }
 
@@ -40,12 +45,12 @@ process_template <- function(code, block_names) {
   slimr_template_attr <- purrr::transpose(template_processed$input_info) %>%
     tibble::as_tibble() %>%
     dplyr::mutate("block_name" := block_names) %>%
-    tidyr::unnest(c(var_names, defaults),
+    tidyr::unnest(c(var_names, defaults, unquote),
                   keep_empty = TRUE) %>%
-    dplyr::mutate_at(c("var_names", "defaults"),
+    dplyr::mutate_at(c("var_names", "defaults", "unquote"),
                      ~purrr::map(.,
                                  ~ purrr::`%||%`(.x, NA))) %>%
-    dplyr::mutate_at(c("var_names"),
+    dplyr::mutate_at(c("var_names", "unquote"),
                      ~vec_unchop(.))
 
   new_code <- SLiMify_all(template_processed$new_code)
@@ -88,7 +93,17 @@ replace_double_dots <- function(slimr_script, envir = parent.frame(), slimr_temp
       warning("Warning: There are missing values in template and replace_NAs = FALSE, so the rendered script will have NA values\n")
     }
   }
+  
+  char_vars <- purrr::map_lgl(envir,
+                              ~inherits(.x, "character"))
 
+  if(any(char_vars)) {
+    unquote <- slimr_template_attr$unquote
+    names(unquote) <- slimr_template_attr$var_names
+    envir[names(unquote)[!unquote]] <- paste0("\"", envir[names(unquote)[!unquote]], "\"")
+  }
+  
+  
   code_text <- as.character.slimr_code(code(slimr_script))
   new_code <- purrr::map(code_text,
                          ~glue::glue(.x,

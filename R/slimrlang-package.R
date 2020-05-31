@@ -29,6 +29,7 @@ globalVariables(c(".G",
   .resources$temp_slimr_template <- list()
   .resources$temp_slimr_template$var_name <- list()
   .resources$temp_slimr_template$default <- list()
+  .resources$temp_slimr_template$unquote <- list()
   .resources$temp_slimr_input <- list()
   .resources$temp_slimr_output <- list()
 }
