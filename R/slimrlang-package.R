@@ -1,7 +1,3 @@
-## usethis namespace: start
-#' @importFrom tibble tibble
-## usethis namespace: end
-NULL
 
 .resources <- new.env()
 
