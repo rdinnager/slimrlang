@@ -5,7 +5,7 @@ slimr_template <- function(var_name, default = NULL, unquote_strings = FALSE) {
                                               default)
   .resources$temp_slimr_template$unquote <- c(.resources$temp_slimr_template$unquote,
                                               unquote_strings)
-  
+
   rlang::sym(paste0("..", var_name, ".."))
 }
 
@@ -43,7 +43,7 @@ process_template <- function(code, block_names) {
     purrr::transpose()
 
   slimr_template_attr <- purrr::transpose(template_processed$input_info) %>%
-    tibble::as_tibble() %>%
+    dplyr::as_tibble() %>%
     dplyr::mutate("block_name" := block_names) %>%
     tidyr::unnest(c(var_names, defaults, unquote),
                   keep_empty = TRUE) %>%
@@ -93,7 +93,7 @@ replace_double_dots <- function(slimr_script, envir = parent.frame(), slimr_temp
       warning("Warning: There are missing values in template and replace_NAs = FALSE, so the rendered script will have NA values\n")
     }
   }
-  
+
   char_vars <- purrr::map_lgl(envir,
                               ~inherits(.x, "character"))
 
@@ -102,8 +102,8 @@ replace_double_dots <- function(slimr_script, envir = parent.frame(), slimr_temp
     names(unquote) <- slimr_template_attr$var_names
     envir[names(unquote)[!unquote]] <- paste0("\"", envir[names(unquote)[!unquote]], "\"")
   }
-  
-  
+
+
   code_text <- as.character.slimr_code(code(slimr_script))
   new_code <- purrr::map(code_text,
                          ~glue::glue(.x,

@@ -20,17 +20,19 @@ Imports:
     purrr,
     magrittr,
     dplyr,
-    tibble,
     glue,
     rlang (>= 0.1.2),
     prettycode,
     vctrs,
     tidyr,
-    zeallot
+    zeallot,
+    utils
 Suggests: 
     roxygen2,
     knitr,
     rmarkdown,
     fansi,
-    printr
+    printr,
+    tibble,
+    unglue
 VignetteBuilder: knitr
