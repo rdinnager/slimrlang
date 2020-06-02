@@ -7,7 +7,7 @@ NULL
 
 #' @export
 new_slimr_code <- function(x = list()) {
-  x <- assert_valid_code(x)
+  assert_valid_code(x)
   new_list_of(x, ptype = character(), class = "slimr_code")
 }
 
@@ -63,7 +63,9 @@ new_slimr_script <- function(block_name = character(),
                              code = new_slimr_code(),
                              slimr_output = "none",
                              slimr_input = "none",
-                             slimr_template = "none") {
+                             slimr_template = "none",
+                             slimrlang_orig = "none",
+                             script_info = "none") {
 
   vec_assert(block_name, ptype = character())
   vec_assert(block_id, ptype = character())
@@ -81,6 +83,8 @@ new_slimr_script <- function(block_name = character(),
            slimr_output = slimr_output,
            slimr_input = slimr_input,
            slimr_template = slimr_template,
+           slimrlang_orig = slimrlang_orig,
+           script_info = script_info,
            class = "slimr_script")
 }
 
@@ -91,7 +95,7 @@ vec_ptype_abbr.slimr_script <- function(x, ...) "s-scrpt"
 
 #' @export
 as.character.slimr_script <- function(x, ...) {
-  code <- paste0(ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), " ")),
+  code <- paste0(ifelse(is.na(field(x, "block_id")), " ", paste0(field(x, "block_id"), " ")),
                  ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
                  ifelse(is.na(field(x, "end_gen")), "", ":"),
                  ifelse(is.na(field(x, "end_gen")), "", field(x, "end_gen")),
@@ -193,6 +197,45 @@ get_block <- function(x, i) {
 #' @export
 code <- function(x) {
   field(x, "code")
+}
+
+#' @export
+reconstruct <- function(x, ...) {
+  UseMethod("reconstruct", x)
+}
+
+#' Reconstruct slimrlang code to make this slimr_script
+#'
+#' This reconstructs a \code{slimrlang} input sequence to regenerate the given \script(slimr_script)
+#' object. This is useful if you want to edit the SLiM script to add additional functionality,
+#' for example, where you want to incorporate the results of \code{slimrlang}'s internal edits, e.g.
+#' such as removing \code{\link{%.%}} special operators, etc. It is also useful when the
+#' \code{slimr_script} object has been created from converting a text-based SLiM script, such as when
+#' using \code{\link[slimr]{as.slimr_script}} from the \code{slimr} package on a character variable.
+#'
+#' @param x slimr_script object to reconstruct
+#' @param ...
+#'
+#' @return A character vector of length one containing the reconstructed code.
+#' @export
+#'
+#' @examples
+reconstruct.slimr_script <- function(x, ...) {
+  code <- paste0("    slim_block(",
+                 ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), ", ")),
+                 ifelse(is.na(field(x, "start_gen")), "", paste0(field(x, "start_gen"), ", ")),
+                 ifelse(is.na(field(x, "end_gen")), "", ifelse(field(x, "end_gen") == "", ".., ",
+                                                               paste0(field(x, "end_gen"), ", "))),
+                 field(x, "callback"), ", ",
+                 " {\n    ",
+                 purrr::map_chr(field(x, "code"), ~paste(paste0("    ", .x),
+                                                         collapse = "\n    ")),
+                 "\n    })")
+  code <- paste0("slim_script(\n\n",
+                 paste(code, collapse = ",\n\n"),
+                 "\n)")
+
+  code
 }
 
 

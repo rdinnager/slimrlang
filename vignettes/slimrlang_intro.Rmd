@@ -148,7 +148,7 @@ help(".SS$addSubpop")
 
 There is also two special classes which are not actually classes in SLiM iteself, but they are used in `slimrlang` to keep particular types of SLiM function together. These are `Initialize` (or `.Init`) and `SLiMBuiltin` (or `.SB`). The `Initialize` object contains SLiM functions that can only be used in the `initialize()` block of SLiM code (more on this later). `SLiMBuiltin` contains miscellaneous functions built in to SLiM which are not part of any SLiM class. 
 
-Admittedly, using these extra R obhects in the code does make it look somewhat less elegant, and also makes it no longer directly valid SLiM code. But don't worry, `slimrlang` knows how to transform this syntax back into proper SLiM code, which you can see by printing out the resulting `slim_script` object.
+Admittedly, using these extra R objects in the code does make it look somewhat less elegant, and also makes it no longer directly valid SLiM code. But don't worry, `slimrlang` knows how to transform this syntax back into proper SLiM code, which you can see by printing out the resulting `slim_script` object.
 
 ```{r print_slim_again}
 slim_script(
@@ -289,6 +289,86 @@ If you want to check what the template settings for a `slimr_script` are, use `s
 slimr_template_info(script_temp)
 ```
 
+There is one additional argument to `slimr_template` that we haven't talked about yet, which is called `unquote_strings`. This option allows you to insert unquoted string values in a template. The default value, which is `FALSE`, means that `slimr_template` assumes that any variables of class "character" to be inserted are meant to be quoted in the SLiM script, so they will be treated as literal strings by SLiM. However, in some cases you may wish to use character values to insert references to SLiM objects themselves, in which case, they must be unquoted. As an example, perhaps you want to refer to different Subpopulations in a SLiM script dynamically using templating. To do this we can set `unquote_strings = TRUE`. As an example if we want to refer to a Subpopulation dynamically, and we don't use `unquote_strings = TRUE`:
+
+```{r unquote_strings}
+slim_script(
+  slim_block(initialize(),
+             {
+               ## set the overall mutation rate (default = 1e-7)
+               initializeMutationRate(1e-7); 
+               ## m1 mutation type: neutral
+               initializeMutationType("m1", 0.5, "f", 0.0);
+               ## g1 genomic element type: uses m1 for all mutations
+               initializeGenomicElementType("g1", m1, 1.0);
+               ## uniform chromosome of length "genome_size" (default = 99999)
+               initializeGenomicElement(g1, 0, 99999);
+               ## uniform recombination along the chromosome
+               initializeRecombinationRate(1e-8);
+             }),
+  slim_block(1,
+             {
+               sim.addSubpop("p1", 500);
+               sim.addSubpop("p2", 200);
+             }),
+  slim_block(1, .., late(), {
+               slimr_template("subpop", "p1")%.%.P$fitnessScaling = 0.5
+             }),
+  slim_block(10000,
+             {
+               sim.simulationFinished();
+             })
+) -> script_q
+
+script_uq
+
+```
+
+If we try and replace the Subpopulation now, we will get invalid SLiM code:
+
+```{r test_unquote_false}
+
+slimr_script_render(script_q, template = dplyr::tibble(subpop = c("p1", "p2")))
+
+```
+
+Since this is also invalid R code, we get a parsing error. Now, if we use `unquote_strings = TRUE`:
+
+```{r unquote_strings2}
+slim_script(
+  slim_block(initialize(),
+             {
+               ## set the overall mutation rate (default = 1e-7)
+               initializeMutationRate(1e-7); 
+               ## m1 mutation type: neutral
+               initializeMutationType("m1", 0.5, "f", 0.0);
+               ## g1 genomic element type: uses m1 for all mutations
+               initializeGenomicElementType("g1", m1, 1.0);
+               ## uniform chromosome of length "genome_size" (default = 99999)
+               initializeGenomicElement(g1, 0, 99999);
+               ## uniform recombination along the chromosome
+               initializeRecombinationRate(1e-8);
+             }),
+  slim_block(1,
+             {
+               sim.addSubpop("p1", 500);
+               sim.addSubpop("p2", 200);
+             }),
+  slim_block(1, .., late(), {
+               slimr_template("subpop", "p1", unquote_strings = TRUE)%.%.P$fitnessScaling = 0.5
+             }),
+  slim_block(10000,
+             {
+               sim.simulationFinished();
+             })
+) -> script_uq
+
+slimr_script_render(script_uq, template = dplyr::tibble(subpop = c("p1", "p2")))
+
+```
+
+Now we get two `slimr_script`s with correct SLiM syntax!
+
 #Generating R-friendly Output
 
 We can also use special `slimrlang` functions to make SLiM generate output that can easily be read back into R as data. This works best in conjunction with `slimr`, which can run SLiM and pull any output into R while it is running. To do this, use the `slimr_output` function inside the `slimrlang` code to wrap any parts of it you want outputted. `slimr_output` is context-aware; if you wrap a SLiM object, the object will be converted into a string (using SLiM's `paste` function) and then sent to the output stream; if you wrap a SLiM output function (such as `outputFull` or `outputVCF`), its output will be sent directly to the output stream without conversion (since it is already output strings). Let's try adding some output to our SLiM script.
@@ -327,3 +407,4 @@ slim_script(
 
 script_w_out
 ```
+

@@ -71,3 +71,8 @@ assert_valid_code <- function(code_txt) {
   }
   code_txt
 }
+
+slimr_code_detect_output <- function(code) {
+  any(stringr::str_detect(code,
+                          "(output|cat\\(|catn\\()"))
+}

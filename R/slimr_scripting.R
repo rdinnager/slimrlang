@@ -10,6 +10,8 @@
 slim_script <- function(...) {
   script_list <- list(...)
 
+  .call <- sys.call()
+
   n_row <- length(script_list)
 
   script <- script_list %>%
@@ -26,6 +28,9 @@ slim_script <- function(...) {
 
 
   suppressWarnings(end_gen <- max(as.numeric(c(script$start_gen, script$end_gen)), na.rm = TRUE))
+  if(is.infinite(end_gen)) {
+    end_gen <- ""
+  }
 
   script$end_gen <- purrr::map_chr(script$end_gen,
                               ~glue::glue(.x, .na = NULL) %>%
@@ -44,7 +49,9 @@ slim_script <- function(...) {
                              end_gen = script$end_gen,
                              callback = script$callback,
                              code = code,
-                             slimr_template = slimr_template_attr)
+                             slimr_template = slimr_template_attr,
+                             slimrlang_orig = .call,
+                             script_info = list(end_gen = end_gen))
 
   script
 }
@@ -81,7 +88,7 @@ slim_block <- function(...) {
     code <- code[2:(length(code) - 1L)]
   }
 
-  code <- SLiMify(code)
+  #code <- SLiMify(code)
 
   code <- new_slimr_code(list(code))
 
@@ -129,13 +136,13 @@ slim_block <- function(...) {
                       callback = args_eval[[4]],
                       code = code),
 
-      nunuca = list(block_id = "",
+      nunuca = list(block_id = NA_character_,
                     start_gen = as.character(args_eval[[1]]),
                     end_gen = as.character(args_eval[[2]]),
                     callback = args_eval[[3]],
                     code = code),
 
-      nunaca = list(block_id = "",
+      nunaca = list(block_id = NA_character_,
                     start_gen = as.character(args_eval[[1]]),
                     end_gen = "{end_gen}",
                     callback = args_eval[[3]],
@@ -159,13 +166,13 @@ slim_block <- function(...) {
                     callback = "early()",
                     code = code),
 
-      nunu = list(block_id = "",
+      nunu = list(block_id = NA_character_,
                   start_gen = as.character(args_eval[[1]]),
                   end_gen = as.character(args_eval[[2]]),
                   callback = callbacks$early(),
                   code = code),
 
-      nuna = list(block_id = "",
+      nuna = list(block_id = NA_character_,
                   start_gen = as.character(args_eval[[1]]),
                   end_gen = "{end_gen}",
                   callback = callbacks$early(),
@@ -183,7 +190,7 @@ slim_block <- function(...) {
                   callback = args_eval[[2]],
                   code = code),
 
-      nuca = list(block_id = "",
+      nuca = list(block_id = NA_character_,
                   start_gen = as.character(args_eval[[1]]),
                   end_gen = NA_character_,
                   callback = args_eval[[2]],
@@ -196,13 +203,13 @@ slim_block <- function(...) {
                 callback = callbacks$early(),
                 code = code),
 
-      nu = list(block_id = "",
+      nu = list(block_id = NA_character_,
                 start_gen = as.character(args_eval[[1]]),
                 end_gen = NA_character_,
                 callback = callbacks$early(),
                 code = code),
 
-      ca = list(block_id = "",
+      ca = list(block_id = NA_character_,
                 start_gen = "1",
                 end_gen = "{end_gen}",
                 callback = args_eval[[1]],

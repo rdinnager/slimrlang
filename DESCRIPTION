@@ -34,5 +34,7 @@ Suggests:
     fansi,
     printr,
     tibble,
-    unglue
+    unglue,
+    rstudioapi,
+    clipr
 VignetteBuilder: knitr

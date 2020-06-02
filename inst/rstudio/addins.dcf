@@ -1,0 +1,9 @@
+Name: Copy original code to clipboard
+Description: Take the selected slimr_script object and copy the code used to create it to the clipboard
+Binding: slimr_clip_original
+Interactive: false
+
+Name:Open original code in New Document
+Description: Take the selected slimr_script object and open the code used to create it in a New Document
+Binding: slimr_open_original
+Interactive: false
