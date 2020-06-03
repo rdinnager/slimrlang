@@ -12,7 +12,7 @@
 \item{...}{}
 }
 \value{
-A character vector containing the reconstructed code, each element is a line of code.
+A character vector of length one containing the reconstructed code.
 }
 \description{
 This reconstructs a \code{slimrlang} input sequence to regenerate the given \script(slimr_script)

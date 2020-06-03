@@ -320,7 +320,7 @@ slim_script(
              })
 ) -> script_q
 
-script_uq
+script_q
 
 ```
 
@@ -328,7 +328,7 @@ If we try and replace the Subpopulation now, we will get invalid SLiM code:
 
 ```{r test_unquote_false}
 
-slimr_script_render(script_q, template = dplyr::tibble(subpop = c("p1", "p2")))
+try(slimr_script_render(script_q, template = dplyr::tibble(subpop = c("p1", "p2"))))
 
 ```
 

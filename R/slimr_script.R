@@ -133,11 +133,14 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
 
     string <- format(x, add_block_names)
     if(add_block_names) {
-      string <- stringr::str_replace_all(string,
-                                         "(block_(.*?)\\:)\n",
-                                         glue::glue("<<crayon::bold$bgCyan('\\\\1')>>\n",
-                                                    .open = "<<",
-                                                    .close = ">>"))
+      if (!requireNamespace("crayon", quietly = TRUE)) {
+        string <- stringr::str_replace_all(string,
+                                           "(block_(.*?)\\:)\n",
+                                           glue::glue("<<crayon::bold$bgCyan('\\\\1')>>\n",
+                                                      .open = "<<",
+                                                      .close = ">>"))
+      }
+
     }
 
     code <- stringr::str_match_all(string,
@@ -154,9 +157,11 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
                                        stringr::regex("\\{\n((.*))\n\\}$", dotall = TRUE),
                                        prettify_code)
 
-    string <- stringr::str_replace_all(string,
-                                       "(\\.\\.[:word:]+\\.\\.)",
-                                       crayon::green)
+    if (!requireNamespace("crayon", quietly = TRUE)) {
+      string <- stringr::str_replace_all(string,
+                                         "(\\.\\.[:word:]+\\.\\.)",
+                                         crayon::green)
+    }
 
     string <- paste(string, collapse = "\n")
 
@@ -174,12 +179,21 @@ obj_print_footer.slimr_script <- function(x, ...) {
   if(any(!is.na(slimr_template_attr$var_names))) {
     blocks_w_template <- !is.na(slimr_template_attr$var_names)
 
-    template_text <- glue::glue("This slimr_script has templating in block(s)
-                                {crayon::bold$bgCyan(paste(unique(slimr_template_attr$block_name[blocks_w_template],
-                                collapse = ' and ')))} for variables
-                                {paste(crayon::green(slimr_template_attr$var_names[blocks_w_template]),
-                                collapse = ' and ')}.\n") %>%
+    if (!requireNamespace("crayon", quietly = TRUE)) {
+      template_text <- glue::glue("This slimr_script has templating in block(s)
+      {crayon::bold$bgCyan(paste(unique(slimr_template_attr$block_name[blocks_w_template],
+      collapse = ' and ')))} for variables
+      {paste(crayon::green(slimr_template_attr$var_names[blocks_w_template]),
+                                  collapse = ' and ')}.\n") %>%
       stringr::str_wrap()
+    } else {
+      template_text <- glue::glue("This slimr_script has templating in block(s)
+      {paste(unique(slimr_template_attr$block_name[blocks_w_template],
+      collapse = ' and '))} for variables
+      {paste(slimr_template_attr$var_names[blocks_w_template],
+                                  collapse = ' and ')}.\n") %>%
+        stringr::str_wrap()
+    }
   } else {
     template_text <- ""
   }
@@ -286,17 +300,32 @@ obj_print_data.slimr_script_coll <- function(x, add_block_names = TRUE, max_show
 
   }
 
-  string <- paste0(crayon::red(paste0("<", 1:length(x), ">")),
-                   "\n\n",
-                   string)
+  if (!requireNamespace("crayon", quietly = TRUE)) {
+    string <- paste0(crayon::red(paste0("<", 1:length(x), ">")),
+                     "\n\n",
+                     string)
+  } else {
+    string <- paste0(paste0("<", 1:length(x), ">"),
+                     "\n\n",
+                     string)
+  }
   string <- paste(string, collapse = "\n")
   if(max_exceeded) {
-    string <- paste0(string,
-                     "\n\n",
-                     crayon::red("<...>"),
-                     "\n\n",
-                     glue::glue("and {crayon::cyan(how_many_more)} more."),
-                     "\n")
+    if (!requireNamespace("crayon", quietly = TRUE)) {
+      string <- paste0(string,
+                       "\n\n",
+                       crayon::red("<...>"),
+                       "\n\n",
+                       glue::glue("and {crayon::cyan(how_many_more)} more."),
+                       "\n")
+    } else {
+      string <- paste0(string,
+                       "\n\n",
+                       "<...>",
+                       "\n\n",
+                       glue::glue("and {how_many_more} more."),
+                       "\n")
+    }
   }
   cat(string)
 }

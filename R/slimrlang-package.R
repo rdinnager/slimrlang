@@ -18,7 +18,7 @@ globalVariables(c(".G",
 )
 
 .onLoad <- function(libname, pkgname) {
-  data(slim_classes, package = pkgname,
+  utils::data(slim_classes, package = pkgname,
        envir = parent.env(environment()))
   .resources$classes_regex <- paste0("(", paste(c(slim_classes$class_name, slim_classes$class_abbr),
                                     collapse = "|"), ")")
