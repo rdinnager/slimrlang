@@ -10,3 +10,4 @@
 ^slim_man$
 ^doc$
 ^Meta$
+^codecov\.yml$

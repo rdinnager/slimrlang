@@ -46,7 +46,7 @@ process_template <- function(code, block_names) {
   slimr_template_attr <- purrr::transpose(template_processed$input_info) %>%
     dplyr::as_tibble() %>%
     dplyr::mutate("block_name" := block_names) %>%
-    tidyr::unnest(c(var_names, defaults, unquote),
+    tidyr::unnest(c("var_names", "defaults", "unquote"),
                   keep_empty = TRUE) %>%
     dplyr::mutate_at(c("var_names", "defaults", "unquote"),
                      ~purrr::map(.,

@@ -1,35 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# slimrlang
+slimrlang
+=========
 
 <!-- badges: start -->
+[![R build status](https://github.com/rdinnager/slimrlang/workflows/R-CMD-check/badge.svg)](https://github.com/rdinnager/slimrlang/actions) [![Codecov test coverage](https://codecov.io/gh/rdinnager/slimrlang/branch/master/graph/badge.svg)](https://codecov.io/gh/rdinnager/slimrlang?branch=master) <!-- badges: end -->
 
-[![R build
-status](https://github.com/rdinnager/slimrlang/workflows/R-CMD-check/badge.svg)](https://github.com/rdinnager/slimrlang/actions)
-<!-- badges: end -->
+The goal of slimrlang is to provide an environment in which you can write SLiM population genetics simulation scripts from R. It works particularly well with RStudio, but any R IDE can be used. For much more advanced functionality in running and processing SLiM simulations from R, see the [`slimr`](https://github.com/rdinnager/slimr) package which imports `slimrlang`.
 
-The goal of slimrlang is to provide an environment in which you can
-write SLiM population genetics simulation scripts from R. It works
-particularly well with RStudio, but any R IDE can be used. For much more
-advanced functionality in running and processing SLiM simulations from
-R, see the [`slimr`](https://github.com/rdinnager/slimr) package which
-imports `slimrlang`.
+Installation
+------------
 
-## Installation
-
-You can install the development version from
-[GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("rdinnager/slimrlang")
 ```
 
-## Example
+Example
+-------
 
-Using `slimrlang`, this is how you write the first example script (or
-recipe) from the (excellent) [SLiM](https://messerlab.org/slim/) manual:
+Using `slimrlang`, this is how you write the first example script (or recipe) from the (excellent) [SLiM](https://messerlab.org/slim/) manual:
 
 ``` r
 library(slimrlang)
@@ -59,29 +51,24 @@ slim_script(
 ) -> script_1
 
 script_1
-#> block_init   initialize() {
-#>      initializeMutationRate(1e-07);
-#>      initializeMutationType("m1", 0.5, "f", 0);
-#>      initializeGenomicElementType("g1", m1, 1);
-#>      initializeGenomicElement(g1, 0, 99999);
-#>      initializeRecombinationRate(1e-08);
+#> <slimr_script[3]>
+#> block_init:  initialize() {
+#>     initializeMutationRate(1e-07);
+#>     initializeMutationType("m1", 0.5, "f", 0);
+#>     initializeGenomicElementType("g1", m1, 1);
+#>     initializeGenomicElement(g1, 0, 99999);
+#>     initializeRecombinationRate(1e-08);
 #> }
 #> 
-#> block_2  1 early() {
-#>      sim.addSubpop("p1", 500);
+#> block_2: 1 early() {
+#>     sim.addSubpop("p1", 500);
 #> }
 #> 
-#> block_3  10000 early() {
-#>      sim.simulationFinished();
+#> block_3: 10000 early() {
+#>     sim.simulationFinished();
 #> }
 ```
 
-You can output this script to text to run in a standalone SLiM
-installation, or you can run it in SLiM directly from R using functions
-from the companion R package
-[`slimr`](https://github.com/rdinnager/slimr).
+You can output this script to text to run in a standalone SLiM installation, or you can run it in SLiM directly from R using functions from the companion R package [`slimr`](https://github.com/rdinnager/slimr).
 
-You can also do fancy stuff like make the above script or another script
-into a template that you can dynamically fill-in with parameters
-generated in R. You can also make SLiM generate R-friendly input. See
-the vignettes for details of these features and how to use them.
+You can also do fancy stuff like make the above script or another script into a template that you can dynamically fill-in with parameters generated in R. You can also make SLiM generate R-friendly input. See the vignettes for details of these features and how to use them.
