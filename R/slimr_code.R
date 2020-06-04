@@ -1,3 +1,4 @@
+
 SLiMify <- function(code) {
   code <- slimr_code_add_semicolons_one(code)
   code <- slimr_code_replace_dots_one(code)
@@ -6,6 +7,7 @@ SLiMify <- function(code) {
 
   code
 }
+
 
 SLiMify_all <- function(code) {
   code <- slimr_code_add_semicolons(code)

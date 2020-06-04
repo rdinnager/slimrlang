@@ -214,6 +214,44 @@ code <- function(x) {
 }
 
 #' @export
+as_slim_text <- function(x, ...) {
+  UseMethod("as_slim_text", x)
+}
+
+
+#' Convert a slimr_script to a length 1 character vector
+#'
+#' @param x \code{slimr_script} object to convert
+#' @param ... Further arguments, passed to or from other methods.
+#'
+#' @return A length 1 character vector
+#' @export
+#'
+#' @examples
+#' #'slim_script(
+#'    slim_block(initialize(),
+#'           {
+#'             initializeMutationRate(1e-7);
+#'             initializeMutationType("m1", 0.5, "f", 0.0);
+#'             initializeGenomicElementType("g1", m1, 1.0);
+#'             initializeGenomicElement(g1, 0, 99999);
+#'             initializeRecombinationRate(1e-8);
+#'           }),
+#'    slim_block(1,
+#'           {
+#'             sim.addSubpop("p1", 500);
+#'           }),
+#'    slim_block(10000,
+#'           {
+#'             sim.simulationFinished();
+#'           })
+#') -> script
+#'as_slim_text(script)
+as_slim_text.slimr_script <- function(x, ...) {
+  as.character(x, ...)
+}
+
+#' @export
 reconstruct <- function(x, ...) {
   UseMethod("reconstruct", x)
 }

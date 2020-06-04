@@ -11,7 +11,8 @@ slim_block(...)
 See details for more information on how to specify these arguments.}
 }
 \value{
-
+A slimr_block object. This is of little use outside a \code{\link{slim_script}}
+function call.
 }
 \description{
 Setup a SLiM code block

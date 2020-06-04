@@ -1,12 +1,35 @@
 #' Create a SLiMR script
 #'
-#' @param ... A list of \code{\link{slim_block}} objects comprising a SLiM script (written in slimr code)
+#' Setup a SLiMR script. Each argument should be a call to \code{\link{slim_block}}.
+#' See details for more information.
 #'
-#' @return A \code{slim_script} object that can be used with \code{slimr}'s \code{\link{slim_run_script}}
-#' or converted into a text file for use with SLiM directly using \code{\link{as.character}}.
+#' @param ... A list of \code{\link{slim_block}} objects comprising a SLiM script
+#' (written in slimr code)
+#'
+#' @return A \code{slim_script} object that can be used with \code{slimr}'s
+#' \code{\link[slimr]{slim_run_script}} or converted into a text file for use with
+#' SLiM directly using \code{\link{as.character}}.
 #' @export
 #'
 #' @examples
+#'slim_script(
+#'    slim_block(initialize(),
+#'           {
+#'             initializeMutationRate(1e-7);
+#'             initializeMutationType("m1", 0.5, "f", 0.0);
+#'             initializeGenomicElementType("g1", m1, 1.0);
+#'             initializeGenomicElement(g1, 0, 99999);
+#'             initializeRecombinationRate(1e-8);
+#'           }),
+#'    slim_block(1,
+#'           {
+#'             sim.addSubpop("p1", 500);
+#'           }),
+#'    slim_block(10000,
+#'           {
+#'             sim.simulationFinished();
+#'           })
+#')
 slim_script <- function(...) {
   script_list <- list(...)
 
@@ -61,7 +84,8 @@ slim_script <- function(...) {
 #' @param ... A list of arguments corresponding to elements in SLiM code blocks.
 #' See details for more information on how to specify these arguments.
 #'
-#' @return
+#' @return A slimr_block object. This is of little use outside a \code{\link{slim_script}}
+#' function call.
 #' @export
 #'
 #' @examples

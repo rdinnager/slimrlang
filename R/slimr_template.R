@@ -17,8 +17,9 @@ tmplt_replace <- function(code) {
   code <- stringr::str_replace_all(code, "slimr_template", "!!slimr_template")
   code <- stringr::str_replace_all(code, "stmplt", "!!stmplt")
   code_expr <- rlang::parse_exprs(paste(code, collapse = ""))
-  code <- purrr::map_chr(code_expr, ~rlang::expr_interp(.x) %>%
-                           rlang::expr_deparse())
+  code <- purrr::map(code_expr, ~rlang::expr_interp(.x) %>%
+                       rlang::expr_deparse()) %>%
+    purrr::flatten()
   code
 }
 

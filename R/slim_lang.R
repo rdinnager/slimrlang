@@ -7444,7 +7444,7 @@ nucleotidesToCodons <- function(sequence) {
 #'}
 #'This class has the following properties:
 #'\describe{
-#'\item{None. This class has no properties.}
+#'\item{None.}{This class has no properties.}
 #'}
 'Initialize'
 #'Chromosome
@@ -8353,7 +8353,7 @@ nucleotidesToCodons <- function(sequence) {
 #'}
 #'This class has the following properties:
 #'\describe{
-#'\item{None. This class has no properties.}
+#'\item{None.}{This class has no properties.}
 #'}
 'SLiMBuiltin'
 #'SLiMEidosBlock

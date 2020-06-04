@@ -390,7 +390,7 @@ class_table <- purrr::map(seq_len(nrow(all_class_data)),
 make_class_roxy <- function(class_table) {
   #print(class_table$class_name)
   if(is.null(class_table$properties_data[[1]])) {
-    property_list <- list("\\item{None. This class has no properties.}")
+    property_list <- list("\\item{None.}{This class has no properties.}")
   } else {
     property_list <- make_property_roxy(class_table$properties_data[[1]]) %>%
       paste(collapse = "")

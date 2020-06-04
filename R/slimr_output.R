@@ -5,13 +5,15 @@ slimr_output <- function(slimr_expr, name, do_every = NULL) {
                              ~rlang::expr_deparse(.x))
 
   if(slimr_code_detect_output(expr_txt)) {
-    new_code <- rlang::exprs(cat("<slimr_output:start>" + "\\n" + paste(sim.generation) + "\\n"),
+    new_code <- rlang::exprs(cat("<slimr_output:start>" + paste(sim.generation) + ',"' +
+                                   !!name + '","'),
                              !!slimr_expr,
-                             cat("\\n" + "<slimr_output:end>"))
+                             cat('"<slimr_output:end>'))
   } else {
-    new_code <- rlang::exprs(cat("<slimr_output:start>" + "\\n" + paste(sim.generation) + "\\n"),
-                             expr(paste(!!slimr_expr)),
-                             cat("\\n" + "<slimr_output:end>"))
+    new_code <- rlang::exprs(cat("<slimr_output:start>" + paste(sim.generation) + ',"' +
+                                   !!name + '","'),
+                             expr(catn(paste(!!slimr_expr))),
+                             cat('"<slimr_output:end>'))
   }
 
   new_code

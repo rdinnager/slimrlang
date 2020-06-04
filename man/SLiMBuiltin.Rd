@@ -27,7 +27,7 @@ This class has the following methods (functions):
 }
 This class has the following properties:
 \describe{
-\item{None. This class has no properties.}
+\item{None.}{This class has no properties.}
 }
 }
 \keyword{datasets}
