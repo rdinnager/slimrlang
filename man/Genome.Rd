@@ -42,7 +42,7 @@ This class has the following properties:
 initializeSLiMOptions(keepPedigrees=T), genomePedigreeID is a unique non-
 negative identifier for each genome in a simulation, never reused throughout
 the duration of the simulation run. Furthermore, the genomePedigreeID of a
-given genome will be equal to either (2\emph{pedigreeID) or (2}pedigreeID + 1) of the
+given genome will be equal to either (2*pedigreeID) or (2*pedigreeID + 1) of the
 individual that the genome belongs to (the former for the first genome of the
 individual, the latter for the second genome of the individual); this invariant
 relationship is guaranteed. This property is also available when treesequence

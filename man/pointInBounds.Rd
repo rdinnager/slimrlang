@@ -28,8 +28,8 @@ full SLiM script.
 Returns T if point is inside the spatial boundaries of the
 subpopulation, F otherwise. For example, for a simulation with "xy"
 dimensionality, if point contains exactly two values constituting an (x,y)
-point, the result will be T if and only if ((point\link{0}>=x0) & (point\link{0}<=x1) &
-(point\link{1}>=y0) & (point\link{1}<=y1)) given spatial bounds (x0, y0, x1, y1). This
+point, the result will be T if and only if ((point[0]>=x0) & (point[0]<=x1) &
+(point[1]>=y0) & (point[1]<=y1)) given spatial bounds (x0, y0, x1, y1). This
 method is useful for implementing absorbing or reprising boundary conditions.
 This may only be called in simulations for which continuous space has been
 enabled with initializeSLiMOptions(). The length of point must be an exact

@@ -50,7 +50,7 @@ full SLiM script.
 \details{
 Output a random sample from the subpopulation in MS format (see
 section 25.2.2 for output format details). Positions in the output will span
-the interval \link{0,1}. A sample of genomes (not entire individuals, note) of
+the interval [0,1]. A sample of genomes (not entire individuals, note) of
 size sampleSize from the subpopulation will be output. The sample may be done
 either with or without replacement, as specified by replace; the default is to
 sample with replacement. A particular sex of individuals may be requested for

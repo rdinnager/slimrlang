@@ -34,7 +34,7 @@ full SLiM script.
 }
 \details{
 Returns the amino acid sequence corresponding to the codon sequence
-in codons. Codons should be represented with values in \link{0, 63} where AAA is 0,
+in codons. Codons should be represented with values in [0, 63] where AAA is 0,
 AAC is 1, AAG is 2, and TTT is 63; see ancestralNucleotides() for discussion
 of this encoding. If long is F (the default), the standard single-letter
 codes for amino acids will be used (where Serine is "S", etc.); if long is T,
@@ -50,9 +50,9 @@ strand (i.e., the strand that is not transcribed, and which mirrors the mRNA’s
 sequence). This uses the standard DNA codon table directly. For example,
 if the nucleotide sequence is CAA TTC, that will correspond to a codon
 vector of 16 61, and will result in the amino acid sequence Gln-Phe ("QF").
-(is)codonsToNucleotides(integer codons, \link{string$ format = "string"}) Returns
+(is)codonsToNucleotides(integer codons, [string$ format = "string"]) Returns
 the nucleotide sequence corresponding to the codon sequence supplied in codons.
-Codons should be represented with values in \link{0, 63} where AAA is 0, AAC is
+Codons should be represented with values in [0, 63] where AAA is 0, AAC is
 1, AAG is 2, and TTT is 63; see ancestralNucleotides() for discussion of this
 encoding. The format parameter controls the format of the returned sequence. It
 may be "string" to obtain the sequence as a singleton string (e.g., "TATACG"),

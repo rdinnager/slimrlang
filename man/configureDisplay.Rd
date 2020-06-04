@@ -39,9 +39,9 @@ its arguments. When called by a model running in SLiMgui, the position,
 size, and color of the subpopulation’s displayed circle can be controlled as
 specified below. The center parameter sets the coordinates of the center of
 the subpopulation’s displayed circle; it must be a float vector of length two,
-such that center\link{0} provides the x-coordinate and center\link{1} provides the y-
+such that center[0] provides the x-coordinate and center[1] provides the y-
 coordinate. The square central area of the Population Visualization occupies
-scaled coordinates in \link{0,1} for both x and y, so the values in center must
+scaled coordinates in [0,1] for both x and y, so the values in center must
 be within those bounds. If a value of NULL is provided, SLiMgui’s default
 center will be used (which currently arranges subpopulations in a circle).
 The scale parameter sets a scaling factor to be applied to the radius of the

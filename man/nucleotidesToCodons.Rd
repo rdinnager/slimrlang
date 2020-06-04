@@ -45,8 +45,8 @@ format is not driven by other considerations, such as ease of manipulation,
 then the singleton string format will certainly be the most memory-efficient for
 long sequences, and will probably also be the fastest. The nucleotide sequence
 provided must be a multiple of three in length, so that it translates to an
-integral number of codons. (is)randomNucleotides(integer$ length, \link[=Nif basis =
-NULL]{Nif basis = NULL}, \link{string$ format = "string"}) Generates a new random nucleotide sequence
+integral number of codons. (is)randomNucleotides(integer$ length, [Nif basis =
+NULL], [string$ format = "string"]) Generates a new random nucleotide sequence
 with length bases. The four nucleotides ACGT are equally probable if basis
 is NULL (the default); otherwise, basis may be a 4-element integer or float
 vector providing relative fractions for A, C, G, and T respectively (these need

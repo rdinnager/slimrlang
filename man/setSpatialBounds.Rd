@@ -35,7 +35,7 @@ y0, x1, y1) values; and for dimensionality "xyz" it should supply (x0, y0,
 z0, x1, y1, z1) (in that order). These boundaries will be used by SLiMgui to
 calibrate the display of the subpopulation, and will be used by methods such
 as pointInBounds(), pointReflected(), pointStopped(), and pointUniform(). The
-default spatial boundaries for all subpopulations span the interval \link{0,1} in
+default spatial boundaries for all subpopulations span the interval [0,1] in
 each dimension. Spatial dimensions that are periodic (as established with the
 periodicity parameter to initializeSLiMOptions()) must have a minimum coordinate
 value of 0.0 (a restriction that allows the handling of periodicity to be

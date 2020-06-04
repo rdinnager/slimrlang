@@ -88,8 +88,8 @@ matrix, as supplied by the t() function. Actually, since matrices are printed in
 the console with each successive row having a larger index, whereas in Cartesian
 (x, y) coordinates yvalues increase as you go upward, you may also wish to
 reverse the order of rows in your matrix prior to transposing (or the order
-of columns after transposing), with an expression such as t(map\link[=(nrow(map)-1):
-0,]{(nrow(map)-1): 0,}), in order to make the spatial map display in SLiMgui as you expect (since
+of columns after transposing), with an expression such as t(map[(nrow(map)-1):
+0,]), in order to make the spatial map display in SLiMgui as you expect (since
 SLiMgui displays everything in Cartesian coordinates). Apologies if this is
 confusing; it would be nice if matrix notation, programming languages, and
 Descartes all agreed on such things, but they do not, so be very careful that
@@ -116,8 +116,8 @@ valueRange parameter establishes the color-mapped range of spatial map values,
 as a vector of length two specifying a minimum and maximum; this does not
 need to match the actual range of values in the map. The colors parameter then
 establishes the corresponding colors for values within the interval defined by
-valueRange: values less than or equal to valueRange\link{0} will map to colors\link{0},
-values greater than or equal to valueRange\link{1} will map to the last colors value,
+valueRange: values less than or equal to valueRange[0] will map to colors[0],
+values greater than or equal to valueRange[1] will map to the last colors value,
 and intermediate values will shade continuously through the specified vector
 of colors, with interpolation between adjacent colors to produce a continuous
 spectrum. This is much simpler than it sounds in this description; see the

@@ -41,7 +41,7 @@ more straightforward to use. If the optional parameter filePath is NULL (the
 default), output is directed to SLiM’s standard output. Otherwise, the output
 is sent to the file specified by filePath, overwriting that file if append if F,
 or appending to the end of it if append is T. Positions in the output will span
-the interval \link{0,1}. If filterMonomorphic is F (the default), all mutations that
+the interval [0,1]. If filterMonomorphic is F (the default), all mutations that
 are present in the sample will be included in the output. This means that some
 mutations may be included that are actually monomorphic within the sample (i.e.,
 that exist in every sampled genome, and are thus apparently fixed). These may be

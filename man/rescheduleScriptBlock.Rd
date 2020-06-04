@@ -60,7 +60,7 @@ every tenth generation over the whole duration of a long model run, for example,
 it would not be advisable to use a call like sim.rescheduleScriptBlock(s1,
 generations=seq(10, 100000, 10)) for that purpose, since that would result in
 thousands of duplicate script blocks. Instead, it would be preferable to add
-a test such as if (sim.generation \% 10 != 0) return; at the beginning of the
+a test such as if (sim.generation % 10 != 0) return; at the beginning of the
 event. It is legal to reschedule a script block while the block is executing; a
 call like sim.rescheduleScriptBlock(self, sim.generation + 10, sim.generation +
 10); made inside a given block would therefore also cause the block to execute

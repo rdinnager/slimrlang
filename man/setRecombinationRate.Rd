@@ -32,7 +32,7 @@ full SLiM script.
 }
 \details{
 Set the recombination rate per base position per generation along the
-chromosome. All rates must be in the interval \link{0.0, 0.5}. There are two ways
+chromosome. All rates must be in the interval [0.0, 0.5]. There are two ways
 to call this method. If the optional ends parameter is NULL (the default), then
 rates must be a singleton value that specifies a single recombination rate to
 be used along the entire chromosome. If, on the other hand, ends is supplied,
@@ -43,7 +43,7 @@ of the chromosome, from beginning to end; the last position specified in ends
 should extend to the end of the chromosome (as previously determined, during
 simulation initialization). See the initializeRecombinationRate() function for
 further discussion of precisely how these rates and positions are interpreted.
-If the optional sex parameter is "\emph{" (the default), then the supplied
+If the optional sex parameter is "*" (the default), then the supplied
 recombination rate map will be used for both sexes (which is the only option
 for hermaphroditic simulations). In sexual simulations sex may be "M" or "F"
 instead, in which case the supplied recombination map is used only for that sex.
@@ -51,7 +51,7 @@ Note that whether sex-specific recombination maps will be used is set by the way
 that the simulation is initially configured with initializeRecombinationRate(),
 and cannot be changed with this method; so if the simulation was set up to use
 sex-specific recombination maps then sex must be "M" or "F" here, whereas if
-it was set up not to, then sex must be "}" or unsupplied here. If a simulation
+it was set up not to, then sex must be "*" or unsupplied here. If a simulation
 needs sex-specific recombination maps only some of the time, the male and female
 maps can simply be set to be identical the rest of the time. The recombination
 intervals are normally a constant in simulations, so be sure you know what you

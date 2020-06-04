@@ -42,7 +42,7 @@ contiguous stretches of the chromosome, from beginning to end; the last position
 specified in ends should extend to the end of the chromosome (as previously
 determined, during simulation initialization). See the initializeMutationRate()
 function for further discussion of precisely how these rates and positions
-are interpreted. If the optional sex parameter is "\emph{" (the default), then the
+are interpreted. If the optional sex parameter is "*" (the default), then the
 supplied mutation rate map will be used for both sexes (which is the only option
 for hermaphroditic simulations). In sexual simulations sex may be "M" or "F"
 instead, in which case the supplied mutation rate map is used only for that sex.
@@ -50,7 +50,7 @@ Note that whether sex-specific mutation rate maps will be used is set by the
 way that the simulation is initially configured with initializeMutationRate(),
 and cannot be changed with this method; so if the simulation was set up to use
 sex-specific mutation rate maps then sex must be "M" or "F" here, whereas if
-it was set up not to, then sex must be "}" or unsupplied here. If a simulation
+it was set up not to, then sex must be "*" or unsupplied here. If a simulation
 needs sexspecific mutation rate maps only some of the time, the male and female
 maps can simply be set to be identical the rest of the time. The mutation rate
 intervals are normally a constant in simulations, so be sure you know what you

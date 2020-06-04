@@ -92,14 +92,14 @@ a spatial interaction type is defined with no maximum distance to encourage
 a maximum distance to be defined. The sexSegregation parameter governs the
 applicability of the interaction to each sex, in sexual simulations. It does
 not affect distance calculations in any way; it only modifies the way in which
-interaction strengths are calculated. The default, "\strong{", implies that the
+interaction strengths are calculated. The default, "**", implies that the
 interaction is felt by both sexes (the first character of the string value) and
 is exerted by both sexes (the second character of the string value). Either or
 both characters may be M or F instead; for example, "MM" would indicate a male-
 male interaction, such as male-male competition, whereas "FM" would indicate an
 interaction influencing only females that is influenced only by males, such as
 male mating displays that influence female attraction. This parameter may be set
-only to "}" unless sex has been enabled with initializeSex(). Note that a value
+only to "**" unless sex has been enabled with initializeSex(). Note that a value
 of sexSegregation other than "**" may imply some degree of non-reciprocality,
 but it is not necessary to specify reciprocal to be F for this reason; SLiM will
 take the sex-segregation of the interaction into account for you. The value of

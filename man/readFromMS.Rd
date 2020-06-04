@@ -36,7 +36,7 @@ a given subpopulation pN, simply call pN.genomes.readFromMS(), assuming the
 subpopulation’s size matches that of the MS file. A vector containing all of the
 mutations created by readFromMS() is returned. Each mutation is created at the
 position specified in the file, using the mutation type given by mutationType.
-Positions are expected to be in \link{0,1}, and are scaled to the length of the
+Positions are expected to be in [0,1], and are scaled to the length of the
 chromosome by multiplying by the last valid base position of the chromosome
 (i.e., one less than the chromosome length). Selection coefficients are drawn
 from the mutation type. The population of origin for each mutation is set

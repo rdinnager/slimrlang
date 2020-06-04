@@ -35,7 +35,7 @@ Set the recombination rate per base position per generation along the
 chromosome. To be precise, this recombination rate is the probability that a
 breakpoint will occur between one base and the next base; note that this is
 different from how the mutation rate is defined (see initializeMutationRate()).
-All rates must be in the interval \link{0.0, 0.5}. A rate of 0.5 implies complete
+All rates must be in the interval [0.0, 0.5]. A rate of 0.5 implies complete
 independence between the adjacent bases, which might be used to implement
 independent assortment of loci located on different chromosomes (see the
 example below). Whether a breakpoint occurs between two bases is then, in
@@ -48,7 +48,7 @@ one crossover between one base and the next (in one generation/genome), and
 a supplied rate of 0.5 will therefore result in an actual probability of 0.5
 for a crossover at the relevant position. (Note that this was not true in SLiM
 2.x and earlier, however; their implementation of recombination resulted in a
-crossover probability of about 39.3\% for a rate of 0.5, due to the use of an
+crossover probability of about 39.3% for a rate of 0.5, due to the use of an
 inaccurate approximation method. Recombination rates lower than about 0.01 would
 have been essentially exact, since the approximation error became large only
 as the rate approached 0.5.) There are two ways to call this function. If the

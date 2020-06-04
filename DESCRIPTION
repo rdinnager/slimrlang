@@ -11,7 +11,6 @@ Description: An R package that lets you write SLiM scripts using your favourite 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
     R (>= 2.10)
