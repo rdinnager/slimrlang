@@ -36,5 +36,7 @@ Suggests:
     unglue,
     rstudioapi,
     clipr,
-    crayon
+    crayon,
+    testthat,
+    covr
 VignetteBuilder: knitr

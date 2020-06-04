@@ -7,7 +7,8 @@
 slim_block(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{A list of arguments corresponding to elements in SLiM code blocks.
+See details for more information on how to specify these arguments.}
 }
 \value{
 

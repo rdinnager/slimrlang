@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{slimr_script object to reconstruct}
 
-\item{...}{}
+\item{...}{Further arguments, passed to or from other methods.}
 }
 \value{
 A character vector of length one containing the reconstructed code.

@@ -133,7 +133,7 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
 
     string <- format(x, add_block_names)
     if(add_block_names) {
-      if (!requireNamespace("crayon", quietly = TRUE)) {
+      if (requireNamespace("crayon", quietly = TRUE)) {
         string <- stringr::str_replace_all(string,
                                            "(block_(.*?)\\:)\n",
                                            glue::glue("<<crayon::bold$bgCyan('\\\\1')>>\n",
@@ -157,7 +157,7 @@ obj_print_data.slimr_script <- function(x, add_block_names = TRUE, suppress_cat 
                                        stringr::regex("\\{\n((.*))\n\\}$", dotall = TRUE),
                                        prettify_code)
 
-    if (!requireNamespace("crayon", quietly = TRUE)) {
+    if (requireNamespace("crayon", quietly = TRUE)) {
       string <- stringr::str_replace_all(string,
                                          "(\\.\\.[:word:]+\\.\\.)",
                                          crayon::green)
@@ -179,7 +179,7 @@ obj_print_footer.slimr_script <- function(x, ...) {
   if(any(!is.na(slimr_template_attr$var_names))) {
     blocks_w_template <- !is.na(slimr_template_attr$var_names)
 
-    if (!requireNamespace("crayon", quietly = TRUE)) {
+    if (requireNamespace("crayon", quietly = TRUE)) {
       template_text <- glue::glue("This slimr_script has templating in block(s)
       {crayon::bold$bgCyan(paste(unique(slimr_template_attr$block_name[blocks_w_template],
       collapse = ' and ')))} for variables
@@ -228,7 +228,7 @@ reconstruct <- function(x, ...) {
 #' using \code{\link[slimr]{as.slimr_script}} from the \code{slimr} package on a character variable.
 #'
 #' @param x slimr_script object to reconstruct
-#' @param ...
+#' @param ... Further arguments, passed to or from other methods.
 #'
 #' @return A character vector of length one containing the reconstructed code.
 #' @export

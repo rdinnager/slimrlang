@@ -58,7 +58,8 @@ slim_script <- function(...) {
 
 #' Setup a SLiM code block
 #'
-#' @param ...
+#' @param ... A list of arguments corresponding to elements in SLiM code blocks.
+#' See details for more information on how to specify these arguments.
 #'
 #' @return
 #' @export
@@ -132,7 +133,7 @@ slim_block <- function(...) {
 
       chnunaca = list(block_id = args_eval[[1]],
                       start_gen = as.character(args_eval[[2]]),
-                      end_gen = {end_gen},
+                      end_gen = "{end_gen}",
                       callback = args_eval[[4]],
                       code = code),
 
@@ -334,6 +335,7 @@ slim_block <- function(...) {
 #' object. If a \code{data.frame} (or \code{tibble}), then the column names should match the templated
 #' variables, and \code{slimr_script_render} will render a separate \code{slim_script} for each row
 #' and return it as a \code{slimr_script_coll} object.
+#' @param replace_NAs Should \code{NA} values in the template be replaced by their default values?
 #'
 #' @return
 #' @export

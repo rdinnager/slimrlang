@@ -14,7 +14,9 @@ globalVariables(c(".G",
                    ".SS",
                    ".c",
                   ".Init",
-                  ".x")
+                  ".x",
+                  "slimr_template_attr",
+                  "sim.generation")
 )
 
 .onLoad <- function(libname, pkgname) {

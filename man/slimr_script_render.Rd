@@ -16,6 +16,8 @@ separate \code{slimr_script} for each top-level lsit element and return it as a 
 object. If a \code{data.frame} (or \code{tibble}), then the column names should match the templated
 variables, and \code{slimr_script_render} will render a separate \code{slim_script} for each row
 and return it as a \code{slimr_script_coll} object.}
+
+\item{replace_NAs}{Should \code{NA} values in the template be replaced by their default values?}
 }
 \value{
 

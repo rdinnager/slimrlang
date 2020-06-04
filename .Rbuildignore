@@ -10,3 +10,5 @@
 ^slim_man$
 ^doc$
 ^Meta$
+^codecov\.yml$
+^\.travis\.yml$
