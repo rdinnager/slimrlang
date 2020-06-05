@@ -61,10 +61,25 @@ slim_script <- function(...) {
 
   code <- vec_unchop(script$code)
 
+
   ## process for template
   c(code, slimr_template_attr) %<-% process_template(code, block_names)
 
   code <- new_slimr_code(code)
+
+  ## process for output
+
+  c(code, slimr_output_attr) %<-% process_output(code, block_names)
+
+  code <- purrr::map(code,
+                     ~unlist(.x))
+
+  code <- SLiMify_all(code)
+
+
+  code <- new_slimr_code(code)
+
+
 
   script <- new_slimr_script(block_name = block_names,
                              block_id = script$block_id,
@@ -72,6 +87,7 @@ slim_script <- function(...) {
                              end_gen = script$end_gen,
                              callback = script$callback,
                              code = code,
+                             slimr_output = slimr_output_attr,
                              slimr_template = slimr_template_attr,
                              slimrlang_orig = .call,
                              script_info = list(end_gen = end_gen))

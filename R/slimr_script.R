@@ -29,7 +29,7 @@ format.slimr_code <- function(x, ...) {
     if (length(x) == 0) {
       return(prettycode::highlight("{}"))
     } else {
-      prettycode::highlight(paste0("{", paste(stringr::str_trim(x), collapse = " "), "}"))
+      prettycode::highlight(paste0("{", paste(stringr::str_trim(x), collapse = "; "), "}"))
     }
   }
   purrr::map_chr(x,

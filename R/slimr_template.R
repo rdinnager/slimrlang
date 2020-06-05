@@ -17,9 +17,15 @@ tmplt_replace <- function(code) {
   code <- stringr::str_replace_all(code, "slimr_template", "!!slimr_template")
   code <- stringr::str_replace_all(code, "stmplt", "!!stmplt")
   code_expr <- rlang::parse_exprs(paste(code, collapse = ""))
+
   code <- purrr::map(code_expr, ~rlang::expr_interp(.x) %>%
-                       rlang::expr_deparse()) %>%
-    purrr::flatten()
+                       rlang::expr_deparse())
+
+  if(any(purrr::map_lgl(code, ~inherits(.x, "list")))) {
+    code <- code %>%
+      purrr::flatten()
+  }
+
   code
 }
 
@@ -37,11 +43,13 @@ gather_tmplt_one <- function(code_one) {
 gather_tmplt <- function(code) {
   res <- purrr::map(code,
                     ~gather_tmplt_one(.x))
+
   res
 }
 
 process_template <- function(code, block_names) {
-  template_processed <- gather_tmplt(as.character.slimr_code(code)) %>%
+
+  template_processed <- gather_tmplt(as.character(code)) %>%
     purrr::transpose()
 
   slimr_template_attr <- purrr::transpose(template_processed$input_info) %>%
@@ -55,7 +63,9 @@ process_template <- function(code, block_names) {
     dplyr::mutate_at(c("var_names", "unquote"),
                      ~vec_unchop(.))
 
-  new_code <- SLiMify_all(template_processed$new_code)
+  #new_code <- SLiMify_all(template_processed$new_code)
+  new_code <- purrr::map(template_processed$new_code,
+                         ~unlist(.x))
 
   list(new_code, slimr_template_attr)
 }
@@ -117,7 +127,13 @@ replace_double_dots <- function(slimr_script, envir = parent.frame(), slimr_temp
 
   block_names <- field(slimr_script, "block_name")
 
+  new_code <- new_slimr_code(new_code)
+
   c(new_code, slimr_template_attr) %<-% process_template(new_code, block_names)
+
+
+  new_code <- purrr::map(new_code,
+                         ~unlist(.x))
 
   new_code <- new_slimr_code(new_code)
   slimr_script <- new_slimr_script(block_name = block_names,
@@ -126,7 +142,10 @@ replace_double_dots <- function(slimr_script, envir = parent.frame(), slimr_temp
                                    end_gen = field(slimr_script, "end_gen"),
                                    callback = field(slimr_script, "callback"),
                                    code = new_code,
-                                   slimr_template = slimr_template_attr)
+                                   slimr_template = slimr_template_attr,
+                                   slimr_output = attr(slimr_script, "slimr_output"),
+                                   slimrlang_orig = attr(slimr_script, "slimrlang_orig"),
+                                   script_info = attr(slimr_script, "script_info"))
   slimr_script
 }
 

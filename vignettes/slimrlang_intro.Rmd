@@ -396,7 +396,7 @@ slim_script(
   slim_block(1, .., late(), 
              {
                ## output sample of 10 individuals' genomes in VCF format
-               slimr_output(p1%.%.P$outputVCFSample(sampleSize = 10));
+               slimr_output(p1%.%.P$outputVCFSample(sampleSize = 10), name = "VCF");
                
               }),
   slim_block(10000,
