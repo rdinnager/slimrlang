@@ -18,7 +18,7 @@ A length 1 character vector
 Convert a slimr_script to a length 1 character vector
 }
 \examples{
-#'slim_script(
+slim_script(
    slim_block(initialize(),
           {
             initializeMutationRate(1e-7);

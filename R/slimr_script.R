@@ -228,7 +228,7 @@ as_slim_text <- function(x, ...) {
 #' @export
 #'
 #' @examples
-#' #'slim_script(
+#' slim_script(
 #'    slim_block(initialize(),
 #'           {
 #'             initializeMutationRate(1e-7);
