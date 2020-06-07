@@ -33,6 +33,13 @@
 slim_script <- function(...) {
   script_list <- list(...)
 
+  classes <- purrr::map_lgl(script_list,
+                                 ~inherits(.x, "slimr_block"))
+
+  if(!any(classes)) {
+    stop("slim_script only accepts arguments that are slim_block function calls or their results.")
+  }
+
   .call <- sys.call()
 
   n_row <- length(script_list)
@@ -48,6 +55,12 @@ slim_script <- function(...) {
   block_names = ifelse(script$callback == "initialize()",
                        "block_init",
                        block_names)
+
+  if(!"block_init" %in% block_names) {
+    warning("The arguments do not include an initialize block (use an initialize()
+            callback to create one) and so the resulting script will not be a valid SLiM
+            script. You can add an initialize block later through concatenation (using c())")
+  }
 
 
   suppressWarnings(end_gen <- max(as.numeric(c(script$start_gen, script$end_gen)), na.rm = TRUE))
@@ -105,6 +118,7 @@ slim_script <- function(...) {
 #' @export
 #'
 #' @examples
+#' slim_script(slim_block({print("Hello World!")}))
 slim_block <- function(...) {
 
   args <- eval(substitute(alist(...)))
@@ -281,6 +295,8 @@ slim_block <- function(...) {
     block_row$start_gen <- NA_character_
     block_row$end_gen <- NA_character_
   }
+
+  class(block_row) <- "slimr_block"
 
   block_row
 

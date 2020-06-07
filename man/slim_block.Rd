@@ -17,3 +17,6 @@ function call.
 \description{
 Setup a SLiM code block
 }
+\examples{
+slim_script(slim_block({print("Hello World!")}))
+}

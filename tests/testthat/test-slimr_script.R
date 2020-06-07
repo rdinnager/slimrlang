@@ -2,7 +2,7 @@ slim_script(
   slim_block(initialize(),
              {
                ## set the overall mutation rate
-               initializeMutationRate(1e-7); 
+               initializeMutationRate(1e-7);
                ## m1 mutation type: neutral
                initializeMutationType("m1", 0.5, "f", 0.0);
                ## g1 genomic element type: uses m1 for all mutations
@@ -25,5 +25,10 @@ slim_script(
 test_that("slimr_script output is correct", {
   verify_output(test_path("slimr_script_output_test.txt"),
                 script_1)
-  
+
+  skip_if_not_installed("crayon")
+  verify_output(test_path("slimr_script_output_test_ansi.txt"),
+                script_1,
+                crayon = TRUE)
+
 })
