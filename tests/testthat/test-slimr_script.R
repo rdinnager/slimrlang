@@ -34,13 +34,29 @@ test_that("slimr_script output is correct", {
 })
 
 test_that("slimr_script objects concatenate correctly", {
-  test_script_1 <- slim_script(slim_block(1,
+  suppressWarnings(test_script_1 <- slim_script(slim_block(1,
                              {
                                sim.addSubpop("p1", 500);
-                             }))
+                             })))
 
-  test_script_2 <-  slim_script(slim_block(10000,
+  suppressWarnings(test_script_2 <-  slim_script(slim_block(10000,
                               {
                                 sim.simulationFinished();
-                              }))
+                              })))
+
+  test_script_1_2 <- vctrs::vec_c(test_script_1, test_script_2)
+  test_script_2_1 <- vctrs::vec_c(test_script_2, test_script_1)
+
+  expect_s3_class(test_script_1_2, "slimr_script")
+  expect_s3_class(test_script_2_1, "slimr_script")
+})
+
+test_that("incompatable types throw error", {
+  suppressWarnings(test_script_1 <- slim_script(slim_block(1,
+                                                           {
+                                                             sim.addSubpop("p1", 500);
+                                                           })))
+
+  expect_error(vec_c(test_script_1, "a"), class = "vctrs_error_incompatible_type")
+  expect_error(vec_c(test_script_1, 1), class = "vctrs_error_incompatible_type")
 })

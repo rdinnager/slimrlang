@@ -61,11 +61,11 @@ new_slimr_script <- function(block_name = character(),
                              end_gen = character(),
                              callback = character(),
                              code = new_slimr_code(),
-                             slimr_output = "none",
-                             slimr_input = "none",
-                             slimr_template = "none",
-                             slimrlang_orig = "none",
-                             script_info = "none") {
+                             slimr_output = NULL,
+                             slimr_input = NULL,
+                             slimr_template = NULL,
+                             slimrlang_orig = NULL,
+                             script_info = NULL) {
 
   vec_assert(block_name, ptype = character())
   vec_assert(block_id, ptype = character())
@@ -92,6 +92,65 @@ new_slimr_script <- function(block_name = character(),
 vec_ptype_full.slimr_script <- function(x, ...) "slimr_script"
 #' @export
 vec_ptype_abbr.slimr_script <- function(x, ...) "s-scrpt"
+#' @export
+vec_ptype2.slimr_script.slimr_script <- function(x, y, ...) {
+  slimr_output <- dplyr::bind_rows(attr(x, "slimr_output"),
+                                   attr(y, "slimr_output"))
+
+  slimr_input <- dplyr::bind_rows(attr(x, "slimr_input"),
+                                  attr(y, "slimr_input"))
+
+  slimr_template <- dplyr::bind_rows(attr(x, "slimr_template"),
+                                     attr(y, "slimr_template"))
+
+  slimrlang_orig <- NULL
+
+  script_info <- list()
+  script_info$end_gen <- max(as.numeric(attr(x, "script_info")$end_gen),
+                             as.numeric(attr(y, "script_info")$end_gen))
+
+  new_slimr_script(block_name = field(x, "block_name"),
+                   block_id = field(x, "block_id"),
+                   start_gen = field(x, "start_gen"),
+                   end_gen = field(x, "end_gen"),
+                   callback = field(x, "callback"),
+                   code = field(x, "code"),
+                   slimr_output = slimr_output,
+                   slimr_input = slimr_input,
+                   slimr_template = slimr_template,
+                   slimrlang_orig = slimrlang_orig,
+                   script_info = script_info)
+}
+
+#' @export
+vec_cast.slimr_script.slimr_script <- function(x, to, ...) {
+  slimr_output <- dplyr::bind_rows(attr(x, "slimr_output"),
+                                   attr(to, "slimr_output"))
+
+  slimr_input <- dplyr::bind_rows(attr(x, "slimr_input"),
+                                  attr(to, "slimr_input"))
+
+  slimr_template <- dplyr::bind_rows(attr(x, "slimr_template"),
+                                  attr(to, "slimr_template"))
+
+  slimrlang_orig <- NULL
+
+  script_info <- list()
+  script_info$end_gen <- max(as.numeric(attr(x, "script_info")$end_gen),
+                             as.numeric(attr(to, "script_info")$end_gen))
+
+  new_slimr_script(block_name = field(x, "block_name"),
+                   block_id = field(x, "block_id"),
+                   start_gen = field(x, "start_gen"),
+                   end_gen = field(x, "end_gen"),
+                   callback = field(x, "callback"),
+                   code = field(x, "code"),
+                   slimr_output = slimr_output,
+                   slimr_input = slimr_input,
+                   slimr_template = slimr_template,
+                   slimrlang_orig = slimrlang_orig,
+                   script_info = script_info)
+}
 
 #' @export
 as.character.slimr_script <- function(x, ...) {
