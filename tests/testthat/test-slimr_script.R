@@ -32,3 +32,15 @@ test_that("slimr_script output is correct", {
                 crayon = TRUE)
 
 })
+
+test_that("slimr_script objects concatenate correctly", {
+  test_script_1 <- slim_script(slim_block(1,
+                             {
+                               sim.addSubpop("p1", 500);
+                             }))
+
+  test_script_2 <-  slim_script(slim_block(10000,
+                              {
+                                sim.simulationFinished();
+                              }))
+})
