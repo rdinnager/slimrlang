@@ -326,9 +326,9 @@ script_q
 
 If we try and replace the Subpopulation now, we will get invalid SLiM code:
 
-```{r test_unquote_false}
+```{r test_unquote_false, error=TRUE}
 
-try(slimr_script_render(script_q, template = dplyr::tibble(subpop = c("p1", "p2"))))
+slimr_script_render(script_q, template = dplyr::tibble(subpop = c("p1", "p2")))
 
 ```
 
@@ -369,7 +369,7 @@ slimr_script_render(script_uq, template = dplyr::tibble(subpop = c("p1", "p2")))
 
 Now we get two `slimr_script`s with correct SLiM syntax!
 
-#Generating R-friendly Output
+# Generating R-friendly Output
 
 We can also use special `slimrlang` functions to make SLiM generate output that can easily be read back into R as data. This works best in conjunction with `slimr`, which can run SLiM and pull any output into R while it is running. To do this, use the `slimr_output` function inside the `slimrlang` code to wrap any parts of it you want outputted. `slimr_output` is context-aware; if you wrap a SLiM object, the object will be converted into a string (using SLiM's `paste` function) and then sent to the output stream; if you wrap a SLiM output function (such as `outputFull` or `outputVCF`), its output will be sent directly to the output stream without conversion (since it is already output strings). Let's try adding some output to our SLiM script.
 

@@ -1,6 +1,6 @@
 > to_script
 <slimr_script[3]>
-block_1:  initialize() {
+block_1:initialize() {
     initializeMutationRate(1e-07);
     initializeMutationType("m1", 0.5, "f", 0);
     initializeGenomicElementType("g1", m1, 1);
@@ -8,11 +8,11 @@ block_1:  initialize() {
     initializeRecombinationRate(1e-08);
 }
 
-block_2: 1 early() {
+block_2:1 early() {
     sim.addSubpop("p1", 500);
 }
 
-block_3: 10000 early() {
+block_3:10000 early() {
     sim.simulationFinished();
 }
 

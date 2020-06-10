@@ -13,11 +13,11 @@ slimr_output <- function(slimr_expr, name, do_every = 1) {
       }
     )
   } else {
-    new_code <- rlang::expr(
+    new_code <- rlang::exprs(
       if(sim.generation %% !!do_every == 0) {
         cat("<slimr_out:start>" + paste(sim.generation) + ',"' +
               !!name + '","')
-        exprs(catn(paste(!!slimr_expr)))
+        rlang::exprs(catn(paste(!!slimr_expr)))
         cat('"<slimr_out:end>')
     })
   }
