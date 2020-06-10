@@ -159,15 +159,15 @@ vec_cast.slimr_script.slimr_script <- function(x, to, ...) {
 #' @export
 as.character.slimr_script <- function(x, ...) {
   code <- SLiMify_all(as.character(code(x), as_list = TRUE))
-  string <- paste0(ifelse(is.na(field(x, "block_id")), " ", paste0(field(x, "block_id"), " ")),
-                 ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
-                 ifelse(is.na(field(x, "end_gen")), "", ":"),
-                 ifelse(is.na(field(x, "end_gen")), "", field(x, "end_gen")),
-                 " ",
-                 field(x, "callback"),
-                 " {\n    ",
-                 purrr::map_chr(code, ~paste(.x, collapse = "\n    ")),
-                 "\n}\n")
+  string <- paste0(ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), " ")),
+                   ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
+                   ifelse(is.na(field(x, "end_gen")), "", paste0(":", field(x, "end_gen"))),
+                   " ",
+                   field(x, "callback"),
+                   " {\n    ",
+                   purrr::map_chr(code, ~paste(.x, collapse = "\n    ")),
+                   "\n}\n") %>%
+    stringr::str_trim("left")
   string
 }
 
@@ -415,7 +415,7 @@ as_slim_text <- function(x, ...) {
 #') -> script
 #'as_slim_text(script)
 as_slim_text.slimr_script <- function(x, ...) {
-  as.character(x, ...)
+  paste(as.character(x, ...), collapse = "\n")
 }
 
 #' @export
