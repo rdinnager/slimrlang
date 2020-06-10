@@ -48,9 +48,13 @@ vec_ptype2.slimr_code.slimr_code <- function(x, to, ...) x
 
 
 #' @export
-as.character.slimr_code <- function(x, ...) {
-  purrr::map_chr(x,
-                 ~paste(.x, collapse = "\n"))
+as.character.slimr_code <- function(x, as_list = FALSE, ...) {
+  if(as_list) {
+    unclass(x)
+  } else {
+    purrr::map_chr(x,
+                   ~paste(.x, collapse = "\n"))
+  }
 }
 
 
@@ -154,16 +158,17 @@ vec_cast.slimr_script.slimr_script <- function(x, to, ...) {
 
 #' @export
 as.character.slimr_script <- function(x, ...) {
-  code <- paste0(ifelse(is.na(field(x, "block_id")), " ", paste0(field(x, "block_id"), " ")),
+  code <- SLiMify_all(as.character(code(x), as_list = TRUE))
+  string <- paste0(ifelse(is.na(field(x, "block_id")), " ", paste0(field(x, "block_id"), " ")),
                  ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
                  ifelse(is.na(field(x, "end_gen")), "", ":"),
                  ifelse(is.na(field(x, "end_gen")), "", field(x, "end_gen")),
                  " ",
                  field(x, "callback"),
                  " {\n    ",
-                 purrr::map_chr(field(x, "code"), ~paste(.x, collapse = "\n    ")),
+                 purrr::map_chr(code, ~paste(.x, collapse = "\n    ")),
                  "\n}\n")
-  code
+  string
 }
 
 #' @export
@@ -260,6 +265,109 @@ obj_print_footer.slimr_script <- function(x, ...) {
   cat(template_text)
   invisible(template_text)
 }
+
+
+#' Convert a character vector into a slim_script object
+#'
+#' @param slim_script_text A character vector giving the full SLiM script to
+#' convert to a \code{slimr_script} object. Character vectors with length greater than
+#' 1 will be concatenated with newline separators
+#'
+#' @return A \code{slimr_script} object
+#' @export
+#'
+#' @examples
+as_slimr_script <- function(slim_script_text) {
+
+  if(!inherits(slim_script_text, "character")) {
+    stop("as_slimr_script only accepts character arguments")
+  }
+
+  if(length(slim_script_text) > 1) {
+    slim_script_text <- paste(slim_script_text,
+                              collapse = "\n")
+  }
+
+  suppressWarnings(
+    block_regx <- gregexpr("\\{(?:[^{}]*|(?R))*\\}",
+                           slim_script_text,
+                           perl = TRUE)
+  )
+
+  starts <- block_regx[[1]]
+  match_len <- attr(block_regx[[1]], "match.length")
+  ends <- starts + match_len
+  starts <- c(0, ends[-length(ends)])
+
+  blocks <- purrr::map2_chr(starts, ends, ~substr(slim_script_text, .x, .y))
+
+  n_blocks <- length(blocks)
+
+  ## remove comments
+  blocks <- slimr_code_remove_comments(blocks)
+
+  heads <- stringr::str_match(blocks, "([\\S\\s]*?)\\{")[ , 2]
+  heads <- stringr::str_remove_all(heads, stringr::fixed("\n"))
+
+  blocks <- stringr::str_trim(blocks)
+  blocks <- stringr::str_remove_all(blocks, "^([\\S\\s]*?)\\{")
+  blocks <- stringr::str_remove_all(blocks, "\\}$")
+
+  block_ids <- stringr::str_extract(heads, "^s(\\d+)")
+  heads <- stringr::str_remove_all(heads, "^s(\\d+) ")
+  start_nums <- stringr::str_match(heads, "^([:digit:]*e?(?!a)[:digit:]*)[[:space:]:]?")[ , 2]
+  start_nums <- stringr::str_trim(start_nums)
+  end_nums <- stringr::str_match(heads, ":(\\d+)")[ , 2]
+  max_num <- max(c(as.numeric(start_nums), as.numeric(end_nums)), na.rm = TRUE)
+  has_colon <- grepl(":", heads, fixed = TRUE)
+  if(is.infinite(max_num)) {
+    max_num <- ""
+  }
+  end_nums <- ifelse(has_colon & is.na(end_nums), as.character(max_num), end_nums)
+
+  block_names <- paste0("block_", stringr::str_pad(seq_along(blocks),
+                                                  nchar(trunc(n_blocks)),
+                                                  pad = "0"))
+
+  block_names[heads == "initialize()"] <- "block_init"
+
+  blocks <- stringr::str_trim(blocks)
+
+  callbacks <- stringr::str_remove_all(heads, "^([:digit:]*e?(?!a)[:digit:]*)")
+  callbacks <- stringr::str_remove_all(callbacks, ":(\\d+)")
+  callbacks <- stringr::str_remove_all(callbacks, "^:")
+
+  callbacks <- stringr::str_trim(callbacks)
+
+  callbacks[callbacks == ""] <- "early()"
+
+
+  ## make code parseable
+
+  code <- slimr_code_Rify_all(blocks)
+  code <- slimr_code_from_text_style_all(code)
+
+
+  code <- purrr::map(code,
+                     ~paste(.x, collapse = "\n"))
+
+  code <- slimr_code_Rify_all(code) %>%
+    stringr::str_split(stringr::fixed("\n"))
+
+  code <- new_slimr_code(code)
+
+  script <- new_slimr_script(block_name = block_names,
+                             block_id = block_ids,
+                             start_gen = start_nums,
+                             end_gen = end_nums,
+                             callback = callbacks,
+                             code = code,
+                             script_info = list(end_gen = max_num))
+
+  script
+
+}
+
 
 #' @export
 get_block <- function(x, i) {

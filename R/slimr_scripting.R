@@ -87,7 +87,7 @@ slim_script <- function(...) {
   code <- purrr::map(code,
                      ~unlist(.x))
 
-  code <- SLiMify_all(code)
+  #code <- SLiMify_all(code)
 
 
   code <- new_slimr_code(code)

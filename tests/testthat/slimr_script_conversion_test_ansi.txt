@@ -1,10 +1,10 @@
-> script_temp
+> to_script
 <slimr_script[3]>
-[1m[46mblock_init:[49m[22m  initialize() [90m{[39m
-    [1minitializeMutationRate[22m[33m([39m[32m..mut_rate..[39m[33m)[39m;
+[1m[46mblock_1:[49m[22m  initialize() [90m{[39m
+    [1minitializeMutationRate[22m[33m([39m[34m1e-07[39m[33m)[39m;
     [1minitializeMutationType[22m[33m([39m[30m"m1"[39m, [34m0.5[39m, [30m"f"[39m, [34m0[39m[33m)[39m;
     [1minitializeGenomicElementType[22m[33m([39m[30m"g1"[39m, m1, [34m1[39m[33m)[39m;
-    [1minitializeGenomicElement[22m[33m([39mg1, [34m0[39m, [32m..genome_size..[39m[33m)[39m;
+    [1minitializeGenomicElement[22m[33m([39mg1, [34m0[39m, [34m99999[39m[33m)[39m;
     [1minitializeRecombinationRate[22m[33m([39m[34m1e-08[39m[33m)[39m;
 [90m}[39m
 
@@ -15,6 +15,4 @@
 [1m[46mblock_3:[49m[22m 10000 early() [90m{[39m
     [1msim.simulationFinished[22m[33m([39m[33m)[39m;
 [90m}[39m
-This slimr_script has templating in block(s) [1m[46mblock_init[49m[22m for
-variables [32mmut_rate[39m and [32mgenome_size[39m.
 
