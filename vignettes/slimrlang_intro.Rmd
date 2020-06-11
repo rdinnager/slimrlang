@@ -418,14 +418,18 @@ cat(script_txt)
 
 if(requireNamespace("slimr", quietly = TRUE)) {
   out <- slimr::slim_run(script_txt, simple_run = TRUE, capture_output = TRUE)
+  head(out$output, n = 50L)
 }
 
-head(out$output, n = 50L)
+
 
 ```
 `slimr` also provides a suite of handy functions to get this data into a `data.frame` or `tibble`
 
-```{r tests}
-test <- stringr::str_match_all(paste(out$output, collapse = "\n"), stringr::regex("<slimr_out:start>(.*?)<slimr_out:end>", dotall = TRUE))[[1]][ , 2]
-test2 <- readr::read_csv(test, col_names = c("generation", "name", "expression", "data"), quote = "\'")
+```{r tests, eval=FALSE}
+if(requireNamespace("slimr", quietly = TRUE)) {
+
+  test <- stringr::str_match_all(paste(out$output, collapse = "\n"), stringr::regex("<slimr_out:start>(.*?)<slimr_out:end>", dotall = TRUE))[[1]][ , 2]
+  test2 <- readr::read_csv(test, col_names = c("generation", "name", "expression", "data"), quote = "\'")
+}
 ```

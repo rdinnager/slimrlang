@@ -450,7 +450,7 @@ as_slim_text.slimr_script <- function(x, ...) {
 #'           })
 #') -> script
 #'temp_file <- tempfile(fileext = ".txt")
-#'slim_write(script, temp_file)
+#'slimr_write(script, temp_file)
 #'readLines(temp_file)
 slimr_write <- function(x, file, ...) {
   UseMethod("slimr_write", x)
@@ -461,7 +461,7 @@ slimr_write.slimr_script <- function(x, file, ...) {
 
   script <- as.character(x)
 
-  readr::write_lines(script, file)
+  writeLines(script, file)
 
 }
 

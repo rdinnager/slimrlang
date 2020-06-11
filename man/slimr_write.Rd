@@ -40,6 +40,6 @@ slim_script(
           })
 ) -> script
 temp_file <- tempfile(fileext = ".txt")
-slim_write(script, temp_file)
+slimr_write(script, temp_file)
 readLines(temp_file)
 }
