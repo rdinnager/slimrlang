@@ -399,7 +399,7 @@ slim_script(
                slimr_output(p1%.%.P$outputVCFSample(sampleSize = 10), name = "VCF");
                
               }),
-  slim_block(10000,
+  slim_block(100,
              {
                sim.simulationFinished();
              })
@@ -417,7 +417,15 @@ script_txt <- as_slim_text(script_w_out)
 cat(script_txt)
 
 if(requireNamespace("slimr", quietly = TRUE)) {
-  run <- slimr::slim_run_script(script_txt)
+  out <- slimr::slim_run(script_txt, simple_run = TRUE, capture_output = TRUE)
 }
 
+head(out$output, n = 50L)
+
+```
+`slimr` also provides a suite of handy functions to get this data into a `data.frame` or `tibble`
+
+```{r tests}
+test <- stringr::str_match_all(paste(out$output, collapse = "\n"), stringr::regex("<slimr_out:start>(.*?)<slimr_out:end>", dotall = TRUE))[[1]][ , 2]
+test2 <- readr::read_csv(test, col_names = c("generation", "name", "expression", "data"), quote = "\'")
 ```

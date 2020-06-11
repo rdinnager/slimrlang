@@ -157,8 +157,8 @@ vec_cast.slimr_script.slimr_script <- function(x, to, ...) {
 }
 
 #' @export
-as.character.slimr_script <- function(x, ...) {
-  code <- SLiMify_all(as.character(code(x), as_list = TRUE))
+as.character.slimr_script <- function(x, for_script = FALSE, ...) {
+  code <- SLiMify_all(as.character(code(x), as_list = TRUE), for_script = for_script)
   string <- paste0(ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), " ")),
                    ifelse(is.na(field(x, "start_gen")), "", field(x, "start_gen")),
                    ifelse(is.na(field(x, "end_gen")), "", paste0(":", field(x, "end_gen"))),
@@ -415,7 +415,61 @@ as_slim_text <- function(x, ...) {
 #') -> script
 #'as_slim_text(script)
 as_slim_text.slimr_script <- function(x, ...) {
-  paste(as.character(x, ...), collapse = "\n")
+  paste(as.character(x, for_script = TRUE, ...), collapse = "\n")
+}
+
+#' Write a slimr_script object to a text file
+#'
+#' Write a slimr_script object to a text file, which can be run in
+#' SLiM as a SLiM script
+#'
+#' @param x \code{slimr_script} object to write to file
+#' @param file File path to write to
+#' @param ... Further arguments to be passed to or from other objects
+#'
+#' @return Returns \code{x}, invisibly
+#' @export
+#'
+#' @examples
+#' slim_script(
+#'    slim_block(initialize(),
+#'           {
+#'             initializeMutationRate(1e-7);
+#'             initializeMutationType("m1", 0.5, "f", 0.0);
+#'             initializeGenomicElementType("g1", m1, 1.0);
+#'             initializeGenomicElement(g1, 0, 99999);
+#'             initializeRecombinationRate(1e-8);
+#'           }),
+#'    slim_block(1,
+#'           {
+#'             sim.addSubpop("p1", 500);
+#'           }),
+#'    slim_block(10000,
+#'           {
+#'             sim.simulationFinished();
+#'           })
+#') -> script
+#'temp_file <- tempfile(fileext = ".txt")
+#'slim_write(script, temp_file)
+#'readLines(temp_file)
+slimr_write <- function(x, file, ...) {
+  UseMethod("slimr_write", x)
+}
+
+#' @export
+slimr_write.slimr_script <- function(x, file, ...) {
+
+  script <- as.character(x)
+
+  readr::write_lines(script, file)
+
+}
+
+#' @export
+slimr_write.character <- function(x, file, ...) {
+
+  readr::write_lines(x, file)
+
 }
 
 #' @export
@@ -439,6 +493,25 @@ reconstruct <- function(x, ...) {
 #' @export
 #'
 #' @examples
+#'slim_script(
+#'     slim_block(initialize(),
+#'          {
+#'               .Init$initializeMutationRate(1e-7);
+#'               .Init$initializeMutationType("m1", 0.5, "f", 0.0);
+#'               .Init$initializeGenomicElementType("g1", m1, 1.0);
+#'               .Init$initializeGenomicElement(g1, 0, 99999);
+#'               .Init$initializeRecombinationRate(1e-8);
+#'          }),
+#'            slim_block(1,
+#'            {
+#'               sim%.%.SS$addSubpop("p1", 500);
+#'            }),
+#'    slim_block(10000,
+#'          {
+#'               sim%.%.SS$simulationFinished();
+#'          })
+#') -> script
+#'reconstruct(script)
 reconstruct.slimr_script <- function(x, ...) {
   code <- paste0("    slim_block(",
                  ifelse(is.na(field(x, "block_id")), "", paste0(field(x, "block_id"), ", ")),

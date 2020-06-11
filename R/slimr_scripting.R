@@ -74,6 +74,8 @@ slim_script <- function(...) {
 
   code <- vec_unchop(script$code)
 
+  ## process forcing operators
+  code <- process_forcing(code)
 
   ## process for template
   c(code, slimr_template_attr) %<-% process_template(code, block_names)

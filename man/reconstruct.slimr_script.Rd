@@ -17,3 +17,24 @@ A character vector of length one containing the reconstructed code.
 \description{
 
 }
+\examples{
+slim_script(
+    slim_block(initialize(),
+         {
+              .Init$initializeMutationRate(1e-7);
+              .Init$initializeMutationType("m1", 0.5, "f", 0.0);
+              .Init$initializeGenomicElementType("g1", m1, 1.0);
+              .Init$initializeGenomicElement(g1, 0, 99999);
+              .Init$initializeRecombinationRate(1e-8);
+         }),
+           slim_block(1,
+           {
+              sim\%.\%.SS$addSubpop("p1", 500);
+           }),
+   slim_block(10000,
+         {
+              sim\%.\%.SS$simulationFinished();
+         })
+) -> script
+reconstruct(script)
+}

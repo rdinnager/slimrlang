@@ -1,3 +1,27 @@
+#' Tell SLiM to produce easily parseable output
+#'
+#' Use this function in a \code{\link{slim_block}} call and it will be
+#' converted in the SLiM script into code to make formatted output.
+#' This output can easily be read into R and even dynamically read
+#' during simulation runs with \code{\link[slimr]{slim_run}} from the
+#' \code{slimr} package. This function should generally only be
+#' used within a \code{\link{slim_block}} call
+#'
+#' @param slimr_expr A SLiM expression to generate output. This can either be
+#' a SLiM expression designed to create output, such as \code{outputFull()},
+#' or an object created in the SLiM code, in which case \code{slimr_output}
+#' will automatically concatenate it to a string and output it
+#' @param name The name to use to identify this output.
+#' @param do_every How often should the output be produced? Expressed
+#' as an integer saying how many generations to run before producing output.
+#' e.g. \code{do_every = 10} means to output every 10 generations of the
+#' simulation.
+#'
+#' @return An expression with the code to be run in SLiM.
+#'
+#' @export
+#'
+#' @examples
 slimr_output <- function(slimr_expr, name, do_every = 1) {
   slimr_expr <- rlang::enexpr(slimr_expr)
 
@@ -6,19 +30,19 @@ slimr_output <- function(slimr_expr, name, do_every = 1) {
   if(slimr_code_detect_output(expr_txt)) {
     new_code <- rlang::exprs(
       if(sim.generation %% !!do_every == 0) {
-        cat("<slimr_out:start>" + paste(sim.generation) + ',"' +
-              !!name + '","')
+        cat("<slimr_out:start>" + paste(sim.generation) + ",'" +
+              !!name + "','" + !!expr_txt + "','")
         !!slimr_expr
-        cat('"<slimr_out:end>')
+        cat("'<slimr_out:end>")
       }
     )
   } else {
     new_code <- rlang::exprs(
       if(sim.generation %% !!do_every == 0) {
-        cat("<slimr_out:start>" + paste(sim.generation) + ',"' +
-              !!name + '","')
+        cat("<slimr_out:start>" + paste(sim.generation) + ",'" +
+              !!name + "','" + !!expr_txt + "','")
         rlang::exprs(catn(paste(!!slimr_expr)))
-        cat('"<slimr_out:end>')
+        cat("'<slimr_out:end>")
     })
   }
 

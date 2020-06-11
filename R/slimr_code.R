@@ -1,25 +1,29 @@
 
-SLiMify <- function(code) {
-  code <- slimr_code_add_semicolons(code)
-  code <- slimr_code_replace_dots(code)
-  code <- slimr_code_remove_special_classes(code)
-  code <- slimr_code_replace_ternary(code)
+SLiMify <- function(code, for_script = FALSE) {
+  code <- slimr_code_add_semicolons(code) %>%
+    slimr_code_replace_dots() %>%
+    slimr_code_remove_special_classes()
+
+  if(for_script) {
+    code <- slimr_code_replace_ternary(code) %>%
+      slimr_code_replace_modulus()
+  }
 
   code
 }
 
 
-SLiMify_all <- function(code) {
+SLiMify_all <- function(code, for_script = FALSE) {
 
   code <- purrr::map(code,
-                     ~SLiMify(.x))
+                     ~SLiMify(.x, for_script = for_script))
 
   code
 }
 
 slimr_code_add_semicolons <- function(code_one) {
   brace_lines <- stringr::str_detect(code_one,
-                                     "(\\{$|\\}$)")
+                                     "(\\{$|\\}|\\+$)")
   code_one[!brace_lines] <- paste0(code_one[!brace_lines], ";")
   code_one
 }
@@ -47,6 +51,13 @@ slimr_code_replace_ternary <- function(code_one) {
   stringr::str_replace_all(code_one,
                            "\\%else\\%",
                            "else")
+}
+
+slimr_code_replace_modulus <- function(code_one) {
+  ## turn R modulus %% back into SLiM modulus %
+  stringr::str_replace_all(code_one,
+                           "([^.])%%([^.])",
+                           "\\1%\\2")
 }
 
 
