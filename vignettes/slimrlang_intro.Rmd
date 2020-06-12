@@ -1,6 +1,8 @@
 ---
 title: "Introduction to slimrlang: Writing SLiM scripts from R"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    df_print: "paged"
 vignette: >
   %\VignetteIndexEntry{Introduction to slimrlang: Writing SLiM scripts from R}
   %\VignetteEngine{knitr::rmarkdown}
@@ -146,6 +148,8 @@ require(printr, quietly = TRUE)
 help(".SS$addSubpop")
 ```
 
+
+
 There is also two special classes which are not actually classes in SLiM iteself, but they are used in `slimrlang` to keep particular types of SLiM function together. These are `Initialize` (or `.Init`) and `SLiMBuiltin` (or `.SB`). The `Initialize` object contains SLiM functions that can only be used in the `initialize()` block of SLiM code (more on this later). `SLiMBuiltin` contains miscellaneous functions built in to SLiM which are not part of any SLiM class. 
 
 Admittedly, using these extra R objects in the code does make it look somewhat less elegant, and also makes it no longer directly valid SLiM code. But don't worry, `slimrlang` knows how to transform this syntax back into proper SLiM code, which you can see by printing out the resulting `slim_script` object.
@@ -180,7 +184,7 @@ script_2
 
 Okay, next up, let's see some of the neat stuff we can do to manipulate these SLiM scripts in R. First, we will see how to use R to fill in parts of the SLiM script with data from R. This is accomplished using the `slimr_template` function, which can be used to insert R generated data into a SLiM script. 
 
-#Templating
+# Templating
 
 This is the simplest to get a SLiM script which has elements that can be filled in later with a templating mechanism. So, how does that work? Well, anywhere we want something in the SLiM script to be 'in-fillable', that is, to contain a variable section of the script that we can subsitute data into later, you can use the `slimr_template` function in place of what was formerly a hard-coded value. Here is an example using the same recipe as above, but in this case we want to be able to fill-in the genome size and the muation rate later:
 
@@ -235,7 +239,7 @@ multi_script <- slimr_script_render(script_temp,
 multi_script
 ```
 
-To save typing you can also just include `..x..` specifications in the SLiM code and this will be recognized as a templated variable. The disadvantage of this though is that you cannot specify a default value, which can be pretty handy. Default values are useful if, for example, you want to prototype a templated script, the default values can serve as "test" values that will be filled in automatically everytime you want to test the script. Another potential use is so that you only have to specify some of your variables in your call to `slimr_script_render`, in which case, anything you don't specify will take their default values. Additionally `slimr_script_render` has an argument that allows you to use the default values in the case of a missing value in the data you supply (such as in the data.frame style specification). Let's look at an example of both of these scenarios.
+To save typing you can also just include `..x..` specifications in the SLiM code and this will be recognized as a templated variable. The disadvantage of this though is that you cannot specify a default value, which can be pretty handy. Default values are useful if, for example, you want to prototype a templated script, the default values can serve as "test" values that will be filled in automatically every time you want to test the script. Another potential use is so that you only have to specify some of your variables in your call to `slimr_script_render`, in which case, anything you don't specify will take their default values. Additionally `slimr_script_render` has an argument that allows you to use the default values in the case of a missing value in the data you supply (such as in the data.frame style specification). Let's look at an example of both of these scenarios.
 
 ```{r default_interp}
 script_partial <- slimr_script_render(script_temp,
@@ -247,7 +251,7 @@ script_partial <- slimr_script_render(script_temp,
 script_partial
 ```
 
-Warnings are generated to help prevent unexpected behaviour. For example if you simply mispelled one of the templated variable names in the template, this would be replaced by the default value. And without the above warnings you would never know that it happened. If you intended to specify all templated variables but you get this warning, check that the template you specified is correct! As we mentioned above, using a `data.frame` as a template is also possible. Here is an example.
+Warnings are generated to help prevent unexpected behaviour. For example if you simply misspelled one of the templated variable names in the template, this would be replaced by the default value. And without the above warnings you would never know that it happened. If you intended to specify all templated variables but you get this warning, check that the template you specified is correct! As we mentioned above, using a `data.frame` as a template is also possible. Here is an example.
 
 ```{r data_frame_example_1}
 
@@ -397,6 +401,7 @@ slim_script(
              {
                ## output sample of 10 individuals' genomes in VCF format
                slimr_output(p1%.%.P$outputVCFSample(sampleSize = 10), name = "VCF");
+               catn("Another successful round of evolution completed!")
                
               }),
   slim_block(100,
@@ -416,20 +421,34 @@ script_txt <- as_slim_text(script_w_out)
 
 cat(script_txt)
 
-if(requireNamespace("slimr", quietly = TRUE)) {
-  out <- slimr::slim_run(script_txt, simple_run = TRUE, capture_output = TRUE)
+if(require("slimr", quietly = TRUE)) {
+  out <- slim_run(script_txt, simple_run = TRUE, capture_output = TRUE)
   head(out$output, n = 50L)
 }
 
 
 
 ```
-`slimr` also provides a suite of handy functions to get this data into a `data.frame` or `tibble`
+You can see how standard output from SLiM ("Another successful round of evolution completed"), is interleaved in the output, but the tags added by `slimrlang` make it easy to filter this out later. `slimr` also provides a suite of handy functions to get this output data into a `data.frame` or `tibble`
 
 ```{r tests, eval=FALSE}
-if(requireNamespace("slimr", quietly = TRUE)) {
+if(require("slimr", quietly = TRUE)) {
 
-  test <- stringr::str_match_all(paste(out$output, collapse = "\n"), stringr::regex("<slimr_out:start>(.*?)<slimr_out:end>", dotall = TRUE))[[1]][ , 2]
-  test2 <- readr::read_csv(test, col_names = c("generation", "name", "expression", "data"), quote = "\'")
+  out_dat <- slim_extract_output_data(out$output)
+  print(out_dat)
+  
+} 
+```
+
+Running the script from the `slimr_script` object directly gives us more information about how the simulation is proceeding. We will increase the number of generations first.
+
+```{r slimr_script_run, eval=FALSE}
+
+modify(script_w_out, "end_gen", 3) <- 1000
+
+if(require("slimr", quietly = TRUE)) {
+  out <- slim_run(script_w_out, show_output = TRUE)
+  head(out$output, n = 50L)
 }
+
 ```

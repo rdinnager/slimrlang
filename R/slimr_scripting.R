@@ -105,7 +105,7 @@ slim_script <- function(...) {
                              slimr_output = slimr_output_attr,
                              slimr_template = slimr_template_attr,
                              slimrlang_orig = .call,
-                             script_info = list(end_gen = end_gen))
+                             script_info = list(end_gen = as.numeric(end_gen)))
 
   script
 }

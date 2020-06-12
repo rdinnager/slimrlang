@@ -9,6 +9,8 @@
 status](https://github.com/rdinnager/slimrlang/workflows/R-CMD-check/badge.svg)](https://github.com/rdinnager/slimrlang/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/rdinnager/slimrlang/branch/master/graph/badge.svg)](https://codecov.io/gh/rdinnager/slimrlang?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The goal of slimrlang is to provide an environment in which you can
@@ -62,7 +64,7 @@ slim_script(
 
 script_1
 #> <slimr_script[3]>
-#> block_init:  initialize() {
+#> block_init:initialize() {
 #>     initializeMutationRate(1e-07);
 #>     initializeMutationType("m1", 0.5, "f", 0);
 #>     initializeGenomicElementType("g1", m1, 1);
@@ -70,11 +72,11 @@ script_1
 #>     initializeRecombinationRate(1e-08);
 #> }
 #> 
-#> block_2: 1 early() {
+#> block_2:1 early() {
 #>     sim.addSubpop("p1", 500);
 #> }
 #> 
-#> block_3: 10000 early() {
+#> block_3:10000 early() {
 #>     sim.simulationFinished();
 #> }
 ```

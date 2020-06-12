@@ -381,6 +381,35 @@ code <- function(x) {
 }
 
 #' @export
+`code<-` <- function(x, value) {
+  field(x, "code") <- value
+}
+
+#' @export
+end_gen <- function(x) {
+  field(x, "end_gen")
+}
+
+#' @export
+`end_gen<-` <- function(x, position, value) {
+  field(x, "end_gen") <- value
+}
+
+#' @export
+`modify<-` <- function(x, ...) {
+  UseMethod("modify<-", x)
+}
+
+#' @export
+`modify<-.slimr_script` <- function(x, field, position, value) {
+  field(x, field)[position] <- value
+  if(field %in% c("start_gen", "end_gen")) {
+    attr(x, "script_info")$end_gen <- max(as.numeric(c(field(x, "end_gen"), field(x, "start_gen"))), na.rm = TRUE)
+  }
+  x
+}
+
+#' @export
 as_slim_text <- function(x, ...) {
   UseMethod("as_slim_text", x)
 }
