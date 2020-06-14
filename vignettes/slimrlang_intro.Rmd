@@ -447,8 +447,9 @@ Running the script from the `slimr_script` object directly gives us more informa
 modify(script_w_out, "end_gen", 3) <- 1000
 
 if(require("slimr", quietly = TRUE)) {
-  out <- slim_run(script_w_out, show_output = TRUE)
-  head(out$output, n = 50L)
+  out <- slim_run(script_w_out, show_output = FALSE)
+  head(out$output, n = 20L)
+  out$output_data
 }
 
 ```

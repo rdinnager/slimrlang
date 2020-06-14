@@ -402,9 +402,17 @@ end_gen <- function(x) {
 
 #' @export
 `modify<-.slimr_script` <- function(x, field, position, value) {
+  if(field == "end_gen") {
+    old_end_gen <- attr(x, "script_info")$end_gen
+  }
   field(x, field)[position] <- value
   if(field %in% c("start_gen", "end_gen")) {
-    attr(x, "script_info")$end_gen <- max(as.numeric(c(field(x, "end_gen"), field(x, "start_gen"))), na.rm = TRUE)
+    end_gen <- max(as.numeric(c(field(x, "end_gen"), field(x, "start_gen"))), na.rm = TRUE)
+    attr(x, "script_info")$end_gen <- end_gen
+  }
+  if(field == "end_gen") {
+    field(x, "start_gen")[field(x, "start_gen") == old_end_gen] <- end_gen
+    field(x, "end_gen")[field(x, "end_gen") == old_end_gen] <- end_gen
   }
   x
 }
